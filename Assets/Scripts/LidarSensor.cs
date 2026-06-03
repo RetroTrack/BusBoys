@@ -5,9 +5,9 @@ using RangeAttribute = UnityEngine.RangeAttribute;
 public class LidarSensor : MonoBehaviour
 {
     [Header("Lidar Settings")]
-    [SerializeField, Range(1, 360)] private int numberOfRays = 360;
+    [SerializeField, Range(1, 360)] private int numberOfRays = 20;
     [SerializeField] private Vector2 angleRange = new Vector2(-60f, 60f);
-    [SerializeField] private float maxDistance = 100f;
+    [SerializeField] private float maxDistance = 20f;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float updateInterval = 0.1f;
 

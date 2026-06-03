@@ -156,6 +156,17 @@ public class BusController : MonoBehaviour
         }
     }
 
+    public float[] GetWheelEncoderValues()
+    {
+        return new float[]
+        {
+            wheelFrontLeft.rpm,
+            wheelFrontRight.rpm,
+            wheelBackLeft.rpm,
+            wheelBackRight.rpm
+        };
+    }
+
 
     public enum DriveType
     {
