@@ -1275,9 +1275,9 @@ MonoBehaviour:
   greenLights:
   - {fileID: 4084091350420166546}
   - {fileID: 3773139079468406529}
-  redLightOffMaterial: {fileID: 2100000, guid: a212da4c5051a844b8e02f7790a33cdd, type: 2}
-  yellowLightOffMaterial: {fileID: 2100000, guid: 8b2b80f3a1f88d44e98f8135b624acf6, type: 2}
-  greenLightOffMaterial: {fileID: 2100000, guid: bf6e4ec4d56f1904992eccffdee5001c, type: 2}
+  redLightOffMaterial: {fileID: 2100000, guid: 52945b1c11d613347bda3a36489ed999, type: 2}
+  yellowLightOffMaterial: {fileID: 2100000, guid: 52945b1c11d613347bda3a36489ed999, type: 2}
+  greenLightOffMaterial: {fileID: 2100000, guid: 52945b1c11d613347bda3a36489ed999, type: 2}
   redLightOnMaterial: {fileID: 2100000, guid: 35b4d210a0ab99c4db38b9feb0934bc4, type: 2}
   yellowLightOnMaterial: {fileID: 2100000, guid: cc99d15b1de9ba843931f30e7a8192d7, type: 2}
   greenLightOnMaterial: {fileID: 2100000, guid: da6461fcba9df0f45a990adf6ea21f24, type: 2}

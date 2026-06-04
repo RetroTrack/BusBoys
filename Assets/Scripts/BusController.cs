@@ -5,7 +5,7 @@ public class BusController : MonoBehaviour
 {
     [Header("Bus Components")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private WheelCollider wheelFrontLeft, wheelFrontRight, wheelBackLeft, wheelBackRight;
+    public WheelCollider wheelFrontLeft, wheelFrontRight, wheelBackLeft, wheelBackRight; //public zodat de trafficDetector de wielen op kan halen
 
     [Header("Bus Settings")]
     [Tooltip("Amount of torque applied to the wheels (in Nm)"), SerializeField] private float motorTorque = 2000f;
