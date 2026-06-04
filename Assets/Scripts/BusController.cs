@@ -23,43 +23,41 @@ public class BusController : MonoBehaviour
     [SerializeField] SteeringType steeringType = SteeringType.FrontWheelSteering;
     [SerializeField] BrakingType brakingType = BrakingType.FrontWheelBraking;
 
+    [Header("Sensors")]
+    public LidarSensor lidarSensor; // Public zodat de bus agent er bij kan
+    public TrafficLightDetector trafficLightDetector; // Public zodat de bus agent er bij kan
 
 
-    InputAction moveAction;
-    InputAction brakeAction;
+    float motorInput, brakeInput, steerInput;
 
-    public void Start()
-    {
-        moveAction = InputSystem.actions.FindAction("Move");
-        brakeAction = InputSystem.actions.FindAction("Jump");
-
-        moveAction.Enable();
-        brakeAction.Enable();
-    }
 
     private void FixedUpdate()
     {
         // Measuring
         currentSpeed = rb.linearVelocity.magnitude * 3.6f; // Convert m/s to km/h
 
-        //Input
-        Vector2 input = moveAction.ReadValue<Vector2>();
-        bool isBreaking = brakeAction.ReadValue<float>() > 0.1f;
 
         // Driving
-        AccelerateBus(input, isBreaking);
+        AccelerateBus();
 
-        if (isBreaking)
-            BrakeBus(input);
-        
+        BrakeBus();
+
 
         // Steering
-        SteerBus(input);
+        SteerBus();
+    }   
+
+
+    public void ControlBus(float motorInput, float brakeInput, float steerInput)
+    {
+        this.motorInput = motorInput;
+        this.brakeInput = brakeInput;
+        this.steerInput = steerInput;
     }
 
-    private void SteerBus(Vector2 input)
+    private void SteerBus()
     {
-        float targetSteerAngle = input.x * maxSteerAngle;
+        float targetSteerAngle = steerInput * maxSteerAngle;
 
         // Smoothly transition to the target steer angle
         currentSteerAngle = Mathf.MoveTowards(
@@ -87,29 +85,21 @@ public class BusController : MonoBehaviour
         }
     }
 
-    private void BrakeBus(Vector2 input)
+    private void BrakeBus()
     {
         // Apply brake torque to the wheels
-        float outputBreakTorque = (1-Mathf.Abs(input.y)) * brakeTorque;
-        switch(brakingType)
+        float outputBreakTorque = Mathf.Abs(brakeInput) * brakeTorque;
+        switch (brakingType)
         {
             case BrakingType.FrontWheelBraking:
-                wheelFrontLeft.motorTorque = 0f;
-                wheelFrontRight.motorTorque = 0f;
                 wheelFrontLeft.brakeTorque = outputBreakTorque;
                 wheelFrontRight.brakeTorque = outputBreakTorque;
                 break;
             case BrakingType.RearWheelBraking:
-                wheelBackLeft.motorTorque = 0f;
-                wheelBackRight.motorTorque = 0f;
                 wheelBackLeft.brakeTorque = outputBreakTorque;
                 wheelBackRight.brakeTorque = outputBreakTorque;
                 break;
             default:
-                wheelFrontLeft.motorTorque = 0f;
-                wheelFrontRight.motorTorque = 0f;
-                wheelBackLeft.motorTorque = 0f;
-                wheelBackRight.motorTorque = 0f;
                 wheelFrontLeft.brakeTorque = outputBreakTorque;
                 wheelFrontRight.brakeTorque = outputBreakTorque;
                 wheelBackLeft.brakeTorque = outputBreakTorque;
@@ -118,9 +108,11 @@ public class BusController : MonoBehaviour
         }
     }
 
-    private void AccelerateBus(Vector2 input, bool isBreaking)
+    private void AccelerateBus()
     {
-        float outputMotorTorque = input.y * motorTorque;
+        float outputMotorTorque = motorInput * motorTorque;
+        float averageBrakeTorque = (wheelBackLeft.brakeTorque + wheelBackRight.brakeTorque + wheelFrontLeft.brakeTorque + wheelFrontRight.brakeTorque)/4;
+
 
         // Speed Limiting
         float targetSpeed = usingNormalSpeed ? normalSpeed : maxSpeed;
@@ -129,13 +121,6 @@ public class BusController : MonoBehaviour
             outputMotorTorque = 0f; // Stop applying torque if over speed limit
         }
 
-        if (!isBreaking)
-        {
-            wheelFrontLeft.brakeTorque = 0;
-            wheelFrontRight.brakeTorque = 0;
-            wheelBackLeft.brakeTorque = 0;
-            wheelBackRight.brakeTorque = 0;
-        }
         // Apply motor torque to the wheels
         switch (driveType)
         {
