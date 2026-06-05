@@ -10,61 +10,58 @@ public class BusRouteManager : MonoBehaviour
 
     // The full sequence of RoadNodes to follow to reach the next stop
     public List<RoadNode> currentPath { get; private set; } = new List<RoadNode>();
-    int currentPathIndex = 0;
+    public int CurrentPathIndex { get; private set; } = 0;
 
-    void Start()
+    public float GetNodeReachedDistance()
     {
-        PathfindToNextStop();
+        if (currentPath == null || CurrentPathIndex >= currentPath.Count)
+            return 0f;
+        RoadNode nextNode = currentPath[CurrentPathIndex];
+        return nextNode.nodeReachedDistance;
     }
 
     // Call this to continue to the next node in the path, returns null if at the end
     public RoadNode GetNextPathNode()
     {
-        if (currentPath == null || currentPathIndex >= currentPath.Count)
+        if (currentPath == null || CurrentPathIndex >= currentPath.Count)
             return null;
 
-        return currentPath[currentPathIndex++];
+        return currentPath[CurrentPathIndex++];
     }
 
     public bool HasReachedEndOfPath()
     {
-        return currentPath == null || currentPathIndex >= currentPath.Count;
+        return currentPath == null || CurrentPathIndex >= currentPath.Count;
     }
 
     // Call when bus arrives at a stop to update the current stop and pathfind to the next one
-    public void ArriveAtStop()
+    public void ArriveAtStop(Vector3 busPosition, Vector3 busFacing)
     {
         Debug.Log("Arrived at stop: " + busStops[currentStopIndex]);
         currentStopIndex = (currentStopIndex + 1) % busStops.Count;
-        PathfindToNextStop();
+
+        // Pathfind from where the bus actually is, not from the stop position
+        PathfindFromPosition(busPosition, busFacing);
     }
 
-    // Finds road nodes closest to current and next stop, then uses the RoadGraph to find a path between them
-    void PathfindToNextStop()
+    // Allows pathfinding from an vector position (like the bus's position) to the current stop
+    public void PathfindFromPosition(Vector3 fromPosition, Vector3? facingDirection = null)
     {
-        if (busStops.Count < 2 || roadGraph == null) return;
+        if (busStops.Count == 0 || roadGraph == null) return;
 
-        int nextStopIndex = (currentStopIndex + 1) % busStops.Count;
+        Transform to = busStops[currentStopIndex];
 
-        Transform from = busStops[currentStopIndex];
-        Transform to = busStops[nextStopIndex];
-
-        RoadNode startNode = FindClosestNode(from.position);
+        RoadNode startNode = FindClosestNode(fromPosition);
         RoadNode goalNode = FindClosestNode(to.position);
 
         if (startNode == null || goalNode == null)
         {
-            Debug.LogWarning("Could not find road nodes near bus stops.");
+            Debug.LogWarning("Could not find road nodes near start or stop.");
             return;
         }
 
-        currentPath = roadGraph.FindPath(startNode, goalNode);
-        currentPathIndex = 0;
-
-        if (currentPath == null)
-            Debug.LogWarning($"No path found from {from.name} to {to.name}");
-        else
-            Debug.Log($"Path found with {currentPath.Count} nodes to stop: {to.name}");
+        currentPath = roadGraph.FindPath(startNode, goalNode, facingDirection);
+        CurrentPathIndex = 0;
     }
 
     RoadNode FindClosestNode(Vector3 position)

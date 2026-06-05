@@ -11,13 +11,21 @@ public class BusAgent : Agent
     [SerializeField] private BusController controller;
 
     [Header("Navigation Settings")]
-    [Tooltip("Distance at which the agent considers a path node reached")]
-    [SerializeField] private float nodeReachedDistance = 3f;
     [Tooltip("Distance at which the agent considers a bus stop reached")]
     [SerializeField] private float stopReachedDistance = 2f;
+    [SerializeField] private float wrongDirectionAngleThreshold = 120f; // degrees
+    [SerializeField] private float wrongDirectionCheckDistance = 5f; // only check if node is within this distance
+    [SerializeField] private float recalculateCooldown = 2f; // prevent spam recalculating
+    private float lastRecalculateTime = -999f;
 
     [Header("Reward Settings")]
-    [SerializeField] private float rewardForReachingStop = 5f;
+    [SerializeField] private float rewardForReachingStop = 10f;
+    [SerializeField] private float rewardForReachingNode = 0.3f;
+    [SerializeField] private float recalculationPenalty = -2f;
+    [SerializeField] private float collisionPenalty = -10f;
+    [SerializeField] private float ghostDrivingPenalty = -0.1f;
+    [SerializeField] private float drivingThroughRedLightPenalty = -5f;
+
 
     InputAction moveAction;
     InputAction brakeAction;
@@ -104,33 +112,57 @@ public class BusAgent : Agent
     // Checks through path nodes and triggers ArriveAtStop when the bus stop is reached
     private void AdvanceAlongPath()
     {
-        // Advance to next road node if close enough
-        if (targetPathNode != null)
+        if (targetPathNode == null)
         {
-            float distToNode = Vector3.Distance(transform.position, targetPathNode.transform.position);
-            if (distToNode <= nodeReachedDistance)
-                targetPathNode = routeManager.GetNextPathNode(); // grab next node in path (or null if at end)
-
-            // Check if the end of the path puts us at the bus stop
             if (!routeManager.HasReachedEndOfPath())
-            {
-                return;
-            }
-            Transform nextStop = routeManager.PeekNextBusStop();
-            if (nextStop == null)
-            {
-                return;
-            }
+                targetPathNode = routeManager.GetNextPathNode();
+            return;
+        }
+
+        Vector3 toNode = targetPathNode.transform.position - transform.position;
+        float distToNode = toNode.magnitude;
+
+        // Advance to next node if close enough
+        if (distToNode <= routeManager.GetNodeReachedDistance())
+        {
+            AddReward(rewardForReachingNode);
+            targetPathNode = routeManager.GetNextPathNode();
+            return;
+        }
+
+        // Wrong direction check
+        float angle = Vector3.Angle(transform.forward, toNode);
+        bool isFacingWrongWay = angle > wrongDirectionAngleThreshold;
+        bool cooldownExpired = Time.time - lastRecalculateTime > recalculateCooldown;
+
+        if (isFacingWrongWay && cooldownExpired)
+        {
+            Debug.Log($"Bus facing wrong way ({angle:F0}°), recalculating...");
+            lastRecalculateTime = Time.time;
+            AddReward(recalculationPenalty);
+
+            routeManager.PathfindFromPosition(transform.position, transform.forward);
+            targetPathNode = routeManager.GetNextPathNode();
+            return;
+        }
+
+        // Check if bus has reached the bus stop
+        Transform nextStop = routeManager.PeekNextBusStop();
+        if (nextStop != null)
+        {
             float distToStop = Vector3.Distance(transform.position, nextStop.position);
-            if (distToStop > stopReachedDistance)
+            if (distToStop <= stopReachedDistance)
             {
+                Debug.Log("Arrived at stop, pathfinding to next...");
+                routeManager.ArriveAtStop(transform.position, transform.forward);
+                targetPathNode = routeManager.GetNextPathNode();
+                AddReward(rewardForReachingStop);
                 return;
             }
-            routeManager.ArriveAtStop(); // advances stop index + re-pathfinds
-            targetPathNode = routeManager.GetNextPathNode(); // grab first node of new path
-            AddReward(rewardForReachingStop); // reward for reaching a stop
         }
     }
+
+
     private float CalculateMaxNodeDistance()
     {
         float max = 0f;
@@ -158,9 +190,11 @@ public class BusAgent : Agent
     {
         maxNodeDistance = CalculateMaxNodeDistance();
         maxStopDistance = CalculateMaxStopDistance();
+
+        // Pathfind from bus position instead of consuming a node immediately
+        routeManager.PathfindFromPosition(transform.position, transform.forward);
         targetPathNode = routeManager.GetNextPathNode();
     }
-
 
     public override void OnActionReceived(ActionBuffers actions)
     {
