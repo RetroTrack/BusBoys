@@ -182,9 +182,16 @@ MonoBehaviour:
   MaxStep: 0
   routeManager: {fileID: 2063603322747633064}
   controller: {fileID: 1720550973295807057}
-  nodeReachedDistance: 3
   stopReachedDistance: 2
+  wrongDirectionAngleThreshold: 120
+  wrongDirectionCheckDistance: 5
+  recalculateCooldown: 2
   rewardForReachingStop: 1
+  rewardForReachingNode: 0.3
+  recalculationPenalty: -2
+  collisionPenalty: -20
+  ghostDrivingPenalty: -0.1
+  drivingThroughRedLightPenalty: -10
 --- !u!114 &8575472799412568823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +394,7 @@ Transform:
   m_GameObject: {fileID: 1766664276934180033}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.27423, y: 1.73311, z: 2.375}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,14 +627,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadGraph
   linkingDistance: 1
+  turnPenaltyMultiplier: 2
+  busTransform: {fileID: 1551332922938177222}
   busRouteManager: {fileID: 2063603322747633064}
   showPath: 1
   showBusStops: 1
-  drawGizmos: 1
   stopGizmoSize: 1
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   stopColor: {r: 1, g: 0, b: 1, a: 1}
-  stopLineColor: {r: 0, g: 1, b: 1, a: 1}
+  remainingPathColor: {r: 0, g: 1, b: 0, a: 1}
+  travelledPathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &6365547920373254865
 GameObject:
   m_ObjectHideFlags: 0
