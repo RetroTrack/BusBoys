@@ -7,6 +7,8 @@ public class RoadNode : MonoBehaviour
     [SerializeField] bool showGizmos = true;
     [SerializeField] bool showLinks = true;
     public List<RoadNode> neighbors = new List<RoadNode>();
+    [Tooltip("Distance at which the agent considers a path node reached")]
+    public float nodeReachedDistance = 5f;
 
     public float GetCostTo(RoadNode other) =>
         Vector3.Distance(transform.position, other.transform.position);
@@ -42,5 +44,11 @@ public class RoadNode : MonoBehaviour
                 if (n != null)
                     Gizmos.DrawLine(transform.position, n.transform.position);
         }
+    }
+
+    [ContextMenu("ResetReached")]
+    public void ResetReached()
+    {
+        nodeReachedDistance = 5f;
     }
 }

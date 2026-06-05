@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712c959be82c4fc44b1b022c3df013d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadEdge
+  showGizmos: 1
   node: {fileID: 8417540807679573805}
 --- !u!1 &6110537645726890712
 GameObject:
@@ -89,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712c959be82c4fc44b1b022c3df013d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadEdge
+  showGizmos: 1
   node: {fileID: 8417540807679573805}
 --- !u!1 &6378582966760702991
 GameObject:
@@ -134,7 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadNode
+  showGizmos: 1
+  showLinks: 1
   neighbors: []
+  nodeReachedDistance: 5
 --- !u!1001 &7084800238753409797
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class TrafficLightDetector : MonoBehaviour
     public enum StoplightState { None, Red, Yellow, Green }
     public StoplightState CurrentStopLightState = StoplightState.None;
 
-    private StoplightState lastState = StoplightState.None;
     private Tensor<float> inputTensor;
     private Texture2D readbackTexture;
 

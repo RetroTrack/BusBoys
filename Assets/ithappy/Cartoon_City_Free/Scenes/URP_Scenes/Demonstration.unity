@@ -258,9 +258,25 @@ PrefabInstance:
       value: road_022
       objectReference: {fileID: 0}
     - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1603021646}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1951453646}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -271,6 +287,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7338894021600906478, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
   m_PrefabInstance: {fileID: 7793378}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7793380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+  m_PrefabInstance: {fileID: 7793378}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &11342435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,9 +509,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1754763572}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1682104420}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 92
@@ -547,6 +594,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 58365316}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &58365318 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 58365316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &61025736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -568,9 +626,29 @@ PrefabInstance:
       value: road_020
       objectReference: {fileID: 0}
     - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 765867296}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 123895510}
     - target: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: m_RootOrder
       value: 120
@@ -633,6 +711,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
   m_PrefabInstance: {fileID: 61025736}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &61025738 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+  m_PrefabInstance: {fileID: 61025736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &63016656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -778,9 +867,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 123332305}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 666973116}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 99
@@ -843,6 +952,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 88846931}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &88846933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 88846931}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &102455634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -856,9 +976,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 686417610}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 123332305}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 97
@@ -921,6 +1061,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 102455634}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &102455636 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 102455634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1 &112662122
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,9 +1144,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 88846933}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 102455636}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 98
@@ -1058,6 +1229,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 123332303}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &123332305 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 123332303}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &123895508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1071,9 +1253,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4325841678600902883, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4325841678600902883, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4325841678600902883, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4325841678600902883, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 672381410}
+    - target: {fileID: 4325841678600902883, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1763701312}
+    - target: {fileID: 4325841678600902883, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
+      propertyPath: 'neighbors.Array.data[2]'
+      value: 
+      objectReference: {fileID: 61025738}
     - target: {fileID: 4331121192261549590, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
       propertyPath: showGizmos
       value: 0
@@ -1140,6 +1342,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9185992779246544228, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
   m_PrefabInstance: {fileID: 123895508}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &123895510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4325841678600902883, guid: 008228716434e64449b15a1cdf43b8f7, type: 3}
+  m_PrefabInstance: {fileID: 123895508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &128234328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1625,9 +1838,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 699551075}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 396061061}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 103
@@ -1690,6 +1923,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 214293932}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &214293934 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 214293932}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &217132794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1829,9 +2073,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1956031336}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 884336294}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1606867164}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1842,6 +2106,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1549279459331813240, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
   m_PrefabInstance: {fileID: 219393887}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &219393889 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+  m_PrefabInstance: {fileID: 219393887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &222430338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3225,9 +3500,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1598982818}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 573406224}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[2]'
+      value: 
+      objectReference: {fileID: 944762866}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3238,6 +3533,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1549279459331813240, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
   m_PrefabInstance: {fileID: 378075295}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &378075297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+  m_PrefabInstance: {fileID: 378075295}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &386612696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3391,9 +3697,25 @@ PrefabInstance:
       value: road_020
       objectReference: {fileID: 0}
     - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1603021646}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1763701312}
     - target: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: m_RootOrder
       value: 117
@@ -3456,6 +3778,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
   m_PrefabInstance: {fileID: 390335762}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &390335764 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+  m_PrefabInstance: {fileID: 390335762}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &391413100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3539,9 +3872,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 955731187}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 214293934}
     - target: {fileID: 8322758367490217391, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
       propertyPath: m_RootOrder
       value: 110
@@ -3600,6 +3953,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8322758367490217391, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
   m_PrefabInstance: {fileID: 396061059}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &396061061 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+  m_PrefabInstance: {fileID: 396061059}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &413506207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4004,54 +4368,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2722735462829109436, guid: ccab6c8306a6dae4d9688eb372e59639, type: 3}
   m_PrefabInstance: {fileID: 423459301}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &446370224
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 446370225}
-  - component: {fileID: 446370226}
-  m_Layer: 0
-  m_Name: BusRouteManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &446370225
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446370224}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.44423, y: 2.41311, z: -20.535}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &446370226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446370224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe5afab70bb896f4b84a34d2555ffb1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BusRouteManager
-  busStops:
-  - {fileID: 1514155167}
-  - {fileID: 1477935578}
-  roadGraph: {fileID: 0}
 --- !u!1001 &451700539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4414,9 +4730,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 666973116}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 955731187}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 101
@@ -4479,6 +4815,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 472103962}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &472103964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 472103962}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &482218614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4995,9 +5342,29 @@ PrefabInstance:
       value: road_020
       objectReference: {fileID: 0}
     - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 672381410}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 378075297}
     - target: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: m_RootOrder
       value: 118
@@ -5060,6 +5427,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
   m_PrefabInstance: {fileID: 573406222}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &573406224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+  m_PrefabInstance: {fileID: 573406222}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &580642509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5700,9 +6078,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 472103964}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 88846933}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 100
@@ -5765,6 +6163,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 666973114}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &666973116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 666973114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &672381408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5786,9 +6195,29 @@ PrefabInstance:
       value: road_020
       objectReference: {fileID: 0}
     - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 123895510}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 573406224}
     - target: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: m_RootOrder
       value: 121
@@ -5851,6 +6280,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
   m_PrefabInstance: {fileID: 672381408}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &672381410 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+  m_PrefabInstance: {fileID: 672381408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &679150578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5930,9 +6370,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 102455636}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1885864110}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 96
@@ -5995,6 +6455,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 686417608}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &686417610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 686417608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &687720651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6078,9 +6549,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1319334373}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1129407557}
     - target: {fileID: 8322758367490217391, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
       propertyPath: m_RootOrder
       value: 111
@@ -6139,6 +6626,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8322758367490217391, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
   m_PrefabInstance: {fileID: 695460266}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &695460268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+  m_PrefabInstance: {fileID: 695460266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &699551073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6152,9 +6650,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 214293934}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1956031336}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 104
@@ -6217,6 +6735,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 699551073}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &699551075 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 699551073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6874,9 +7403,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 1972961328}
     m_Modifications:
     - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1594507652}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 61025738}
     - target: {fileID: 6134741366318156252, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
       propertyPath: m_Name
       value: road_001
@@ -6939,6 +7480,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6803015339945333606, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
   m_PrefabInstance: {fileID: 765867294}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &765867296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+  m_PrefabInstance: {fileID: 765867294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1 &770095744
 GameObject:
   m_ObjectHideFlags: 0
@@ -7715,9 +8267,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1598982818}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2028905002}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 91
@@ -7780,6 +8352,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 866617383}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &866617385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 866617383}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &868496895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7995,9 +8578,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2028713774}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2093684596}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 106
@@ -8060,6 +8663,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 879763139}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &879763141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 879763139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &881240934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8213,9 +8827,29 @@ PrefabInstance:
       value: road_020
       objectReference: {fileID: 0}
     - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1336410663}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 219393889}
     - target: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: m_RootOrder
       value: 119
@@ -8278,6 +8912,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
   m_PrefabInstance: {fileID: 884336292}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &884336294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+  m_PrefabInstance: {fileID: 884336292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &886941280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8566,9 +9211,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1682104420}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 378075297}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 94
@@ -8631,6 +9296,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 944762864}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &944762866 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 944762864}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &955731185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8644,9 +9320,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 396061061}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 472103964}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 102
@@ -8709,6 +9405,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 955731185}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &955731187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 955731185}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &955822721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10195,9 +10902,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 695460268}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1606867164}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 109
@@ -10260,6 +10987,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 1129407555}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1129407557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 1129407555}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1139815491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11132,9 +11870,29 @@ PrefabInstance:
       value: road_022
       objectReference: {fileID: 0}
     - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2093684596}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1603021646}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11145,6 +11903,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7338894021600906478, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
   m_PrefabInstance: {fileID: 1245881527}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1245881529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+  m_PrefabInstance: {fileID: 1245881527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1251757638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11539,9 +12308,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 695460268}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2028713774}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 108
@@ -11604,6 +12393,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 1319334371}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1319334373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 1319334371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1323181110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11736,6 +12536,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 624367759318784293, guid: 7ad27798a56af29409bfd87e866e6458, type: 3}
   m_PrefabInstance: {fileID: 1325279676}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1336410663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+  m_PrefabInstance: {fileID: 1357057289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1344231172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11877,9 +12688,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 1972961328}
     m_Modifications:
     - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1594507652}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 884336294}
     - target: {fileID: 6134741366318156252, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
       propertyPath: m_Name
       value: road_001
@@ -13381,9 +14212,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 1972961328}
     m_Modifications:
     - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1336410663}
+    - target: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 765867296}
     - target: {fileID: 6134741366318156252, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
       propertyPath: m_Name
       value: road_001
@@ -13450,6 +14301,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6803015339945333606, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
   m_PrefabInstance: {fileID: 1594507650}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1594507652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2212858742209932665, guid: 835d09747e55e49458811c8ca40910d2, type: 3}
+  m_PrefabInstance: {fileID: 1594507650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1598982816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13523,9 +14385,29 @@ PrefabInstance:
       value: road_022
       objectReference: {fileID: 0}
     - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 866617385}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 378075297}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13536,6 +14418,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7338894021600906478, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
   m_PrefabInstance: {fileID: 1598982816}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1598982818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+  m_PrefabInstance: {fileID: 1598982816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1601343020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13671,9 +14564,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 390335764}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7793380}
+    - target: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+      propertyPath: 'neighbors.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1245881529}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13684,6 +14597,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1549279459331813240, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
   m_PrefabInstance: {fileID: 1603021644}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1603021646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4581064636448250859, guid: 9bc6ba96c6524e54391be07bce7ba00a, type: 3}
+  m_PrefabInstance: {fileID: 1603021644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1606867162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13757,9 +14681,29 @@ PrefabInstance:
       value: road_022
       objectReference: {fileID: 0}
     - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1129407557}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 219393889}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13770,6 +14714,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7338894021600906478, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
   m_PrefabInstance: {fileID: 1606867162}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1606867164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+  m_PrefabInstance: {fileID: 1606867162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1608580469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14551,9 +15506,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 944762866}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 58365318}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 93
@@ -14616,6 +15591,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 1682104418}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1682104420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 1682104418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1714258443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14905,9 +15891,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 58365318}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1885864110}
     - target: {fileID: 8322758367490217391, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
       propertyPath: m_RootOrder
       value: 113
@@ -14966,6 +15972,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8322758367490217391, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
   m_PrefabInstance: {fileID: 1754763570}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1754763572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+  m_PrefabInstance: {fileID: 1754763570}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1763701310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14987,9 +16004,29 @@ PrefabInstance:
       value: road_020
       objectReference: {fileID: 0}
     - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 390335764}
+    - target: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 123895510}
     - target: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
       propertyPath: m_RootOrder
       value: 122
@@ -15052,6 +16089,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7676165127042378710, guid: b754f16055519ef45918e12fc55da733, type: 3}
   m_PrefabInstance: {fileID: 1763701310}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1763701312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7241499737139273113, guid: b754f16055519ef45918e12fc55da733, type: 3}
+  m_PrefabInstance: {fileID: 1763701310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1764414292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15632,21 +16680,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3105124742719380945, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: routeManager
+    - target: {fileID: 2063603322747633064, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: 'busStops.Array.data[0]'
       value: 
-      objectReference: {fileID: 446370226}
+      objectReference: {fileID: 1514155167}
+    - target: {fileID: 2063603322747633064, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: 'busStops.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1477935578}
+    - target: {fileID: 5436812386002467839, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: showPath
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436812386002467839, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: drawGizmos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436812386002467839, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: busTransform
+      value: 
+      objectReference: {fileID: 1843205488}
+    - target: {fileID: 5436812386002467839, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: showBusStops
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6365547920373254865, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
       propertyPath: m_Name
       value: Bus Frame
       objectReference: {fileID: 0}
-    - target: {fileID: 8575472799412568823, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: m_BehaviorName
-      value: BusSimulation
+    - target: {fileID: 6600510628828440934, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8575472799412568823, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: m_BrainParameters.VectorObservationSize
-      value: 19
+    - target: {fileID: 6600510628828440934, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600510628828440934, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15869,9 +16941,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1754763572}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 686417610}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 95
@@ -15934,6 +17026,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 1885864108}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885864110 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 1885864108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!114 &1891783496 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5404252212543100208, guid: 5291c7018d8f7764e910b3e4dc258a39, type: 3}
@@ -16462,9 +17565,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2028905002}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7793380}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 90
@@ -16527,6 +17646,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 1951453644}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1951453646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 1951453644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1956031334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16600,9 +17730,29 @@ PrefabInstance:
       value: road_022
       objectReference: {fileID: 0}
     - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 219393889}
+    - target: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 699551075}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16613,6 +17763,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7338894021600906478, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
   m_PrefabInstance: {fileID: 1956031334}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1956031336 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8417540807679573805, guid: 708919d27baaac3448fd6bd6678fe7ca, type: 3}
+  m_PrefabInstance: {fileID: 1956031334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &1956288451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17386,9 +18547,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 879763141}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1319334373}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 107
@@ -17451,6 +18632,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 2028713772}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2028713774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 2028713772}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &2028905000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17468,9 +18660,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 866617385}
+    - target: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1951453646}
     - target: {fileID: 8322758367490217391, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
       propertyPath: m_RootOrder
       value: 112
@@ -17529,6 +18741,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8322758367490217391, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
   m_PrefabInstance: {fileID: 2028905000}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2028905002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6106065558538235299, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+  m_PrefabInstance: {fileID: 2028905000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1 &2031961646
 GameObject:
   m_ObjectHideFlags: 0
@@ -18077,9 +19300,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: showLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: showGizmos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: nodeReachedDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1245881529}
+    - target: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+      propertyPath: 'neighbors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 879763141}
     - target: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
       propertyPath: m_RootOrder
       value: 105
@@ -18142,6 +19385,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8206393780791148591, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   m_PrefabInstance: {fileID: 2093684594}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2093684596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7544560963966093744, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  m_PrefabInstance: {fileID: 2093684594}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
 --- !u!1001 &2107175742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18425,5 +19679,4 @@ SceneRoots:
   - {fileID: 2031961648}
   - {fileID: 180083322}
   - {fileID: 1843205487}
-  - {fileID: 446370225}
   - {fileID: 1215620220}
