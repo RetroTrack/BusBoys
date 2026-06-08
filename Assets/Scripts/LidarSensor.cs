@@ -7,7 +7,7 @@ public class LidarSensor : MonoBehaviour
     [Header("Lidar Settings")]
     [SerializeField, Range(1, 360)] private int numberOfRays = 20;
     [SerializeField] private Vector2 angleRange = new Vector2(-60f, 60f);
-    [SerializeField] private float maxDistance = 20f;
+    public float maxDistance = 20f;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float updateInterval = 0.1f;
 
@@ -15,11 +15,15 @@ public class LidarSensor : MonoBehaviour
     [SerializeField] private bool visualizeRays = true;
     [SerializeField] private Color nearColor = Color.red;
     [SerializeField] private Color farColor = Color.green;
-    [SerializeField] private float rayWidth = 0.02f;
 
-    [HideInInspector] public List<LidarHit> hits = new List<LidarHit>();
+    [HideInInspector] public LidarHit[] hits;
 
     private float timer;
+
+    public void Awake()
+    {
+        hits = new LidarHit[numberOfRays];
+    }
 
     void Update()
     {
@@ -34,7 +38,7 @@ public class LidarSensor : MonoBehaviour
 
     void Scan()
     {
-        hits.Clear();
+        hits = new LidarHit[numberOfRays]; // Clear previous hits
         float step = (angleRange.y - angleRange.x) / (numberOfRays - 1);
 
         for (int i = 0; i < numberOfRays; i++)
@@ -49,24 +53,23 @@ public class LidarSensor : MonoBehaviour
                 float t = hit.distance / maxDistance;
                 Color c = Color.Lerp(nearColor, farColor, t);
 
-                Debug.DrawLine(transform.position, hit.point, c, updateInterval);
-                hits.Add(new LidarHit { direction = dir, distance = hit.distance, hit = true });
+                if(visualizeRays)
+                    Debug.DrawLine(transform.position, hit.point, c, updateInterval);
+                hits[i] = new LidarHit { direction = dir, normalizedDistance = t, hit = true };
             }
             else
             {
                 // No hit detected
-                Debug.DrawLine(transform.position,
-                    transform.position + dir * maxDistance,
-                    farColor,
-                    updateInterval);
-                hits.Add(new LidarHit { direction = dir, distance = maxDistance, hit = false });
+                if(visualizeRays)
+                    Debug.DrawLine(transform.position, transform.position + dir * maxDistance, farColor, updateInterval);
+                hits[i] = new LidarHit { direction = dir, normalizedDistance = 1, hit = false };
             }
         }
     }
     public struct LidarHit
     {
         public Vector3 direction;
-        public float distance;
+        public float normalizedDistance;
         public bool hit;
     }
 }

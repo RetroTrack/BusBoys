@@ -130,6 +130,114 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!1 &906529066806697673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2097504425487743244}
+  - component: {fileID: 3105124742719380945}
+  - component: {fileID: 8575472799412568823}
+  - component: {fileID: 6338738761399863901}
+  m_Layer: 6
+  m_Name: Agent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2097504425487743244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906529066806697673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1551332922938177222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3105124742719380945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906529066806697673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5bc64fc56713340a45a9b5e0b5bd37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BusAgent
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  routeManager: {fileID: 2063603322747633064}
+  controller: {fileID: 1720550973295807057}
+  stopReachedDistance: 2
+  wrongDirectionAngleThreshold: 120
+  wrongDirectionCheckDistance: 5
+  recalculateCooldown: 2
+  rewardForReachingStop: 1
+  rewardForReachingNode: 0.3
+  recalculationPenalty: -2
+  collisionPenalty: -20
+  ghostDrivingPenalty: -0.1
+  drivingThroughRedLightPenalty: -10
+--- !u!114 &8575472799412568823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906529066806697673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.Policies.BehaviorParameters
+  m_BrainParameters:
+    VectorObservationSize: 19
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 3
+      BranchSizes: 
+    VectorActionSize: 03000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: BusSimulation
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_DeterministicInference: 0
+  m_ObservableAttributeHandling: 0
+--- !u!114 &6338738761399863901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906529066806697673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.DecisionRequester
+  DecisionPeriod: 5
+  DecisionStep: 0
+  TakeActionsBetweenDecisions: 1
 --- !u!1 &1542915546474765653
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +368,54 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!1 &1766664276934180033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6600510628828440934}
+  - component: {fileID: 2063603322747633064}
+  m_Layer: 0
+  m_Name: BusRouteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6600510628828440934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766664276934180033}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5720836687459132230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2063603322747633064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766664276934180033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5afab70bb896f4b84a34d2555ffb1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BusRouteManager
+  busStops:
+  - {fileID: 0}
+  - {fileID: 0}
+  roadGraph: {fileID: 5436812386002467839}
 --- !u!1 &2820702360820923728
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +581,62 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!1 &4907914289419265510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5720836687459132230}
+  - component: {fileID: 5436812386002467839}
+  m_Layer: 6
+  m_Name: Navigation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5720836687459132230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907914289419265510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6600510628828440934}
+  m_Father: {fileID: 1551332922938177222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5436812386002467839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907914289419265510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9eb4811c6fb3e5448d5a857f469424d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadGraph
+  linkingDistance: 1
+  turnPenaltyMultiplier: 2
+  busTransform: {fileID: 1551332922938177222}
+  busRouteManager: {fileID: 2063603322747633064}
+  showPath: 1
+  showBusStops: 1
+  stopGizmoSize: 1
+  pathColor: {r: 0, g: 0, b: 1, a: 1}
+  stopColor: {r: 1, g: 0, b: 1, a: 1}
+  remainingPathColor: {r: 0, g: 1, b: 0, a: 1}
+  travelledPathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &6365547920373254865
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,9 +671,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2097504425487743244}
   - {fileID: 967508617906719227}
   - {fileID: 4649513566828500663}
   - {fileID: 7844014791561662947}
+  - {fileID: 5720836687459132230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1720550973295807057
@@ -493,6 +707,8 @@ MonoBehaviour:
   driveType: 0
   steeringType: 0
   brakingType: 0
+  lidarSensor: {fileID: 8988282942869362548}
+  trafficLightDetector: {fileID: 7369608515318049543}
 --- !u!33 &2530518338677803174
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -653,7 +869,6 @@ MonoBehaviour:
   visualizeRays: 1
   nearColor: {r: 1, g: 0, b: 0, a: 1}
   farColor: {r: 0, g: 1, b: 0, a: 1}
-  rayWidth: 0.02
 --- !u!1 &7896605690107618057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1300,7 @@ MonoBehaviour:
   carCamera: {fileID: 8400000, guid: 7a4227c7abb07f04dacb405d9c8ae518, type: 2}
   detectionInterval: 0.5
   confidenceThreshold: 0.65
+  CurrentStopLightState: 0
 --- !u!1001 &2846802046090165173
 PrefabInstance:
   m_ObjectHideFlags: 0
