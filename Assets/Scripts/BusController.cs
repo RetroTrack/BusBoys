@@ -6,6 +6,7 @@ public class BusController : MonoBehaviour
     [Header("Bus Components")]
     [SerializeField] private Rigidbody rb;
     public WheelCollider wheelFrontLeft, wheelFrontRight, wheelBackLeft, wheelBackRight; //public zodat de trafficDetector de wielen op kan halen
+    [SerializeField] private Transform wheelFrontLeftMesh, wheelFrontRightMesh, wheelBackLeftMesh, wheelBackRightMesh;
 
     [Header("Bus Settings")]
     [Tooltip("Amount of torque applied to the wheels (in Nm)"), SerializeField] private float motorTorque = 2000f;
@@ -69,6 +70,10 @@ public class BusController : MonoBehaviour
         wheelFrontRight.steerAngle = 0f;
         wheelBackLeft.steerAngle = 0f;
         wheelBackRight.steerAngle = 0f;
+        wheelFrontLeftMesh.localRotation = Quaternion.identity;
+        wheelFrontRightMesh.localRotation = Quaternion.identity;
+        wheelBackLeftMesh.localRotation = Quaternion.identity;
+        wheelBackRightMesh.localRotation = Quaternion.identity;
     }
 
 
@@ -95,16 +100,24 @@ public class BusController : MonoBehaviour
             case SteeringType.FrontWheelSteering:
                 wheelFrontLeft.steerAngle = currentSteerAngle;
                 wheelFrontRight.steerAngle = currentSteerAngle;
+                wheelFrontLeftMesh.localRotation = Quaternion.Euler(0f, currentSteerAngle, 0f);
+                wheelFrontRightMesh.localRotation = Quaternion.Euler(0f, currentSteerAngle, 0f);
                 break;
             case SteeringType.RearWheelSteering:
                 wheelBackLeft.steerAngle = -currentSteerAngle;
                 wheelBackRight.steerAngle = -currentSteerAngle;
+                wheelBackLeftMesh.localRotation = Quaternion.Euler(0f, -currentSteerAngle, 0f);
+                wheelBackRightMesh.localRotation = Quaternion.Euler(0f, -currentSteerAngle, 0f);
                 break;
             default:
                 wheelFrontLeft.steerAngle = currentSteerAngle;
                 wheelFrontRight.steerAngle = currentSteerAngle;
                 wheelBackLeft.steerAngle = -currentSteerAngle;
                 wheelBackRight.steerAngle = -currentSteerAngle;
+                wheelFrontLeftMesh.localRotation = Quaternion.Euler(0f, currentSteerAngle, 0f);
+                wheelFrontRightMesh.localRotation = Quaternion.Euler(0f, currentSteerAngle, 0f);
+                wheelBackLeftMesh.localRotation = Quaternion.Euler(0f, -currentSteerAngle, 0f);
+                wheelBackRightMesh.localRotation = Quaternion.Euler(0f, -currentSteerAngle, 0f);
                 break;
         }
     }
