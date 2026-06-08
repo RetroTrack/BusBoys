@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +11,8 @@ public class BusAgent : Agent
     [Header("References")]
     [SerializeField] private BusRouteManager routeManager;
     [SerializeField] private BusController controller;
+    [SerializeField] private Transform startPosition;
+    [SerializeField] private GameObject busFrame;
 
     [Header("Navigation Settings")]
     [Tooltip("Distance at which the agent considers a bus stop reached")]
@@ -35,6 +39,7 @@ public class BusAgent : Agent
     private RoadNode targetPathNode; // Cached node for observations
     private float maxNodeDistance; // Used for normalising distance to node in observations
     private float maxStopDistance; // Used for normalising distance to stop in observations
+    private float previousDistanceToNode;
 
     protected override void Awake()
     {
@@ -47,6 +52,11 @@ public class BusAgent : Agent
 
     public void FixedUpdate()
     {
+        if(busFrame.transform.position.y < -5f) // Fallen off the world
+        {
+            SetReward(-5f);
+            EndEpisode();
+        }
         AdvanceAlongPath();
     }
 
@@ -121,7 +131,11 @@ public class BusAgent : Agent
 
         Vector3 toNode = targetPathNode.transform.position - transform.position;
         float distToNode = toNode.magnitude;
+        float progress = previousDistanceToNode - distToNode;
 
+        AddReward(progress * 0.01f);
+
+        previousDistanceToNode = distToNode;
         // Advance to next node if close enough
         if (distToNode <= routeManager.GetNodeReachedDistance())
         {
@@ -186,14 +200,30 @@ public class BusAgent : Agent
         return max;
     }
 
+    private void SkipUntilCorrectNode()
+    {
+        targetPathNode = routeManager.GetNextPathNode();
+
+        while (targetPathNode != null &&
+               Vector3.Distance(transform.position, targetPathNode.transform.position)
+               <= routeManager.GetNodeReachedDistance())
+        {
+            targetPathNode = routeManager.GetNextPathNode();
+        }
+    }
+
     public override void OnEpisodeBegin()
     {
+        busFrame.transform.position = startPosition.position;
+        busFrame.transform.rotation = startPosition.rotation;
+        controller.ResetBus();
         maxNodeDistance = CalculateMaxNodeDistance();
         maxStopDistance = CalculateMaxStopDistance();
 
-        // Pathfind from bus position instead of consuming a node immediately
         routeManager.PathfindFromPosition(transform.position, transform.forward);
-        targetPathNode = routeManager.GetNextPathNode();
+
+        SkipUntilCorrectNode();
+        previousDistanceToNode = Vector3.Distance(transform.position, targetPathNode.transform.position);
     }
 
     public override void OnActionReceived(ActionBuffers actions)

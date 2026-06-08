@@ -11,6 +11,7 @@ public class TrafficLightDetector : MonoBehaviour
     [Header("Settings")]
     public float detectionInterval = 0.5f;
     public float confidenceThreshold = 0.65f;
+    [SerializeField] bool isDetecting = true;
 
     private Worker worker;
     private static readonly string[] labels = { "green", "red", "yellow" };
@@ -43,7 +44,8 @@ public class TrafficLightDetector : MonoBehaviour
 
         while (true)
         {
-            if (!inferencePending)
+            if(!isDetecting) yield return wait;
+            if (!inferencePending && isDetecting)
             {
                 TextureConverter.ToTensor(carCamera, inputTensor, default);
 

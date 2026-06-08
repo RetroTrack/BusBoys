@@ -26,7 +26,8 @@ public class BusController : MonoBehaviour
     [Header("Sensors")]
     public LidarSensor lidarSensor; // Public zodat de bus agent er bij kan
     public TrafficLightDetector trafficLightDetector; // Public zodat de bus agent er bij kan
-
+    
+    public float CurrentSpeedNormalized => currentSpeed / maxSpeed;
 
     float motorInput, brakeInput, steerInput;
 
@@ -46,6 +47,29 @@ public class BusController : MonoBehaviour
         // Steering
         SteerBus();
     }   
+
+    public void ResetBus()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        currentSpeed = 0f;
+        currentSteerAngle = 0f;
+        motorInput = 0f;
+        brakeInput = 0f;
+        steerInput = 0f;
+        wheelFrontLeft.motorTorque = 0f;
+        wheelFrontRight.motorTorque = 0f;
+        wheelBackLeft.motorTorque = 0f;
+        wheelBackRight.motorTorque = 0f;
+        wheelFrontLeft.brakeTorque = 0f;
+        wheelFrontRight.brakeTorque = 0f;
+        wheelBackLeft.brakeTorque = 0f;
+        wheelBackRight.brakeTorque = 0f;
+        wheelFrontLeft.steerAngle = 0f;
+        wheelFrontRight.steerAngle = 0f;
+        wheelBackLeft.steerAngle = 0f;
+        wheelBackRight.steerAngle = 0f;
+    }
 
 
     public void ControlBus(float motorInput, float brakeInput, float steerInput)
@@ -88,7 +112,7 @@ public class BusController : MonoBehaviour
     private void BrakeBus()
     {
         // Apply brake torque to the wheels
-        float outputBreakTorque = Mathf.Abs(brakeInput) * brakeTorque;
+        float outputBreakTorque = Mathf.Max(0f, brakeInput) * brakeTorque;
         switch (brakingType)
         {
             case BrakingType.FrontWheelBraking:
