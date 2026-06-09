@@ -1,25 +1,39 @@
-# Snyk SCA (dependency vulnerabilities)
-on: push
+name: Snyk Unity Test Automation
+
+on:
+  push:
 
 jobs:
   snyk-sca:
-    name: Snyk SCA
+    name: Unity dependency scan
     runs-on: ubuntu-latest
-    # Snyk token is not available on forked PRs — skip gracefully
-    # if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
+
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
 
-      - name: Snyk SCA — test dependencies
-        uses: snyk/actions/node@master
+      - name: Install Snyk CLI
+        uses: snyk/actions/setup@master
+
+      - name: Verify Unity package files
+        run: |
+          test -f Packages/manifest.json
+          test -f Packages/packages-lock.json
+
+      - name: Run Snyk Open Source test
+        run: |
+          snyk test \
+            --all-projects \
+            --detection-depth=3 \
+            --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          # Fail the job if high or critical vulnerabilities are found
-          args: --severity-threshold=high --all-projects
 
   #  Snyk SAST (code analysis) 
   snyk-sast:
