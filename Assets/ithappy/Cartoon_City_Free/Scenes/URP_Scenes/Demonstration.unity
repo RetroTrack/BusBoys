@@ -16723,37 +16723,9 @@ PrefabInstance:
       propertyPath: startPosition
       value: 
       objectReference: {fileID: 1115237702}
-    - target: {fileID: 5436812386002467839, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: showPath
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5436812386002467839, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: drawGizmos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5436812386002467839, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: busTransform
-      value: 
-      objectReference: {fileID: 1843205488}
-    - target: {fileID: 5436812386002467839, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: showBusStops
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6365547920373254865, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
       propertyPath: m_Name
       value: Bus Frame
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600510628828440934, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600510628828440934, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600510628828440934, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -251,7 +251,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2632242315794802903}
+  - {fileID: 4211029508707520561}
   m_Father: {fileID: 1551332922938177222}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3105124742719380945
@@ -270,20 +272,17 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  startPosition: {fileID: 0}
   routeManager: {fileID: 2063603322747633064}
   controller: {fileID: 1720550973295807057}
-  startPosition: {fileID: 0}
   busFrame: {fileID: 6365547920373254865}
   stopReachedDistance: 2
   wrongDirectionAngleThreshold: 120
   wrongDirectionCheckDistance: 5
   recalculateCooldown: 2
-  rewardForReachingStop: 1
-  rewardForReachingNode: 0.3
-  recalculationPenalty: -2
-  collisionPenalty: -20
-  ghostDrivingPenalty: -0.1
-  drivingThroughRedLightPenalty: -10
+  observationProvider: {fileID: 6703309000230018843}
+  rewardProviders:
+  - {fileID: 152125520433097291}
 --- !u!114 &8575472799412568823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5afab70bb896f4b84a34d2555ffb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BusRouteManager
+  rewardConfig: {fileID: 0}
   busStops:
   - {fileID: 0}
   - {fileID: 0}
@@ -831,6 +831,53 @@ Transform:
   - {fileID: 6328792108051738672}
   m_Father: {fileID: 2480851600114584737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4171103178197322539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2632242315794802903}
+  - component: {fileID: 6703309000230018843}
+  m_Layer: 6
+  m_Name: Observations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2632242315794802903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171103178197322539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2097504425487743244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6703309000230018843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171103178197322539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b6660a123009b44836ba84a235049b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Observations.BusAgentObservationProvider
+  agentSensors:
+  - {fileID: 8988282942869362548}
+  - {fileID: 7369608515318049543}
 --- !u!1 &4400221224465670159
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +910,51 @@ Transform:
   - {fileID: 5169365856483317154}
   m_Father: {fileID: 2480851600114584737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4719346718796773953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4211029508707520561}
+  - component: {fileID: 152125520433097291}
+  m_Layer: 6
+  m_Name: RewardProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4211029508707520561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719346718796773953}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2097504425487743244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152125520433097291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719346718796773953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf468cdd47ea2744af056cd4832c7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Rewards.AgentRewardProvider
+  rewardConfig: {fileID: 0}
 --- !u!1 &4907914289419265510
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +1000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9eb4811c6fb3e5448d5a857f469424d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadGraph
+  Edges: []
   linkingDistance: 1
   turnPenaltyMultiplier: 2
   busTransform: {fileID: 1551332922938177222}
@@ -1063,28 +1156,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BusController
   rb: {fileID: 2375191474089564431}
-  wheelFrontLeft: {fileID: 1827304711100074313}
-  wheelFrontRight: {fileID: 1328860726065369336}
-  wheelBackLeft: {fileID: 7886169770977508463}
-  wheelBackRight: {fileID: 4315570634742417540}
-  wheelFrontLeftMesh: {fileID: 8241023946351692038}
-  wheelFrontRightMesh: {fileID: 9153102036647561984}
-  wheelBackLeftMesh: {fileID: 4705795957144860911}
-  wheelBackRightMesh: {fileID: 590833954089583331}
   motorTorque: 2000
   brakeTorque: 5000
   maxSteerAngle: 38
   steeringSpeed: 100
   maxSpeed: 45
-  normalSpeed: 25
-  usingNormalSpeed: 1
-  currentSpeed: 0
-  currentSteerAngle: 0
   driveType: 0
   steeringType: 0
   brakingType: 0
-  lidarSensor: {fileID: 8988282942869362548}
-  trafficLightDetector: {fileID: 7369608515318049543}
+  currentSpeed: 0
+  currentSteerAngle: 0
+  rewardProvider: {fileID: 152125520433097291}
 --- !u!33 &2530518338677803174
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1831,7 +1913,6 @@ MonoBehaviour:
   detectionInterval: 0.5
   confidenceThreshold: 0.65
   isDetecting: 1
-  CurrentStopLightState: 0
 --- !u!1 &9147427479018220705
 GameObject:
   m_ObjectHideFlags: 0
