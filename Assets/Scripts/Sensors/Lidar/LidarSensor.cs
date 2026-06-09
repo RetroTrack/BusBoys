@@ -1,10 +1,11 @@
-using BusBoys.Assets.Scripts.Sensors.Common;
+using BusBoys.Assets.Scripts.ML.Observations;
 using System;
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Sensors.Lidar
 {
-    public class LidarSensor : AgentSensor
+    public class LidarSensor : MonoBehaviour, IObservationSource
     {
         [Header("Lidar Settings")]
         [SerializeField, Range(1, 360)] private int numberOfRays = 20;
@@ -22,13 +23,18 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
 
         private float timer;
 
-        public override float[] Observations => hits != null ? Array.ConvertAll(hits, h => h.normalizedDistance) : new float[numberOfRays];
+        public  float[] Observations => hits != null ? Array.ConvertAll(hits, h => h.normalizedDistance) : new float[numberOfRays];
 
-        public override float UpdateInterval { get => updateInterval; set => updateInterval = value; }
+        public float UpdateInterval { get => updateInterval; set => updateInterval = value; }
 
         public void Awake()
         {
             hits = new LidarHit[numberOfRays];
+        }
+
+        public void Collect(VectorSensor sensor)
+        {
+            sensor.AddObservation(Observations);
         }
 
         void Update()
@@ -41,7 +47,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
                 Scan();
             }
         }
-
+        //TODO: make more like a parking sensor (detect in angle instead of single ray
         void Scan()
         {
             hits = new LidarHit[numberOfRays]; // Clear previous hits
@@ -72,6 +78,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
                 }
             }
         }
+
         public struct LidarHit
         {
             public Vector3 direction;

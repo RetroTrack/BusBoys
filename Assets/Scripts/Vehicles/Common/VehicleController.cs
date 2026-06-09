@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace BusBoys.Assets.Scripts.Vehicles.Common
 {
@@ -10,10 +9,10 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
         [SerializeField] private Rigidbody rb;
 
         [Header("Wheels")]
-        List<WheelCollider> frontWheelColliders = new List<WheelCollider>();
-        List<WheelCollider> rearWheelColliders = new List<WheelCollider>();
-        List<Transform> frontWheelMeshes = new List<Transform>();
-        List<Transform> rearWheelMeshes = new List<Transform>();
+        [SerializeField] private List<WheelCollider> frontWheelColliders = new List<WheelCollider>();
+        [SerializeField] private List<WheelCollider> rearWheelColliders = new List<WheelCollider>();
+        [SerializeField] private List<Transform> frontWheelMeshes = new List<Transform>();
+        [SerializeField] private List<Transform> rearWheelMeshes = new List<Transform>();
 
         [Header("Vehicle Settings")]
         [Tooltip("Amount of torque applied to the wheels (in Nm)"), SerializeField] protected float motorTorque = 2000f;
@@ -21,6 +20,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
         [Tooltip("Maximum steering angle (in degrees)"), SerializeField] protected float maxSteerAngle = 38f;
         [Tooltip("Speed of steering response"), SerializeField] protected float steeringSpeed = 100f;
         [Tooltip("Maximum speed of the bus (in km/h)"), SerializeField] protected float maxSpeed = 45f;
+        [Space]
         [Tooltip("Drive type (front, rear, awd)"), SerializeField] protected DriveType driveType = DriveType.FrontWheelDrive;
         [Tooltip("Steering type (front, rear, both)"), SerializeField] protected SteeringType steeringType = SteeringType.FrontWheelSteering;
         [Tooltip("Braking type (front, rear, both)"), SerializeField] protected BrakingType brakingType = BrakingType.FrontWheelBraking;
@@ -34,7 +34,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
         public float CurrentSpeedNormalized => currentSpeed / maxSpeed;
 
 
-        private void FixedUpdate()
+        public virtual void FixedUpdate()
         {
             // Measuring
             currentSpeed = rb.linearVelocity.magnitude * 3.6f; // Convert m/s to km/h
@@ -113,7 +113,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
         }
         public void ResetVehicle()
         {
-            if(rb == null)
+            if (rb == null)
             {
                 Debug.LogError("Rigidbody reference is missing. Cannot reset vehicle.");
                 return;

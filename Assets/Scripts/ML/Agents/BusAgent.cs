@@ -2,7 +2,6 @@ using BusBoys.Assets.Scripts.ML.Navigation;
 using BusBoys.Assets.Scripts.ML.Observations;
 using BusBoys.Assets.Scripts.ML.Rewards;
 using BusBoys.Assets.Scripts.Vehicles.Bus;
-using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -16,12 +15,12 @@ namespace BusBoys.Assets.Scripts.ML.Agents
         [Header("References")]
         [SerializeField] private Transform startPosition;
         [Space]
-        [SerializeField] private BusNavigationTracker navigationTracker;
+        [SerializeField] private NavigationTracker navigationTracker;
         [SerializeField] private BusController controller;
 
         [Header("Agent Components")]
         [SerializeField] private AgentObservationProvider observationProvider;
-        [SerializeField] private List<AgentRewardProvider> rewardProviders;
+        [SerializeField] private AgentRewardProvider rewardProvider;
 
 
         InputAction moveAction;
@@ -38,12 +37,16 @@ namespace BusBoys.Assets.Scripts.ML.Agents
 
         public void Start()
         {
-            foreach (AgentRewardProvider provider in rewardProviders)
+            if(rewardProvider == null)
             {
-                provider.OnAgentRewarded += AddReward;
-                provider.OnAgentRewardSet += SetReward;
-                provider.OnAgentEpisodeStopped += EndEpisode;
+                Debug.LogError("Reward provider is not assigned in the inspector, reward will not be calculated.");
+                return;
             }
+
+            rewardProvider.OnAgentRewarded += AddReward;
+            rewardProvider.OnAgentRewardSet += SetReward;
+            rewardProvider.OnAgentEpisodeStopped += EndEpisode;
+
         }
 
         public void FixedUpdate()

@@ -1,11 +1,12 @@
-﻿using BusBoys.Assets.Scripts.Sensors.Common;
+﻿using BusBoys.Assets.Scripts.ML.Observations;
 using System.Collections;
 using Unity.InferenceEngine;
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Sensors.Camera
 {
-    public class TrafficLightDetector : AgentSensor
+    public class TrafficLightDetector : MonoBehaviour, IObservationSource
     {
         [Header("AI Model")]
         public ModelAsset modelAsset;
@@ -28,9 +29,14 @@ namespace BusBoys.Assets.Scripts.Sensors.Camera
         private bool inferencePending = false;
         private Tensor<float> outputTensor;
 
-        public override float[] Observations => new float[] { CurrentStopLightState == StoplightState.Green ? 1f : 0f, CurrentStopLightState == StoplightState.Red ? 1f : 0f, CurrentStopLightState == StoplightState.Yellow ? 1f : 0f };
+        public float[] Observations => new float[] { CurrentStopLightState == StoplightState.Green ? 1f : 0f, CurrentStopLightState == StoplightState.Red ? 1f : 0f, CurrentStopLightState == StoplightState.Yellow ? 1f : 0f };
 
-        public override float UpdateInterval { get => detectionInterval; set => detectionInterval = value; }
+        public float UpdateInterval { get => detectionInterval; set => detectionInterval = value; }
+
+        public void Collect(VectorSensor sensor)
+        {
+            sensor.AddObservation(Observations);
+        }
 
         void Start()
         {

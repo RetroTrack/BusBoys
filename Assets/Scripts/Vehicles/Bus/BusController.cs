@@ -8,8 +8,9 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
     {
         [SerializeField] AgentRewardProvider rewardProvider;
 
-        private void FixedUpdate()
+        public override void FixedUpdate()
         {
+            base.FixedUpdate();
             // Driving
             Accelerate();
 
