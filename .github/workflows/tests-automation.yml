@@ -4,23 +4,20 @@ on:
   push:
 
 jobs:
-
-  #  Snyk SAST (code analysis) 
   snyk-sast:
     name: Snyk SAST
     runs-on: ubuntu-latest
     permissions:
       contents: read
       actions: read
-      security-events: write   # required to upload SARIF to the Security tab
-    # if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
+      security-events: write
     if: always()
     steps:
       - uses: actions/checkout@v6
 
       - name: Snyk Code — static analysis
         uses: snyk/actions/node@master
-        continue-on-error: true   # upload SARIF even when issues are found
+        continue-on-error: true 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
@@ -32,9 +29,3 @@ jobs:
         with:
           name: sarif-output-file
           path: snyk-code.sarif
-
-      # Only works on orgs or public repo's so for now disabled
-      #- name: Upload Snyk Code results to GitHub Security tab
-      #  uses: github/codeql-action/upload-sarif@v4
-      #  with:
-      #    sarif_file: snyk-code.sarif
