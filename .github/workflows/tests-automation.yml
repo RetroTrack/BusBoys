@@ -1,0 +1,31 @@
+name: Snyk Unity Test Automation
+
+on:
+  push:
+
+jobs:
+  snyk-sast:
+    name: Snyk SAST
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    if: always()
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Snyk Code — static analysis
+        uses: snyk/actions/node@master
+        continue-on-error: true 
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test
+          args: --sarif-file-output=snyk-code.sarif --all-projects
+
+      - name: Archive sarif file
+        uses: actions/upload-artifact@v7
+        with:
+          name: sarif-output-file
+          path: snyk-code.sarif
