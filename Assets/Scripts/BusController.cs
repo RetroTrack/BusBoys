@@ -32,11 +32,26 @@ public class BusController : MonoBehaviour
 
     float motorInput, brakeInput, steerInput;
 
+    //Voor Batterij:
+    public float batteryPercentage = 100f;
+    private Vector3 lastPosition;
+    private float drainPerMeter = 0.001f; // hoeveel % per meter
 
     private void FixedUpdate()
     {
         // Measuring
         currentSpeed = rb.linearVelocity.magnitude * 3.6f; // Convert m/s to km/h
+
+        //Battery:
+        Vector3 currentPosition = transform.position;
+        float distance = Vector3.Distance(currentPosition, lastPosition);
+        if (currentSpeed > 0.5f)
+        {
+            batteryPercentage -= distance * drainPerMeter;
+        }
+        lastPosition = currentPosition;
+
+
 
 
         // Driving
@@ -147,6 +162,16 @@ public class BusController : MonoBehaviour
 
     private void AccelerateBus()
     {
+        if (batteryPercentage <= 0f) //als de batterij leeg is kan de bus niet meer bewegen
+        {
+            batteryPercentage = 0f;
+            wheelFrontLeft.motorTorque = 0f;
+            wheelFrontRight.motorTorque = 0f;
+            wheelBackLeft.motorTorque = 0f;
+            wheelBackRight.motorTorque = 0f;
+            return;
+        }
+
         float outputMotorTorque = motorInput * motorTorque;
         float averageBrakeTorque = (wheelBackLeft.brakeTorque + wheelBackRight.brakeTorque + wheelFrontLeft.brakeTorque + wheelFrontRight.brakeTorque)/4;
 
