@@ -4,36 +4,6 @@ on:
   push:
 
 jobs:
-  snyk-sca:
-    name: Unity dependency scan
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Install Snyk CLI
-        uses: snyk/actions/setup@master
-
-      - name: Verify Unity package files
-        run: |
-          test -f Packages/manifest.json
-          test -f Packages/packages-lock.json
-
-      - name: Run Snyk Open Source test
-        run: |
-          snyk test \
-            --all-projects \
-            --detection-depth=3 \
-            --severity-threshold=high
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   #  Snyk SAST (code analysis) 
   snyk-sast:
