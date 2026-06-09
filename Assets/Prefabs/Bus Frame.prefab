@@ -619,6 +619,7 @@ Transform:
   - {fileID: 9153102036647561984}
   - {fileID: 4705795957144860911}
   - {fileID: 590833954089583331}
+  - {fileID: 8106679547524365711}
   m_Father: {fileID: 1551332922938177222}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3362989090257432109
@@ -953,6 +954,134 @@ Transform:
   - {fileID: 5169365856483317154}
   m_Father: {fileID: 2480851600114584737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4522284024222951846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8106679547524365711}
+  - component: {fileID: 6915393849736470225}
+  - component: {fileID: 5923320176611779293}
+  - component: {fileID: 7822470043200372589}
+  - component: {fileID: 710100898833677158}
+  m_Layer: 0
+  m_Name: Battery
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8106679547524365711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.147, z: -0.031}
+  m_LocalScale: {x: 0.3, y: 0.1, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2480851600114584737}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &6915393849736470225
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5923320176611779293
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 438fa567b35f5c94e8a5ba8cddb4d9ad, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7822470043200372589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74d211f1d970684a850c2b74bf7d390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Vehicles.Bus.BusBattery
+  busController: {fileID: 1720550973295807057}
+  drainPerMeter: 0.001
+  drainSpeedThreshold: 0.01
+  batteryPercentage: 100
+--- !u!114 &710100898833677158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d67ba1049fb2248a6b4e6978942b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BatteryManager
+  batteryImages:
+  - {fileID: 2800000, guid: ff851ab7183d8044d9133cc92fbccd41, type: 3}
+  - {fileID: 2800000, guid: 17ccebf8bf7739945bd89d03c5f4c4b1, type: 3}
+  - {fileID: 2800000, guid: 56d35993bf5700c498a5361db8537f9d, type: 3}
+  - {fileID: 2800000, guid: 7409cb80bf21a944a91c399fe72dc4dd, type: 3}
+  - {fileID: 2800000, guid: 096a217952c09dd42845992aac71df9d, type: 3}
+  busBattery: {fileID: 7822470043200372589}
+  targetMesh: {fileID: 5923320176611779293}
 --- !u!1 &4719346718796773953
 GameObject:
   m_ObjectHideFlags: 0

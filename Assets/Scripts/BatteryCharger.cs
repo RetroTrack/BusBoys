@@ -1,19 +1,20 @@
+using BusBoys.Assets.Scripts.Vehicles.Bus;
 using UnityEngine;
 
-public class LaadPaal : MonoBehaviour
+public class BatteryCharger : MonoBehaviour
 {
     public float chargeRate = 20f; // % per seconde
 
     private void OnTriggerStay(Collider other)
     {
-        BusController bus = other.GetComponent<BusController>();
+        BusBattery battery = other.GetComponent<BusBattery>();
 
-        if (bus != null && bus.batteryPercentage < 100)
+        if (battery != null && battery.batteryPercentage < 100)
         {
-            bus.batteryPercentage += (chargeRate * Time.deltaTime);
+            battery.batteryPercentage += (chargeRate * Time.deltaTime);
             Debug.Log("Auto laad op!!");
         }
-        if (bus != null && bus.batteryPercentage == 100) 
+        if (battery != null && battery.batteryPercentage == 100) 
         {
             Debug.Log("Auto is vol!!");
         }

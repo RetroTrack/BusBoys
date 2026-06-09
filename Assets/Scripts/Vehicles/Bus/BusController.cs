@@ -6,7 +6,13 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
 {
     public class BusController : VehicleController
     {
+        float defaultMotorTorque = 2000f;
         [SerializeField] AgentRewardProvider rewardProvider;
+
+        public void Start()
+        {
+            defaultMotorTorque = motorTorque;
+        }
 
         public override void FixedUpdate()
         {
@@ -32,6 +38,11 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
                 rewardProvider.SetReward(rewardProvider.rewardConfig.fallenOffMapPenalty);
                 rewardProvider.EndEpisode();
             }
+        }
+
+        public void ModifyTorque(float multiplier)
+        {
+            motorTorque = defaultMotorTorque * multiplier;
         }
     }
 }
