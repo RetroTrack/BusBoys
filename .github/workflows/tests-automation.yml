@@ -1,0 +1,65 @@
+# Snyk SCA (dependency vulnerabilities)
+on: push
+
+jobs:
+  snyk-sca:
+    name: Snyk SCA
+    runs-on: ubuntu-latest
+    # Snyk token is not available on forked PRs — skip gracefully
+    # if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Snyk SCA — test dependencies
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          # Fail the job if high or critical vulnerabilities are found
+          args: --severity-threshold=high --all-projects
+
+  #  Snyk SAST (code analysis) 
+  snyk-sast:
+    name: Snyk SAST
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      security-events: write   # required to upload SARIF to the Security tab
+    # if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
+    if: always()
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Snyk Code — static analysis
+        uses: snyk/actions/node@master
+        continue-on-error: true   # upload SARIF even when issues are found
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test
+          args: --sarif-file-output=snyk-code.sarif --all-projects
+
+      - name: Archive sarif file
+        uses: actions/upload-artifact@v7
+        with:
+          name: sarif-output-file
+          path: snyk-code.sarif
+
+      # Only works on orgs or public repo's so for now disabled
+      #- name: Upload Snyk Code results to GitHub Security tab
+      #  uses: github/codeql-action/upload-sarif@v4
+      #  with:
+      #    sarif_file: snyk-code.sarif
