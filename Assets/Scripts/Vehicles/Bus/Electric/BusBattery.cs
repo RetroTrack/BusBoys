@@ -11,11 +11,12 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus.Electric
         [SerializeField] private float drainSpeedThreshold = 0.01f; // minimale snelheid om te beginnen met ontladen (Normalized speed)
         public float batteryPercentage = 100f;
         private Vector3 lastPosition;
+        public Vector3 currentPosition;
 
         public void FixedUpdate()
         {
             //Battery:
-            Vector3 currentPosition = busController.transform.position;
+            currentPosition = busController.transform.position;
             float distance = Vector3.Distance(currentPosition, lastPosition);
             if (busController.CurrentSpeedNormalized > drainSpeedThreshold)
             {

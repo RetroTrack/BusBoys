@@ -33,7 +33,8 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
         float motorInput, brakeInput, steeringInput;
         public float CurrentSpeedNormalized => currentSpeed / maxSpeed;
 
-
+        public float CurrentSpeed => currentSpeed; //zodat de ui de currentspeed en steer angle uit kan lezen 
+        public float CurrentSteerAngle => currentSteerAngle;
         public virtual void FixedUpdate()
         {
             // Measuring
