@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BusBoys.Assets.Scripts.Vehicles.Bus
+namespace BusBoys.Assets.Scripts.Vehicles.Bus.Electric
 {
     public class BusBattery : MonoBehaviour
     {
@@ -30,7 +30,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
             }
             else
             {
-                busController.ModifyTorque(1);
+                busController.ModifyTorque(1f);
             }
         }
     }

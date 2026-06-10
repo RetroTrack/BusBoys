@@ -10549,7 +10549,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 1843205488}
   offset: {x: 0, y: 4, z: -8}
-  followRotation: 1
+  mouseSensitivity: 10
+  controllerSensitivity: 100
+  minPitch: -30
+  maxPitch: 70
+  isLooking: 0
+  gamepadLook: 0
+  mouseLook: 0
 --- !u!1001 &967207584
 PrefabInstance:
   m_ObjectHideFlags: 0
