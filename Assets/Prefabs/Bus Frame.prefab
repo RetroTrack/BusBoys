@@ -251,7 +251,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2632242315794802903}
+  - {fileID: 4211029508707520561}
+  - {fileID: 7101187825188433714}
   m_Father: {fileID: 1551332922938177222}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3105124742719380945
@@ -270,20 +273,11 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  routeManager: {fileID: 2063603322747633064}
-  controller: {fileID: 1720550973295807057}
   startPosition: {fileID: 0}
-  busFrame: {fileID: 6365547920373254865}
-  stopReachedDistance: 2
-  wrongDirectionAngleThreshold: 120
-  wrongDirectionCheckDistance: 5
-  recalculateCooldown: 2
-  rewardForReachingStop: 1
-  rewardForReachingNode: 0.3
-  recalculationPenalty: -2
-  collisionPenalty: -20
-  ghostDrivingPenalty: -0.1
-  drivingThroughRedLightPenalty: -10
+  navigationTracker: {fileID: 3670436559981880981}
+  controller: {fileID: 1720550973295807057}
+  observationProvider: {fileID: 6703309000230018843}
+  rewardProvider: {fileID: 152125520433097291}
 --- !u!114 &8575472799412568823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +324,53 @@ MonoBehaviour:
   DecisionPeriod: 5
   DecisionStep: 0
   TakeActionsBetweenDecisions: 1
+--- !u!1 &1441527268745359052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7363525083521836058}
+  - component: {fileID: 2150319083533030223}
+  m_Layer: 0
+  m_Name: Navigation Observations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7363525083521836058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441527268745359052}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6600510628828440934}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2150319083533030223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441527268745359052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e5883665f1f934daf7cf012ead32fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Observations.NavigationObservationSource
+  navigationTracker: {fileID: 3670436559981880981}
+  routeNavigator: {fileID: 2063603322747633064}
+  vehicleTransform: {fileID: 1551332922938177222}
 --- !u!1 &1542915546474765653
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +512,7 @@ GameObject:
   - component: {fileID: 6600510628828440934}
   - component: {fileID: 2063603322747633064}
   m_Layer: 0
-  m_Name: BusRouteManager
+  m_Name: Route Navigator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -489,8 +530,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5720836687459132230}
+  m_Children:
+  - {fileID: 7363525083521836058}
+  m_Father: {fileID: 7101187825188433714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2063603322747633064
 MonoBehaviour:
@@ -504,10 +546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5afab70bb896f4b84a34d2555ffb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BusRouteManager
-  busStops:
+  Waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  roadGraph: {fileID: 5436812386002467839}
+  navGraph: {fileID: 0}
 --- !u!1 &2820702360820923728
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +619,7 @@ Transform:
   - {fileID: 9153102036647561984}
   - {fileID: 4705795957144860911}
   - {fileID: 590833954089583331}
+  - {fileID: 8106679547524365711}
   m_Father: {fileID: 1551332922938177222}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3362989090257432109
@@ -831,6 +874,54 @@ Transform:
   - {fileID: 6328792108051738672}
   m_Father: {fileID: 2480851600114584737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4171103178197322539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2632242315794802903}
+  - component: {fileID: 6703309000230018843}
+  m_Layer: 6
+  m_Name: Observations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2632242315794802903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171103178197322539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2097504425487743244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6703309000230018843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171103178197322539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b6660a123009b44836ba84a235049b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Observations.BusAgentObservationProvider
+  sources:
+  - {fileID: 8988282942869362548}
+  - {fileID: 7369608515318049543}
+  - {fileID: 2150319083533030223}
 --- !u!1 &4400221224465670159
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +954,7 @@ Transform:
   - {fileID: 5169365856483317154}
   m_Father: {fileID: 2480851600114584737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4907914289419265510
+--- !u!1 &4522284024222951846
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -871,54 +962,171 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5720836687459132230}
-  - component: {fileID: 5436812386002467839}
-  m_Layer: 6
-  m_Name: Navigation
+  - component: {fileID: 8106679547524365711}
+  - component: {fileID: 6915393849736470225}
+  - component: {fileID: 5923320176611779293}
+  - component: {fileID: 7822470043200372589}
+  - component: {fileID: 710100898833677158}
+  m_Layer: 0
+  m_Name: Battery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5720836687459132230
+--- !u!4 &8106679547524365711
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4907914289419265510}
+  m_GameObject: {fileID: 4522284024222951846}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.147, z: -0.031}
+  m_LocalScale: {x: 0.3, y: 0.1, z: 0.2}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6600510628828440934}
-  m_Father: {fileID: 1551332922938177222}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5436812386002467839
+  m_Children: []
+  m_Father: {fileID: 2480851600114584737}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &6915393849736470225
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5923320176611779293
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 438fa567b35f5c94e8a5ba8cddb4d9ad, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7822470043200372589
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4907914289419265510}
+  m_GameObject: {fileID: 4522284024222951846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9eb4811c6fb3e5448d5a857f469424d, type: 3}
+  m_Script: {fileID: 11500000, guid: a74d211f1d970684a850c2b74bf7d390, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoadGraph
-  linkingDistance: 1
-  turnPenaltyMultiplier: 2
-  busTransform: {fileID: 1551332922938177222}
-  busRouteManager: {fileID: 2063603322747633064}
-  showPath: 1
-  showBusStops: 1
-  stopGizmoSize: 1
-  pathColor: {r: 0, g: 0, b: 1, a: 1}
-  stopColor: {r: 1, g: 0, b: 1, a: 1}
-  remainingPathColor: {r: 0, g: 1, b: 0, a: 1}
-  travelledPathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Vehicles.Bus.BusBattery
+  busController: {fileID: 1720550973295807057}
+  drainPerMeter: 0.001
+  drainSpeedThreshold: 0.01
+  batteryPercentage: 100
+--- !u!114 &710100898833677158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d67ba1049fb2248a6b4e6978942b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BatteryManager
+  batteryImages:
+  - {fileID: 2800000, guid: ff851ab7183d8044d9133cc92fbccd41, type: 3}
+  - {fileID: 2800000, guid: 17ccebf8bf7739945bd89d03c5f4c4b1, type: 3}
+  - {fileID: 2800000, guid: 56d35993bf5700c498a5361db8537f9d, type: 3}
+  - {fileID: 2800000, guid: 7409cb80bf21a944a91c399fe72dc4dd, type: 3}
+  - {fileID: 2800000, guid: 096a217952c09dd42845992aac71df9d, type: 3}
+  busBattery: {fileID: 7822470043200372589}
+  targetMesh: {fileID: 5923320176611779293}
+--- !u!1 &4719346718796773953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4211029508707520561}
+  - component: {fileID: 152125520433097291}
+  m_Layer: 6
+  m_Name: Rewards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4211029508707520561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719346718796773953}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2097504425487743244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152125520433097291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719346718796773953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf468cdd47ea2744af056cd4832c7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Rewards.AgentRewardProvider
+  rewardConfig: {fileID: 11400000, guid: edd83c1c5841f8b4fa947ed7037f39bf, type: 2}
 --- !u!1 &5705348566423182548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1254,6 @@ Transform:
   - {fileID: 2097504425487743244}
   - {fileID: 967508617906719227}
   - {fileID: 7844014791561662947}
-  - {fileID: 5720836687459132230}
   - {fileID: 2480851600114584737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -1063,28 +1270,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BusController
   rb: {fileID: 2375191474089564431}
-  wheelFrontLeft: {fileID: 1827304711100074313}
-  wheelFrontRight: {fileID: 1328860726065369336}
-  wheelBackLeft: {fileID: 7886169770977508463}
-  wheelBackRight: {fileID: 4315570634742417540}
-  wheelFrontLeftMesh: {fileID: 8241023946351692038}
-  wheelFrontRightMesh: {fileID: 9153102036647561984}
-  wheelBackLeftMesh: {fileID: 4705795957144860911}
-  wheelBackRightMesh: {fileID: 590833954089583331}
+  frontWheelColliders:
+  - {fileID: 1827304711100074313}
+  - {fileID: 1328860726065369336}
+  rearWheelColliders:
+  - {fileID: 7886169770977508463}
+  - {fileID: 4315570634742417540}
+  frontWheelMeshes:
+  - {fileID: 8241023946351692038}
+  - {fileID: 9153102036647561984}
+  rearWheelMeshes:
+  - {fileID: 4705795957144860911}
+  - {fileID: 590833954089583331}
   motorTorque: 2000
   brakeTorque: 5000
   maxSteerAngle: 38
   steeringSpeed: 100
   maxSpeed: 45
-  normalSpeed: 25
-  usingNormalSpeed: 1
-  currentSpeed: 0
-  currentSteerAngle: 0
   driveType: 0
   steeringType: 0
   brakingType: 0
-  lidarSensor: {fileID: 8988282942869362548}
-  trafficLightDetector: {fileID: 7369608515318049543}
+  currentSpeed: 0
+  currentSteerAngle: 0
+  rewardProvider: {fileID: 152125520433097291}
 --- !u!33 &2530518338677803174
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1312,6 +1520,56 @@ Transform:
   - {fileID: 6655205256800846211}
   m_Father: {fileID: 2480851600114584737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7357833950456195726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7101187825188433714}
+  - component: {fileID: 3670436559981880981}
+  m_Layer: 6
+  m_Name: Navigation Tracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7101187825188433714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357833950456195726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6600510628828440934}
+  m_Father: {fileID: 2097504425487743244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3670436559981880981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357833950456195726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cb326fb7ba07946abd339c37b636e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Navigation.NavigationTracker
+  routeNavigator: {fileID: 2063603322747633064}
+  rewardProvider: {fileID: 152125520433097291}
+  waypointReachedDistance: 2
+  wrongDirectionAngleThreshold: 120
+  recalculateCooldown: 2
 --- !u!1 &7659719152388334470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,7 +2089,6 @@ MonoBehaviour:
   detectionInterval: 0.5
   confidenceThreshold: 0.65
   isDetecting: 1
-  CurrentStopLightState: 0
 --- !u!1 &9147427479018220705
 GameObject:
   m_ObjectHideFlags: 0
