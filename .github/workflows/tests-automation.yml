@@ -23,7 +23,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: code test
-          args: --sarif-file-output=snyk-code.sarif
+          args: --org=retrotrack --sarif-file-output=snyk-code.sarif
 
       - name: Check SARIF exists
         id: sarif
