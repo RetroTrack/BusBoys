@@ -778,6 +778,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1637511922771961174, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
     - target: {fileID: 2702070376264937138, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -885,6 +889,10 @@ PrefabInstance:
     - target: {fileID: 7278467686188441309, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443385549088276271, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

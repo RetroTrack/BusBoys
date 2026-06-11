@@ -47,7 +47,7 @@ namespace BusBoys
         private void updateValues()
         {
             speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H" ;
-            BatteryText.text = $"DrainPerMeter: {batteryDrainPerMeterSlider.value:F5}%/m ";
+            BatteryText.text = $"Batt-Drain: {batteryDrainPerMeterSlider.value:F5}%/m ";
 
             Battery.drainPerMeter = batteryDrainPerMeterSlider.value;
             Vehicle.maxSpeed = speedSlider.value;
@@ -55,23 +55,23 @@ namespace BusBoys
 
         private void WheelValues()
         {
-            if (toggleFrontWheels == true && toggleBackWheels == true)
+            if (toggleFrontWheels.isOn == true && toggleBackWheels.isOn == true)
             {
                 Vehicle.driveType = DriveType.AllWheelDrive;
                 Vehicle.brakingType = BrakingType.AllWheelBraking;
                 Vehicle.steeringType = SteeringType.AllWheelSteering;
             }
-            else if (toggleFrontWheels == false && toggleBackWheels == true)
+            else if (toggleFrontWheels.isOn == false && toggleBackWheels.isOn == true)
             {
                 Vehicle.driveType = DriveType.RearWheelDrive;
-                Vehicle.brakingType = BrakingType.FrontWheelBraking;
+                Vehicle.brakingType = BrakingType.RearWheelBraking;
                 Vehicle.steeringType = SteeringType.RearWheelSteering;
             }
             else //if ((toggleFrontWheels == true && toggleBackWheels == false) || (toggleFrontWheels == false && toggleBackWheels == false))//als beide false zijn gaat die ook naar front wheel drive 
             {
                 Vehicle.driveType = DriveType.FrontWheelDrive;
-                Vehicle.brakingType = BrakingType.RearWheelBraking;
-                Vehicle.steeringType = SteeringType.AllWheelSteering;
+                Vehicle.brakingType = BrakingType.FrontWheelBraking;
+                Vehicle.steeringType = SteeringType.FrontWheelSteering;
             }
 
         }
