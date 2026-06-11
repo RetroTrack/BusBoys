@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: RewardConfig
   m_EditorClassIdentifier: BusBoys::BusBoys.RewardConfig
   rewardForProgressTowardsNode: 0.5
-  rewardForReachingStop: 15
+  rewardForReachingStop: 50
   rewardForReachingNode: 2
   recalculationPenalty: -2
   collisionPenalty: -10
-  ghostDrivingPenalty: -0.5
+  ghostDrivingPenalty: -1
   drivingThroughRedLightPenalty: -5
-  fallenOffMapPenalty: -5
+  fallenOffMapPenalty: -100
