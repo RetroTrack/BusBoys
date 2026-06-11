@@ -1,8 +1,7 @@
 name: Snyk Unity Test Automation
 
 on:
-  pull-request:
-    branches: [main]
+  push:
 
 jobs:
   snyk-sast:
