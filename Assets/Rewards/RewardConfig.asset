@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6066724f15038fb4da32be9be5153b5c, type: 3}
   m_Name: RewardConfig
   m_EditorClassIdentifier: BusBoys::BusBoys.RewardConfig
-  rewardForReachingStop: 10
-  rewardForReachingNode: 0.3
+  rewardForProgressTowardsNode: 0.5
+  rewardForReachingStop: 15
+  rewardForReachingNode: 2
   recalculationPenalty: -2
   collisionPenalty: -10
-  ghostDrivingPenalty: -0.1
+  ghostDrivingPenalty: -0.5
   drivingThroughRedLightPenalty: -5
+  fallenOffMapPenalty: -5

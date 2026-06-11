@@ -600,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2480851600114584737
 Transform:
   m_ObjectHideFlags: 0
@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7659719152388334470}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42d60b1493e49ac47904a984f64fc96f, type: 3}
   m_Name: 
@@ -2105,7 +2105,7 @@ MonoBehaviour:
   carCamera: {fileID: 8400000, guid: 7a4227c7abb07f04dacb405d9c8ae518, type: 2}
   detectionInterval: 0.5
   confidenceThreshold: 0.65
-  isDetecting: 1
+  isDetecting: 0
 --- !u!1 &9147427479018220705
 GameObject:
   m_ObjectHideFlags: 0
