@@ -4,10 +4,10 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus.Electric
 {
     public class BusBattery : MonoBehaviour
     {
-        [SerializeField] BusController busController;
+        [SerializeField] public BusController busController;
 
 
-        [SerializeField] private float drainPerMeter = 0.001f; // hoeveel % per meter
+        [SerializeField] public float drainPerMeter = 0.001f; // hoeveel % per meter
         [SerializeField] private float drainSpeedThreshold = 0.01f; // minimale snelheid om te beginnen met ontladen (Normalized speed)
         public float batteryPercentage = 100f;
         private Vector3 lastPosition;

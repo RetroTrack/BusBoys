@@ -19,11 +19,11 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
         [Tooltip("Amount of torque applied when braking (in Nm)"), SerializeField] protected float brakeTorque = 5000f;
         [Tooltip("Maximum steering angle (in degrees)"), SerializeField] protected float maxSteerAngle = 38f;
         [Tooltip("Speed of steering response"), SerializeField] protected float steeringSpeed = 100f;
-        [Tooltip("Maximum speed of the bus (in km/h)"), SerializeField] protected float maxSpeed = 45f;
+        [Tooltip("Maximum speed of the bus (in km/h)"), SerializeField] public float maxSpeed = 45f;
         [Space]
-        [Tooltip("Drive type (front, rear, awd)"), SerializeField] protected DriveType driveType = DriveType.FrontWheelDrive;
-        [Tooltip("Steering type (front, rear, both)"), SerializeField] protected SteeringType steeringType = SteeringType.FrontWheelSteering;
-        [Tooltip("Braking type (front, rear, both)"), SerializeField] protected BrakingType brakingType = BrakingType.FrontWheelBraking;
+        [Tooltip("Drive type (front, rear, awd)"), SerializeField] public DriveType driveType = DriveType.FrontWheelDrive;
+        [Tooltip("Steering type (front, rear, both)"), SerializeField] public SteeringType steeringType = SteeringType.FrontWheelSteering;
+        [Tooltip("Braking type (front, rear, both)"), SerializeField] public BrakingType brakingType = BrakingType.FrontWheelBraking;
 
 
         [Header("Runtime Data")]
