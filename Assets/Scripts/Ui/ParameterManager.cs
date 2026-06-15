@@ -46,7 +46,7 @@ namespace BusBoys
 
         private void updateValues()
         {
-            speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H" ;
+            speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H";
             BatteryText.text = $"Batt-Drain: {batteryDrainPerMeterSlider.value:F5}%/m ";
 
             Battery.drainPerMeter = batteryDrainPerMeterSlider.value;
