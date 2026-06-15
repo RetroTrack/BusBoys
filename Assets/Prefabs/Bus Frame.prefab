@@ -546,10 +546,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5afab70bb896f4b84a34d2555ffb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BusRouteManager
+  ChargingPoints:
+  - {fileID: 0}
   Waypoints:
   - {fileID: 0}
   - {fileID: 0}
   navGraph: {fileID: 0}
+  Battery: {fileID: 7822470043200372589}
 --- !u!1 &2820702360820923728
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,6 +970,7 @@ GameObject:
   - component: {fileID: 5923320176611779293}
   - component: {fileID: 7822470043200372589}
   - component: {fileID: 710100898833677158}
+  - component: {fileID: 3030287224635114804}
   m_Layer: 0
   m_Name: Battery
   m_TagString: Untagged
@@ -1062,6 +1066,7 @@ MonoBehaviour:
   drainPerMeter: 0.001
   drainSpeedThreshold: 0.01
   batteryPercentage: 100
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &710100898833677158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1087,27 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 096a217952c09dd42845992aac71df9d, type: 3}
   busBattery: {fileID: 7822470043200372589}
   targetMesh: {fileID: 5923320176611779293}
+--- !u!65 &3030287224635114804
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522284024222951846}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
+  m_Center: {x: 0, y: 0.0000009536743, z: 0}
 --- !u!1 &4719346718796773953
 GameObject:
   m_ObjectHideFlags: 0
