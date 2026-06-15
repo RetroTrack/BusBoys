@@ -1,9 +1,7 @@
-using System;
 using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
 using BusBoys.Assets.Scripts.Vehicles.Common;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace BusBoys
 {

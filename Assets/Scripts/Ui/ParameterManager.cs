@@ -29,9 +29,9 @@ namespace BusBoys
 
             speedSlider.minValue = 1f;
             speedSlider.maxValue = 45;
-            speedSlider.value = 25; // beginwaard
+            speedSlider.value = 25; // beginwaarde
 
-            batteryDrainPerMeterSlider.minValue = 0.0001f; //marge van 12
+            batteryDrainPerMeterSlider.minValue = 0.0001f;
             batteryDrainPerMeterSlider.maxValue = 0.1f;
             batteryDrainPerMeterSlider.value = 0.001f;
 
@@ -46,7 +46,7 @@ namespace BusBoys
 
         private void updateValues()
         {
-            speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H" ;
+            speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H";
             BatteryText.text = $"Batt-Drain: {batteryDrainPerMeterSlider.value:F5}%/m ";
 
             Battery.drainPerMeter = batteryDrainPerMeterSlider.value;
@@ -67,11 +67,15 @@ namespace BusBoys
                 Vehicle.brakingType = BrakingType.RearWheelBraking;
                 Vehicle.steeringType = SteeringType.RearWheelSteering;
             }
-            else //if ((toggleFrontWheels == true && toggleBackWheels == false) || (toggleFrontWheels == false && toggleBackWheels == false))//als beide false zijn gaat die ook naar front wheel drive 
+            else if (toggleFrontWheels.isOn == true && toggleBackWheels.isOn == false)
             {
                 Vehicle.driveType = DriveType.FrontWheelDrive;
                 Vehicle.brakingType = BrakingType.FrontWheelBraking;
                 Vehicle.steeringType = SteeringType.FrontWheelSteering;
+            }
+            else
+            {
+                toggleFrontWheels.isOn = true;
             }
 
         }
