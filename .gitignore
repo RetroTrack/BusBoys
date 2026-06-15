@@ -106,4 +106,8 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 /ProfilerCaptures
+<<<<<<< HEAD
 /results/*
+=======
+/results/*
+>>>>>>> ddf21391a1ddad69550225b98e152bc848955044
