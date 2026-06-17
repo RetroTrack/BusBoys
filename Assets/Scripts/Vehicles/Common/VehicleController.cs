@@ -30,7 +30,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
         [SerializeField] protected float currentSpeed = 0f;
         [SerializeField] protected float currentSteerAngle = 0f;
 
-        float motorInput, brakeInput, steeringInput;
+        protected float motorInput, brakeInput, steeringInput;
         public float CurrentSpeedNormalized => currentSpeed / maxSpeed;
 
         public float CurrentSpeed => currentSpeed; //zodat de ui de currentspeed en steer angle uit kan lezen 
