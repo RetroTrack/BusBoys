@@ -109,5 +109,4 @@ InitTestScene*.unity*
 /results/*
 
 # Project-ML-Agent Timer files
-/Assets/ML-Agents/Timers/
-/Assets/ML-Agents/Timers/Demonstration_timers.json.meta
+/Assets/ML-Agents/Timers

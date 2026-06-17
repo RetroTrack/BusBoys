@@ -20,6 +20,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
         [Header("References")]
         [SerializeField] private NavGraph navGraph;
+        [SerializeField] private GenerateStops generateStops;
 
         [Header("Grid")]
         [SerializeField] private Vector2Int gridSize = new Vector2Int(10, 8);
@@ -68,7 +69,19 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left
         };
 
-        private void Start() { if (generateOnStart) Generate(); }
+        private void Start()
+        {
+            if (generateOnStart)
+            {
+                if (roadsParent.childCount == 0)
+                {
+                    Generate();
+                } else
+                {
+                    Debug.LogWarning("Road generation was not cleared before playing! Please clear in the inspector next time.");
+                }
+            }
+        }
 
         [ContextMenu("Generate")]
         public void Generate()
@@ -108,6 +121,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
             SpawnPrefabs();
             BuildGraphFromSpawnedPrefabs();
+            generateStops.GenerateStop();
         }
 
         [ContextMenu("New Seed + Generate")]
@@ -128,6 +142,9 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 navGraph.Nodes.Clear();
                 navGraph.Edges.Clear();
             }
+
+            if (generateStops != null)
+                generateStops.ResetStops();
 
             if (roadsParent != null)
             {

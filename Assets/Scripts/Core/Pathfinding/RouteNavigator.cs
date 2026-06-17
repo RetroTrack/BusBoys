@@ -109,4 +109,5 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                 .OrderBy(n => Vector3.Distance(position, n.Position))
                 .FirstOrDefault();
     }
+
 }
