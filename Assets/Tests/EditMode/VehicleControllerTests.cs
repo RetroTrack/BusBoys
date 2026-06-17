@@ -6,7 +6,6 @@ using System.Reflection;
 
 public class VehicleControllerTests
 {
-    // Concrete implementation since VehicleController is abstract
     private class TestVehicleController : VehicleController { }
 
     private GameObject _go;
@@ -27,8 +26,6 @@ public class VehicleControllerTests
     {
         Object.DestroyImmediate(_go);
     }
-
-    // ── SetInputs ──────────────────────────────────────────────────────
 
     [Test]
     public void SetInputs_MotorInputAboveOne_ClampsToOne()
@@ -65,8 +62,6 @@ public class VehicleControllerTests
         Assert.AreEqual(1f, GetField<float>(_controller, "steeringInput"));
     }
 
-    // ── CurrentSpeedNormalized ─────────────────────────────────────────
-
     [Test]
     public void CurrentSpeedNormalized_HalfMaxSpeed_ReturnsPointFive()
     {
@@ -75,8 +70,6 @@ public class VehicleControllerTests
 
         Assert.AreEqual(0.5f, _controller.CurrentSpeedNormalized);
     }
-
-    // ── ResetVehicle ───────────────────────────────────────────────────
 
     [Test]
     public void ResetVehicle_WhenRigidbodyIsNull_LogsError()
@@ -103,8 +96,6 @@ public class VehicleControllerTests
         Assert.AreEqual(0f, _controller.CurrentSpeed);
         Assert.AreEqual(0f, _controller.CurrentSteerAngle);
     }
-
-    // ── Accelerate ─────────────────────────────────────────────────────
 
     [Test]
     public void Accelerate_WhenSpeedExceedsMax_DoesNotApplyTorque()
@@ -157,8 +148,6 @@ public class VehicleControllerTests
         Assert.Greater(rearWheel.motorTorque, 0f);
     }
 
-    // ── Brake ──────────────────────────────────────────────────────────
-
     [Test]
     public void Brake_FrontWheelBraking_AppliesOnlyToFrontWheels()
     {
@@ -193,8 +182,6 @@ public class VehicleControllerTests
         Assert.Greater(rearWheel.brakeTorque, 0f);
     }
 
-    // ── GetWheelEncoderValues ──────────────────────────────────────────
-
     [Test]
     public void GetWheelEncoderValues_FrontWheels_ReturnsCorrectCount()
     {
@@ -216,8 +203,6 @@ public class VehicleControllerTests
 
         Assert.AreEqual(2, result.Length);
     }
-
-    // ── Helpers ────────────────────────────────────────────────────────
 
     private WheelCollider CreateWheelChild()
     {

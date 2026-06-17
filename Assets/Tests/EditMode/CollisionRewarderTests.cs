@@ -7,12 +7,10 @@ using BusBoys.Assets.Scripts.Configs;
 
 public class CollisionRewarderTests
 {
-    // Fake implementation of AgentRewardProvider so we can track rewards  
     private class TestRewardProvider : AgentRewardProvider
     {
         public float? LastRewardAdded = null;
 
-        // Fix: Marking AddReward as new since the base method is not virtual, abstract, or override  
         public new void AddReward(float reward)
         {
             LastRewardAdded = reward;
@@ -82,8 +80,6 @@ public class CollisionRewarderTests
         var mask = LayerMask.GetMask("Default");
         Assert.IsFalse(CollisionRewarder.IsInLayerMask(layer, mask));
     }
-
-    // --- Helpers ---  
 
     private static void SetPrivateField(object obj, string fieldName, object value)
     {
