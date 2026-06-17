@@ -26,6 +26,11 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private float stopGizmoSize = 1f;
         [SerializeField] private Color stopColor = Color.magenta;
 
+        [Header("ChargingPoint Drawing Settings")]
+        [SerializeField] private bool isChargingPointDrawingEnabled = true;
+        [SerializeField] private float ChargingPointGizmoSize = 1f;
+        [SerializeField] private Color ChargingPointColor = Color.red;
+
         void OnDrawGizmos()
         {
             if (nav == null || navGraph == null) return;
@@ -98,6 +103,24 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 #if UNITY_EDITOR
                     UnityEditor.Handles.Label(
                         stop.position + Vector3.up * (stopGizmoSize + 0.5f),
+                        $"Busstop {i}"
+                    );
+#endif
+                }
+            }
+            //Draw ChargingStations
+            if (nav.ChargingPoints != null && isChargingPointDrawingEnabled)
+            {
+                for (int i = 0; i < nav.ChargingPoints.Count; i++)
+                {
+                    var chargingPoint = nav.ChargingPoints[i];
+                    if (chargingPoint == null) continue;
+                    Gizmos.color = ChargingPointColor;
+                    Gizmos.DrawSphere(chargingPoint.position, ChargingPointGizmoSize);
+
+#if UNITY_EDITOR
+                    UnityEditor.Handles.Label(
+                        chargingPoint.position + Vector3.up * (ChargingPointGizmoSize + 0.5f),
                         $"Busstop {i}"
                     );
 #endif
