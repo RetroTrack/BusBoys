@@ -15,15 +15,12 @@ namespace BusBoys.Assets.Scripts.Sensors.CollisionReward
                 Debug.LogError("Reward provider is not assigned in the inspector, reward will not be calculated.");
                 return;
             }
-            HandleCollision(collision.gameObject.layer);
-        }
 
-        public void HandleCollision(int layer)
-        {
-            if (IsInLayerMask(layer, layerMask))
+            if (IsInLayerMask(collision.gameObject.layer, layerMask))
+            {
                 rewardProvider.AddReward(rewardProvider.rewardConfig.collisionPenalty);
+            }
         }
-
         public static bool IsInLayerMask(int layer, LayerMask mask)
         {
             return (mask.value & (1 << layer)) != 0;
