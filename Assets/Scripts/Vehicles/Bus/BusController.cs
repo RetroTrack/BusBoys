@@ -22,6 +22,10 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
 
             // Braking
             Brake();
+            if (brakeInput > 0)
+            {
+                rewardProvider.AddReward(rewardProvider.rewardConfig.brakingPenalty, "Braking");
+            }
 
 
             // Steering
@@ -33,9 +37,9 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
 
         public void CheckFallenOfMap()
         {
-            if (transform.position.y < -5f) // Fallen off the world
+            if (transform.position.y < -1f) // Fallen off the world
             {
-                rewardProvider.SetReward(rewardProvider.rewardConfig.fallenOffMapPenalty);
+                rewardProvider.AddReward(rewardProvider.rewardConfig.fallenOffMapPenalty, "Fallen off map");
                 rewardProvider.EndEpisode();
             }
         }

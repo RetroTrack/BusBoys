@@ -13,5 +13,6 @@ namespace BusBoys.Assets.Scripts.Configs
         public float ghostDrivingPenalty = -0.1f;
         public float drivingThroughRedLightPenalty = -5f;
         public float fallenOffMapPenalty = -5f;
+        public float brakingPenalty = -0.01f;
     }
 }

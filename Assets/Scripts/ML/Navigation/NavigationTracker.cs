@@ -34,6 +34,14 @@ namespace BusBoys.Assets.Scripts.ML.Navigation
 
             routeNavigator.PathfindFromPosition(transform.position, transform.forward);
             SkipUntilCorrectNode();
+
+            if (targetPathNode == null)
+            {
+                Debug.LogWarning("NavigationTracker: No valid targetPathNode at episode start.");
+                previousDistanceToNode = 0f;
+                return;
+            }
+
             previousDistanceToNode = Vector3.Distance(transform.position, targetPathNode.Position);
         }
 
@@ -41,7 +49,7 @@ namespace BusBoys.Assets.Scripts.ML.Navigation
         {
             if (targetPathNode == null)
             {
-                if (!routeNavigator.HasReachedEndOfPath())
+                if (!routeNavigator.HasReachedEndOfPath() && routeNavigator.HasValidPath)
                     targetPathNode = routeNavigator.GetNextPathNode();
                 return;
             }
@@ -50,17 +58,18 @@ namespace BusBoys.Assets.Scripts.ML.Navigation
             float distToNode = toNode.magnitude;
 
             rewardProvider.AddReward(
-                (previousDistanceToNode - distToNode) * rewardProvider.rewardConfig.rewardForProgressTowardsNode
+                (previousDistanceToNode - distToNode) * rewardProvider.rewardConfig.rewardForProgressTowardsNode,
+                "Progress towards node"
             );
             previousDistanceToNode = distToNode;
 
-            if (distToNode <= routeNavigator.GetNodeReachedDistance())
+            if (distToNode <= routeNavigator.GetNodeReachedDistance() && routeNavigator.HasValidPath)
             {
                 targetPathNode = routeNavigator.GetNextPathNode();
                 return;
             }
 
-            TryRecalculateIfWrongDirection(toNode);
+            //TryRecalculateIfWrongDirection(toNode);
             TryAdvanceWaypoint();
         }
 
@@ -89,10 +98,16 @@ namespace BusBoys.Assets.Scripts.ML.Navigation
 
             if (!wrongWay || !cooldownDone) return;
 
-            Debug.Log($"NavigationTracker: wrong direction ({angle:F0}°), recalculating.");
             lastRecalculateTime = Time.time;
             routeNavigator.PathfindFromPosition(transform.position, transform.forward);
-            targetPathNode = routeNavigator.GetNextPathNode();
+            if (!routeNavigator.HasValidPath)
+                return; 
+            var newNode = routeNavigator.GetNextPathNode();
+            if (newNode == targetPathNode)
+                return; // no meaningful change
+            targetPathNode = newNode;
+            Debug.Log($"NavigationTracker: wrong direction ({angle:F0}°), recalculating.");
+            rewardProvider.AddReward(rewardProvider.rewardConfig.recalculationPenalty, "Wrong direction");
         }
 
         void TryAdvanceWaypoint()
@@ -104,8 +119,10 @@ namespace BusBoys.Assets.Scripts.ML.Navigation
             if (dist > waypointReachedDistance) return;
 
             Debug.Log("NavigationTracker: waypoint reached, advancing route.");
-            routeNavigator.ArriveAtWaypoint(transform.position, transform.forward);
-            targetPathNode = routeNavigator.GetNextPathNode();
+            rewardProvider.AddReward(rewardProvider.rewardConfig.rewardForReachingStop, "Waypoint reached");
+            rewardProvider.EndEpisode();
+            //routeNavigator.ArriveAtWaypoint(transform.position, transform.forward);
+            //targetPathNode = routeNavigator.GetNextPathNode();
         }
 
         void SkipUntilCorrectNode()
@@ -114,6 +131,8 @@ namespace BusBoys.Assets.Scripts.ML.Navigation
             while (targetPathNode != null &&
                    Vector3.Distance(transform.position, targetPathNode.Position) <= routeNavigator.GetNodeReachedDistance())
             {
+                if (!routeNavigator.HasValidPath)
+                    return;
                 targetPathNode = routeNavigator.GetNextPathNode();
             }
         }

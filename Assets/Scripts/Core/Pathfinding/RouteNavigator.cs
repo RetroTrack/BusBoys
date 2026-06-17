@@ -1,20 +1,25 @@
-using BusBoys.Assets.Scripts.Core.Graph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BusBoys.Assets.Scripts.Core.Graph;
+using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
 using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Core.Pathfinding
 {
     public class RouteNavigator : MonoBehaviour
     {
+        public List<Transform> ChargingPoints = new();
         public List<Transform> Waypoints = new();
         [SerializeField] NavGraph navGraph;
+        [SerializeField] BusBattery Battery;
+        private float BatteryPercentageTrehshold = 20;
 
         int currentWaypointIndex = 0;
         public List<IGraphNode> CurrentPath { get; private set; } = new();
         public int CurrentPathIndex { get; private set; } = 0;
         public NavGraph NavGraph => navGraph;
+        public bool HasValidPath => CurrentPath != null && CurrentPathIndex < CurrentPath.Count;
 
         public void BeginEpisode()
         {
@@ -46,8 +51,12 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
 
         public float GetNodeReachedDistance()
         {
-            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return 0f;
-            return CurrentPath[CurrentPathIndex].NodeReachedDistance;
+            int index = CurrentPathIndex - 1;
+
+            if (CurrentPath == null || index < 0 || index >= CurrentPath.Count)
+                return 0f;
+
+            return CurrentPath[index].NodeReachedDistance;
         }
 
         // Renamed from ArriveAtStop — works for any waypoint type
@@ -79,9 +88,17 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                 Debug.LogWarning("RouteNavigator: could not find graph nodes near start or goal.");
                 return;
             }
+            //Battery check
+            if (Battery != null && Battery.batteryPercentage < BatteryPercentageTrehshold)
+            {
+                var chargingNode = ChargingPoints
+                    .Select(cp => FindClosestNode(cp.position))
+                    .OrderBy(n => Vector3.Distance(from, n.Position))
+                    .FirstOrDefault();
 
-            CurrentPath = navGraph.FindPath(startNode, goalNode, facing);
-            CurrentPathIndex = 0;
+                CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
+                CurrentPathIndex = 0;
+            }
         }
 
         public Transform PeekCurrentWaypoint() =>
