@@ -8,7 +8,7 @@ namespace BusBoys
         [SerializeField] Transform EndPoint;
 
         [SerializeField] Transform passerby;
-        float passerbySpeed = 4.2f;
+        float passerbySpeed = 2.6f;
         float passerbyOdds = 0.2f; //20%
         float SetTime = 60;//elke minuut
         float passerbyTimer;
@@ -42,7 +42,6 @@ namespace BusBoys
             }
             else if (crossing)
             {
-
                 passerby.position = Vector3.MoveTowards(
                 passerby.position,
                 EndPoint.position,
