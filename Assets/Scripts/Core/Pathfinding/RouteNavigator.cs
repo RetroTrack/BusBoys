@@ -89,15 +89,16 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                 return;
             }
             //Battery check
-            if (Battery != null && Battery.batteryPercentage < BatteryPercentageTrehshold) 
+            if (Battery != null && Battery.batteryPercentage < BatteryPercentageTrehshold)
             {
                 var chargingNode = ChargingPoints
                     .Select(cp => FindClosestNode(cp.position))
                     .OrderBy(n => Vector3.Distance(from, n.Position))
                     .FirstOrDefault();
 
-            CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
-            CurrentPathIndex = 0;
+                CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
+                CurrentPathIndex = 0;
+            }
         }
 
         public Transform PeekCurrentWaypoint() =>
