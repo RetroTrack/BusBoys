@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 4834646356380742150}
   m_Layer: 0
   m_Name: Crossing
-  m_TagString: Untagged
+  m_TagString: Crossing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -389,6 +389,7 @@ MonoBehaviour:
   StartPoint: {fileID: 5866964834113084622}
   EndPoint: {fileID: 3637045150760276821}
   passerby: {fileID: 7643358800646652115}
+  passerbyOdds: 0.2
 --- !u!1 &7192040062712980089
 GameObject:
   m_ObjectHideFlags: 0
