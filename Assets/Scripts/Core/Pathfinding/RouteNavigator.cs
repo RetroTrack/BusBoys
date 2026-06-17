@@ -1,15 +1,19 @@
-using BusBoys.Assets.Scripts.Core.Graph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BusBoys.Assets.Scripts.Core.Graph;
+using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
 using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Core.Pathfinding
 {
     public class RouteNavigator : MonoBehaviour
     {
+        public List<Transform> ChargingPoints = new();
         public List<Transform> Waypoints = new();
         [SerializeField] NavGraph navGraph;
+        [SerializeField] BusBattery Battery;
+        private float BatteryPercentageTrehshold = 20;
 
         int currentWaypointIndex = 0;
         public List<IGraphNode> CurrentPath { get; private set; } = new();
@@ -84,6 +88,13 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                 Debug.LogWarning("RouteNavigator: could not find graph nodes near start or goal.");
                 return;
             }
+            //Battery check
+            if (Battery != null && Battery.batteryPercentage < BatteryPercentageTrehshold) 
+            {
+                var chargingNode = ChargingPoints
+                    .Select(cp => FindClosestNode(cp.position))
+                    .OrderBy(n => Vector3.Distance(from, n.Position))
+                    .FirstOrDefault();
 
             CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
             CurrentPathIndex = 0;
