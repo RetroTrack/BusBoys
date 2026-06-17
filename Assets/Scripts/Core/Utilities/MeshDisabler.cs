@@ -23,5 +23,16 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
                 meshRenderer.enabled = true;
             }
         }
+
+
+        public void DisableMeshRenderersInObject(GameObject obj)
+        {
+            if (obj == null) return; 
+            MeshRenderer[] meshRenderers = obj.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer meshRenderer in meshRenderers)
+            {
+                meshRenderer.enabled = false;
+            }
+        }
     }
 }

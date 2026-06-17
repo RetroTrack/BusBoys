@@ -1,3 +1,4 @@
+using BusBoys.Assets.Scripts.Core.Utilities;
 using BusBoys.Assets.Scripts.ML.Navigation;
 using BusBoys.Assets.Scripts.ML.Observations;
 using BusBoys.Assets.Scripts.ML.Rewards;
@@ -17,6 +18,8 @@ namespace BusBoys.Assets.Scripts.ML.Agents
         [Space]
         [SerializeField] private NavigationTracker navigationTracker;
         [SerializeField] private BusController controller;
+        [Space]
+        [SerializeField] private BusSpawner spawner;
 
         [Header("Agent Components")]
         [SerializeField] private AgentObservationProvider observationProvider;
@@ -77,7 +80,7 @@ namespace BusBoys.Assets.Scripts.ML.Agents
         }
         public override void OnEpisodeBegin()
         {
-            controller.transform.SetPositionAndRotation(startPosition.position, startPosition.rotation);
+            controller.transform.SetPositionAndRotation(spawner.GetRandomNodePosition(), spawner.GetRandomRotation());
             controller.ResetVehicle();
             navigationTracker.BeginEpisode();
         }

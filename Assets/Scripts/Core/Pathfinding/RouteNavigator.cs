@@ -19,6 +19,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
         public List<IGraphNode> CurrentPath { get; private set; } = new();
         public int CurrentPathIndex { get; private set; } = 0;
         public NavGraph NavGraph => navGraph;
+        public bool HasValidPath => CurrentPath != null && CurrentPathIndex < CurrentPath.Count;
 
         public void BeginEpisode()
         {
@@ -50,8 +51,12 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
 
         public float GetNodeReachedDistance()
         {
-            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return 0f;
-            return CurrentPath[CurrentPathIndex].NodeReachedDistance;
+            int index = CurrentPathIndex - 1;
+
+            if (CurrentPath == null || index < 0 || index >= CurrentPath.Count)
+                return 0f;
+
+            return CurrentPath[index].NodeReachedDistance;
         }
 
         // Renamed from ArriveAtStop — works for any waypoint type
@@ -91,16 +96,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                     .OrderBy(n => Vector3.Distance(from, n.Position))
                     .FirstOrDefault();
 
-                if (chargingNode != null)
-                {
-                    CurrentPath = navGraph.FindPath(startNode, chargingNode, facing);
-                    CurrentPathIndex = 0;
-                    Debug.Log($"RouteNavigator: Battery low ({Battery.batteryPercentage:F1}%), rerouting to charging point.");
-                    return;
-                }
-                Debug.LogWarning("RouteNavigator: Battery low but no charging points available!");
-            }
-            CurrentPath = navGraph.FindPath(startNode, goalNode, facing);
+            CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
             CurrentPathIndex = 0;
         }
 

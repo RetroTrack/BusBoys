@@ -18,7 +18,7 @@ namespace BusBoys.Assets.Scripts.Sensors.CollisionReward
 
             if (IsInLayerMask(collision.gameObject.layer, layerMask))
             {
-                rewardProvider.AddReward(rewardProvider.rewardConfig.collisionPenalty);
+                rewardProvider.AddReward(rewardProvider.rewardConfig.collisionPenalty, "Collision detected");
             }
         }
         public static bool IsInLayerMask(int layer, LayerMask mask)
