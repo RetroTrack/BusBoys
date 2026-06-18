@@ -41,6 +41,36 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private Color currentNodeColor = Color.cyan; // current node
         [SerializeField] private Color lookaheadNodeColor = Color.yellow;  // lookahead node
 
+        [Header("Rendering Lines In Game")]
+        [SerializeField] private bool renderLinesInGame = true;
+        [SerializeField] private Material lineMaterial;
+        [SerializeField] private LineRenderer currentNodeRenderer;
+        [SerializeField] private LineRenderer lookaheadNodeRenderer;
+        [SerializeField] private LineRenderer remainingPathRenderer;
+
+        private void Start()
+        {
+            SetupLineRenderer(currentNodeRenderer, pathColor, 0.1f);
+            SetupLineRenderer(lookaheadNodeRenderer, lookaheadNodeColor, 0.1f);
+            SetupLineRenderer(remainingPathRenderer, remainingPathColor, 0.1f);
+        }
+
+        private void SetupLineRenderer(LineRenderer lineRenderer, Color color, float width)
+        {
+            if (lineRenderer == null) return;
+
+            lineRenderer.startWidth = width;
+            lineRenderer.endWidth = width;
+
+            lineRenderer.material = lineMaterial;
+            lineRenderer.material.color = color;
+
+            lineRenderer.startColor = color;
+            lineRenderer.endColor = color;
+
+            lineRenderer.useWorldSpace = true;
+        }
+
         void OnDrawGizmos()
         {
             if (nav == null || navGraph == null) return;
@@ -63,7 +93,74 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             //Draw ChargingStations
             if (isChargingPointDrawingEnabled)
                 DrawPOI(nav.ChargingPoints, ChargingPointColor, ChargingPointGizmoSize, "Charging Station");
+
+            if(renderLinesInGame)
+            {
+                RenderAgentObservations();
+                RenderAStarPath();
+            }
         }
+
+
+
+        private void RenderAStarPath()
+        {
+            if (remainingPathRenderer == null ||
+                nav.CurrentPath == null ||
+                nav.CurrentPath.Count == 0)
+            {
+                remainingPathRenderer.positionCount = 0;
+                return;
+            }
+
+            int startIndex = nav.CurrentPathIndex;
+            int count = nav.CurrentPath.Count - startIndex;
+
+            remainingPathRenderer.positionCount = count;
+
+            for (int i = startIndex; i < nav.CurrentPath.Count; i++)
+            {
+                remainingPathRenderer.SetPosition(
+                    i - startIndex,
+                    nav.CurrentPath[i].Position + Vector3.up * 0.5f
+                );
+            }
+        }
+
+        private void RenderAgentObservations()
+        {
+            if(lookaheadNodeRenderer == null || currentNodeRenderer == null)
+            {
+                return;
+            }
+            if (navigationTracker == null || busTransform == null)
+            {
+                currentNodeRenderer.positionCount = 0;
+                lookaheadNodeRenderer.positionCount = 0;
+                return;
+            }
+            var currentNode = nav.PeekPathNode(0);
+            var lookaheadNode = nav.PeekPathNode(1);
+
+            // Huidige target node → cyaan
+            if (currentNode != null)
+            {
+                currentNodeRenderer.positionCount = 2;
+                currentNodeRenderer.SetPosition(0, busTransform.position + Vector3.up * 0.5f);
+                currentNodeRenderer.SetPosition(1, currentNode.Position + Vector3.up * 0.5f);
+            }
+
+            // Lookahead node → geel
+            if (lookaheadNode != null)
+            {
+                lookaheadNodeRenderer.positionCount = 2;
+                lookaheadNodeRenderer.SetPosition(0, busTransform.position + Vector3.up * 0.5f);
+                lookaheadNodeRenderer.SetPosition(1, lookaheadNode.Position + Vector3.up * 0.5f);
+            }
+        }
+
+
+
 
         private void DrawGraph()
         {
@@ -105,17 +202,6 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 {
                     if (node != null)
                         Gizmos.DrawSphere(node.Position, 0.3f);
-                }
-
-                // Draw line from bus to the next upcoming node
-                if (busTransform != null && currentPathIndex < nav.CurrentPath.Count)
-                {
-                    Gizmos.color = remainingPathColor;
-                    Vector3 nextNodePos = nav.CurrentPath[currentPathIndex].Position;
-                    Gizmos.DrawLine(busTransform.position, nextNodePos);
-
-                    // Draw a sphere at the bus's position
-                    Gizmos.DrawWireSphere(busTransform.position, 0.5f);
                 }
             }
         }
