@@ -1,4 +1,6 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="BusBoys.csproj" />
+  <Project Path="BusBoys.Tests.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
 </Solution>
