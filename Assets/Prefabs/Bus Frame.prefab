@@ -276,6 +276,7 @@ MonoBehaviour:
   startPosition: {fileID: 0}
   navigationTracker: {fileID: 3670436559981880981}
   controller: {fileID: 1720550973295807057}
+  spawner: {fileID: 0}
   observationProvider: {fileID: 6703309000230018843}
   rewardProvider: {fileID: 152125520433097291}
 --- !u!114 &8575472799412568823
@@ -291,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.Policies.BehaviorParameters
   m_BrainParameters:
-    VectorObservationSize: 19
+    VectorObservationSize: 24
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -370,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Observations.NavigationObservationSource
   navigationTracker: {fileID: 3670436559981880981}
   routeNavigator: {fileID: 2063603322747633064}
-  vehicleTransform: {fileID: 1551332922938177222}
+  vehicleRigidbody: {fileID: 2375191474089564431}
 --- !u!1 &1542915546474765653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1611,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Navigation.NavigationTracker
   routeNavigator: {fileID: 2063603322747633064}
   rewardProvider: {fileID: 152125520433097291}
+  trainingMode: 0
+  multiNodeTarget: 2
   waypointReachedDistance: 2
   wrongDirectionAngleThreshold: 120
   recalculateCooldown: 2

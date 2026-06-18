@@ -11,12 +11,16 @@ namespace BusBoys
         [Header("Dependencies")]
         [SerializeField] private RouteNavigator routeNavigator;
         [SerializeField] private GameObject busStop;
+        [SerializeField] private GameObject chargeStation;
         [SerializeField] private GameObject generatedRoads;
         [SerializeField] private GameObject generatedStops;
         [SerializeField] private Mesh straightRoad;
 
         [Header("Variables")]
+        [SerializeField] private int totalStops;
         [SerializeField] private int amountOfStops;
+        [SerializeField] private int amountOfChargers;
+        
 
         [Header("Debug")]
         [SerializeField] private List<GameObject> straightRoads = new List<GameObject>();
@@ -24,6 +28,7 @@ namespace BusBoys
         [SerializeField] private List<Transform> targets = new List<Transform>();
 
         private List<int> randomValue = new List<int>();
+
         public void GenerateStop()
         {
             ResetStops();
@@ -49,29 +54,47 @@ namespace BusBoys
             }
 
             randomValue.Clear();
-            int j = straightRoads.Count/amountOfStops;
-            for (int i = 1; i <= amountOfStops; i++)
+            totalStops = amountOfStops + amountOfChargers;
+            
+            int j = straightRoads.Count / totalStops;
+            for (int i = 1; i <= totalStops; i++)
             {
                 int minRange = j * (i - 1);
 
                 randomValue.Add(Random.Range(j*(i-1), j*i));
             }
 
-            for (int i = 0; i < amountOfStops; i++) {
+            for (int i = 0; i < totalStops; i++) {
                 int r = randomValue[i];
                 Vector3 spawnPos = new Vector3();
                 GameObject roadObj = straightRoads[r];
                 Vector3 roadTrans = roadObj.transform.position;
-                GameObject temp;
+                GameObject temp = null; 
                 if (roadObj.transform.eulerAngles.y > 0f)
                 {
-                    spawnPos = new Vector3(roadTrans.x, roadTrans.y, roadTrans.z-6.5f);
-                    temp = Instantiate(busStop, spawnPos, Quaternion.identity, generatedStops.transform);
+                    if (amountOfStops - 1 < i)
+                    {
+                        spawnPos = new Vector3(roadTrans.x, roadTrans.y, roadTrans.z - 5f);
+                        temp = Instantiate(chargeStation, spawnPos, Quaternion.Euler(-90, 180, 0), generatedStops.transform);
+                    }
+                    else
+                    {
+                        spawnPos = new Vector3(roadTrans.x, roadTrans.y, roadTrans.z - 6.5f);
+                        temp = Instantiate(busStop, spawnPos, Quaternion.identity, generatedStops.transform);
+                    }
+                    
                 } else
                 {
-                    spawnPos = new Vector3(roadTrans.x-6.5f, roadTrans.y, roadTrans.z);
-                    temp = Instantiate(busStop, spawnPos, Quaternion.Euler(0,90,0) , generatedStops.transform);
-                    
+                    if(amountOfStops - 1 < i)
+                    {
+                        spawnPos = new Vector3(roadTrans.x - 5f, roadTrans.y, roadTrans.z);
+                        temp = Instantiate(chargeStation, spawnPos, Quaternion.Euler(-90, 180, 0), generatedStops.transform);
+                    }
+                    else
+                    {
+                        spawnPos = new Vector3(roadTrans.x - 6.5f, roadTrans.y, roadTrans.z);
+                        temp = Instantiate(busStop, spawnPos, Quaternion.Euler(0, 90, 0), generatedStops.transform);
+                    }
                 }
 
                 if (temp.GetComponent<BusStop>().target != null)
@@ -81,6 +104,11 @@ namespace BusBoys
 
                 Debug.Log("Spawned bus stop at:" + spawnPos);
             }
+            ReturnBusStops();
+        }
+
+        public void ReturnBusStops()
+        {
             routeNavigator.Waypoints = targets;
         }
 
