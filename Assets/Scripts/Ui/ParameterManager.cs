@@ -1,5 +1,6 @@
 ﻿using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
 using BusBoys.Assets.Scripts.Vehicles.Common;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,18 +8,20 @@ namespace BusBoys
 {
     public class ParameterManager : MonoBehaviour
     {
-        public Slider speedSlider;
-        public Slider batteryDrainPerMeterSlider;
+        [SerializeField] Slider speedSlider;
+        [SerializeField] Slider batteryDrainPerMeterSlider;
+        [SerializeField] Slider PasserbyOddsSlider;
 
-        public TextMeshProUGUI speedText;
-        public TextMeshProUGUI BatteryText;
+        [SerializeField] TextMeshProUGUI speedText;
+        [SerializeField] TextMeshProUGUI BatteryText;
+        [SerializeField] TextMeshProUGUI PasserbyText;
 
-        public Toggle toggleFrontWheels;
-        public Toggle toggleBackWheels;
+        [SerializeField] Toggle toggleFrontWheels;
+        [SerializeField] Toggle toggleBackWheels;
 
-        public VehicleController Vehicle;
-        public BusBattery Battery;
-
+        [SerializeField] VehicleController Vehicle;
+        [SerializeField] BusBattery Battery;
+        [SerializeField] List<Crossing> crossings;
 
 
 
@@ -27,13 +30,9 @@ namespace BusBoys
             toggleFrontWheels.isOn = true;
             toggleBackWheels.isOn = false;
 
-            speedSlider.minValue = 1f;
-            speedSlider.maxValue = 45;
-            speedSlider.value = 25; // beginwaarde
-
-            batteryDrainPerMeterSlider.minValue = 0.0001f;
-            batteryDrainPerMeterSlider.maxValue = 0.1f;
-            batteryDrainPerMeterSlider.value = 0.001f;
+            setSliderValues(speedSlider, 1f, 45f, 25f);
+            setSliderValues(batteryDrainPerMeterSlider, 0.0001f, 0.1f, 0.001f);
+            setSliderValues(PasserbyOddsSlider, 0.01f, 1, 0.2f);
 
         }
 
@@ -44,13 +43,32 @@ namespace BusBoys
             WheelValues();
         }
 
+        private void Awake()
+        {
+            GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("Crossing");
+
+            foreach (GameObject obj in taggedObjects)
+            {
+                Crossing crossing = obj.GetComponent<Crossing>();
+                if (crossing != null)
+                {
+                    crossings.Add(crossing);
+                }
+            }
+        }
+
         private void updateValues()
         {
             speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H";
             BatteryText.text = $"Batt-Drain: {batteryDrainPerMeterSlider.value:F5}%/m ";
+            PasserbyText.text = $"PasserbyOdds: {PasserbyOddsSlider.value *100:F2}%";
 
             Battery.drainPerMeter = batteryDrainPerMeterSlider.value;
             Vehicle.maxSpeed = speedSlider.value;
+            foreach (Crossing crossing in crossings)
+            {
+                crossing.passerbyOdds = PasserbyOddsSlider.value;
+            }
         }
 
         private void WheelValues()
@@ -86,7 +104,15 @@ namespace BusBoys
             toggleBackWheels.isOn = false;
             speedSlider.value = 25;
             batteryDrainPerMeterSlider.value = 0.001f;
+            PasserbyOddsSlider.value = 0.20f;
 
+        }
+
+        void setSliderValues(Slider slider, float minValue, float maxValue, float StartValue)
+        {
+            slider.minValue = minValue; //minimale waarde
+            slider.maxValue = maxValue; //maximale waarde
+            slider.value = StartValue;  //beginwaarde
         }
     }
 }

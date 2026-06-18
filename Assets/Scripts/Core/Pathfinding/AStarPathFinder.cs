@@ -15,6 +15,9 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             Func<IGraphNode, IGraphNode, Vector3?, float> edgeCostFn,
             Vector3? incomingDirection = null)
         {
+            if (start == null || goal == null)
+                return new List<IGraphNode>();
+
             var openSet = new List<IGraphNode> { start };
             var cameFrom = new Dictionary<IGraphNode, IGraphNode>();
             var cameFromDir = new Dictionary<IGraphNode, Vector3>();
@@ -47,7 +50,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                     }
                 }
             }
-            return null;
+            return new List<IGraphNode>();
         }
 
         static List<IGraphNode> Reconstruct(Dictionary<IGraphNode, IGraphNode> cameFrom, IGraphNode current)

@@ -1,6 +1,5 @@
 using BusBoys.Assets.Scripts.Core.Pathfinding;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Core.Graph

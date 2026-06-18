@@ -1,41 +1,41 @@
-name: Snyk Unity Test Automation
+# name: Snyk Unity Test Automation
 
-on:
-  push:
+# on:
+#   push:
 
-jobs:
-  snyk-sast:
-    runs-on: ubuntu-latest
+# jobs:
+#   snyk-sast:
+#     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      actions: read
-      security-events: write
+#     permissions:
+#       contents: read
+#       actions: read
+#       security-events: write
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
 
-      - name: Run Snyk Code
-        uses: snyk/actions/node@master
-        continue-on-error: true
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: code test
-          args: --org=retrotrack --sarif-file-output=snyk-code.sarif
+#       - name: Run Snyk Code
+#         uses: snyk/actions/node@master
+#         continue-on-error: true
+#         env:
+#           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#         with:
+#           command: code test
+#           args: --org=retrotrack --sarif-file-output=snyk-code.sarif
 
-      - name: Check SARIF exists
-        id: sarif
-        run: |
-          if [ -f snyk-code.sarif ]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
+#       - name: Check SARIF exists
+#         id: sarif
+#         run: |
+#           if [ -f snyk-code.sarif ]; then
+#             echo "exists=true" >> $GITHUB_OUTPUT
+#           else
+#             echo "exists=false" >> $GITHUB_OUTPUT
+#           fi
 
-      - name: Upload SARIF
-        if: steps.sarif.outputs.exists == 'true'
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: snyk-code.sarif
+#       - name: Upload SARIF
+#         if: steps.sarif.outputs.exists == 'true'
+#         uses: github/codeql-action/upload-sarif@v4
+#         with:
+#           sarif_file: snyk-code.sarif

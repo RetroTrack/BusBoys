@@ -10,8 +10,9 @@ namespace BusBoys.Assets.Scripts.Configs
         public float rewardForReachingNode = 0.3f;
         public float recalculationPenalty = -2f;
         public float collisionPenalty = -10f;
-        public float ghostDrivingPenalty = -0.1f;
         public float drivingThroughRedLightPenalty = -5f;
         public float fallenOffMapPenalty = -5f;
+        public float brakingPenalty = -0.01f;
+        public float steeringWithoutMovingPenalty = -0.01f;
     }
 }

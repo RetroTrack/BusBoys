@@ -30,9 +30,20 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
         private void Awake()
         {
             lookAction = InputSystem.actions.FindAction("Look");
+            if (target == null) return;
+            SetDefaultPosition();
+        }
 
+        public void SetTarget(Transform newTarget)
+        {
+            target = newTarget;
+            SetDefaultPosition();
+        }
+
+        private void SetDefaultPosition()
+        {
             yaw = target.eulerAngles.y;
-            pitch = 10f; // optional default angle
+            pitch = 10f; // Default pitch angle
         }
 
         private void Update()

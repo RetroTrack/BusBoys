@@ -1,4 +1,7 @@
 ﻿using BusBoys.Assets.Scripts.Core.Pathfinding;
+using BusBoys.Assets.Scripts.ML.Navigation;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Core.Graph
@@ -7,6 +10,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
     {
         [SerializeField] private RouteNavigator nav;
         [SerializeField] private Transform busTransform;
+        [SerializeField] private NavigationTracker navigationTracker;
         [SerializeField] private NavGraph navGraph;
 
         [Header("Node Drawing Settings")]
@@ -26,31 +30,62 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private float stopGizmoSize = 1f;
         [SerializeField] private Color stopColor = Color.magenta;
 
+        [Header("ChargingPoint Drawing Settings")]
+        [SerializeField] private bool isChargingPointDrawingEnabled = true;
+        [SerializeField] private float ChargingPointGizmoSize = 1f;
+        [SerializeField] private Color ChargingPointColor = Color.red;
+
+
+        [Header("ML Drawing Settings")]
+        [SerializeField] private bool isMLDrawingEnabled = true;
+        [SerializeField] private Color currentNodeColor = Color.cyan; // current node
+        [SerializeField] private Color lookaheadNodeColor = Color.yellow;  // lookahead node
+
         void OnDrawGizmos()
         {
             if (nav == null || navGraph == null) return;
 
             // Draw the graph nodes and links
             if (isNodeDrawingEnabled)
+                DrawGraph();
+
+            // Draw the A* path split into travelled and remaining
+            if(isPathDrawingEnabled)
+                DrawAStarPath();
+
+            // Draw agent observations
+            if (isMLDrawingEnabled)
+                DrawAgentObservations();
+
+            // Draw bus stops
+            if (isStopDrawingEnabled)
+                DrawPOI(nav.Waypoints, stopColor, stopGizmoSize, "Bus Stop");
+            //Draw ChargingStations
+            if (isChargingPointDrawingEnabled)
+                DrawPOI(nav.ChargingPoints, ChargingPointColor, ChargingPointGizmoSize, "Charging Station");
+        }
+
+        private void DrawGraph()
+        {
+            foreach (var node in navGraph.Nodes)
             {
-                foreach (var node in navGraph.Nodes)
+                if (node == null) continue;
+                Gizmos.color = nodeColor;
+                Gizmos.DrawSphere(node.Position, nodeGizmoSize);
+                foreach (var neighbor in node.Neighbors)
                 {
-                    if (node == null) continue;
-                    Gizmos.color = nodeColor;
-                    Gizmos.DrawSphere(node.Position, nodeGizmoSize);
-                    foreach (var neighbor in node.Neighbors)
+                    if (neighbor != null)
                     {
-                        if (neighbor != null)
-                        {
-                            Gizmos.color = linkColor;
-                            Gizmos.DrawLine(node.Position, neighbor.Position);
-                        }
+                        Gizmos.color = linkColor;
+                        Gizmos.DrawLine(node.Position, neighbor.Position);
                     }
                 }
             }
+        }
 
-            // Draw the A* path split into travelled and remaining
-            if (nav.CurrentPath != null && nav.CurrentPath.Count > 1 && isPathDrawingEnabled)
+        private void DrawAStarPath()
+        {
+            if (nav.CurrentPath != null && nav.CurrentPath.Count > 1)
             {
                 int currentPathIndex = nav.CurrentPathIndex; // see below
 
@@ -83,26 +118,51 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                     Gizmos.DrawWireSphere(busTransform.position, 0.5f);
                 }
             }
+        }
 
-            // Draw bus stops
-            if (nav.Waypoints != null && isStopDrawingEnabled)
+        private void DrawAgentObservations()
+        {
+            if (navigationTracker != null && busTransform != null)
             {
-                for (int i = 0; i < nav.Waypoints.Count; i++)
+                var currentNode = nav.PeekPathNode(0);
+                var lookaheadNode = nav.PeekPathNode(1);
+
+                // Huidige target node → cyaan
+                if (currentNode != null)
                 {
-                    var stop = nav.Waypoints[i];
-                    if (stop == null) continue;
+                    Gizmos.color = currentNodeColor;
+                    Gizmos.DrawLine(busTransform.position, currentNode.Position);
+                    Gizmos.DrawSphere(currentNode.Position, nodeGizmoSize * 1.6f);
+                }
 
-                    Gizmos.color = stopColor;
-                    Gizmos.DrawSphere(stop.position, stopGizmoSize);
-
-#if UNITY_EDITOR
-                    UnityEditor.Handles.Label(
-                        stop.position + Vector3.up * (stopGizmoSize + 0.5f),
-                        $"Busstop {i}"
-                    );
-#endif
+                // Lookahead node → geel
+                if (lookaheadNode != null)
+                {
+                    Gizmos.color = lookaheadNodeColor;
+                    Gizmos.DrawLine(busTransform.position, lookaheadNode.Position);
+                    Gizmos.DrawSphere(lookaheadNode.Position, nodeGizmoSize * 1.2f);
                 }
             }
         }
+
+        private void DrawPOI(List<Transform> points, Color color, float size, string label)
+        {
+            for (int i = 0; i < points.Count; i++)
+            {
+                var point = points[i];
+                if (point == null) continue;
+                Gizmos.color = color;
+                Gizmos.DrawSphere(point.position, size);
+
+#if UNITY_EDITOR
+                UnityEditor.Handles.Label(
+                    point.position + Vector3.up * (size + 0.5f),
+                    $"{label} {i}"
+                );
+#endif
+            }
+
+        }
+
     }
 }
