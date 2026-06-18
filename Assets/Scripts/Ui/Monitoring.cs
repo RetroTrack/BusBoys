@@ -21,7 +21,7 @@ namespace BusBoys
         {
             VehicleStats.text = 
                 $"Position: {Battery.currentPosition}\n" +
-                $"Battery: {Battery.batteryPercentage:F2} \n" +
+                $"Battery: {Battery.batteryPercentage:F2}% \n" +
                 $"Speed: {Controller.CurrentSpeed:F2} Km/h \n" +
                 $"SteeringAngle: {Controller.CurrentSteerAngle:F2}°  \n";
 

@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace BusBoys
 {
+    //navgraph turnpenalty slider
+    //collision
+    //hide knop
     public class ParameterManager : MonoBehaviour
     {
         [SerializeField] Slider speedSlider;
@@ -23,7 +26,8 @@ namespace BusBoys
         [SerializeField] BusBattery Battery;
         [SerializeField] List<Crossing> crossings;
 
-
+        private DriveType currentDriveType;
+        private DriveType LastDriveType;
 
         void Start()
         {
@@ -78,22 +82,29 @@ namespace BusBoys
                 Vehicle.driveType = DriveType.AllWheelDrive;
                 Vehicle.brakingType = BrakingType.AllWheelBraking;
                 Vehicle.steeringType = SteeringType.AllWheelSteering;
+                currentDriveType = DriveType.AllWheelDrive;
+                straightWheels();
             }
             else if (toggleFrontWheels.isOn == false && toggleBackWheels.isOn == true)
             {
+                currentDriveType = DriveType.RearWheelDrive;
                 Vehicle.driveType = DriveType.RearWheelDrive;
                 Vehicle.brakingType = BrakingType.RearWheelBraking;
                 Vehicle.steeringType = SteeringType.RearWheelSteering;
+                straightWheels();
             }
             else if (toggleFrontWheels.isOn == true && toggleBackWheels.isOn == false)
             {
+                currentDriveType = DriveType.FrontWheelDrive;
                 Vehicle.driveType = DriveType.FrontWheelDrive;
                 Vehicle.brakingType = BrakingType.FrontWheelBraking;
                 Vehicle.steeringType = SteeringType.FrontWheelSteering;
+                straightWheels();
             }
             else
             {
                 toggleFrontWheels.isOn = true;
+                straightWheels();
             }
 
         }
@@ -113,6 +124,24 @@ namespace BusBoys
             slider.minValue = minValue; //minimale waarde
             slider.maxValue = maxValue; //maximale waarde
             slider.value = StartValue;  //beginwaarde
+        }
+
+        void straightWheels()
+        {
+            if(LastDriveType != currentDriveType)
+            {
+                //Debug.Log($"last: {LastDriveType} Now:{currentDriveType}");
+                if (currentDriveType == DriveType.RearWheelDrive)
+                {
+                    Vehicle.SetWheelAngle(0f, WheelType.Front);
+                }
+                else if (currentDriveType == DriveType.FrontWheelDrive)
+                {
+                    Vehicle.SetWheelAngle(0f, WheelType.Rear);
+                }
+
+            }
+            LastDriveType = currentDriveType;
         }
     }
 }
