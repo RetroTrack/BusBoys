@@ -9,8 +9,8 @@ namespace BusBoys
 
         [SerializeField] Transform passerby;
         float passerbySpeed = 2.6f;
-        public float passerbyOdds = 0.2f; //20%
-        float SetTime = 60;//elke minuut
+        public float passerbyOdds; //20%
+        public float SetTime;//elke minuut
         float passerbyTimer;
 
         bool crossing = false;
@@ -23,7 +23,8 @@ namespace BusBoys
 
         // Update is called once per frame
         void Update()
-        {   if (crossing == false)
+        {   
+            if (crossing == false)
             {
                 passerbyTimer -= Time.deltaTime;
                 if (passerbyTimer < 0)
@@ -35,7 +36,7 @@ namespace BusBoys
                         crossing = true;
                         passerby.gameObject.SetActive(true);
                         Vector3 startPos = StartPoint.position;
-                        startPos.y = 0f;
+                        startPos.y += 0.5f;
                         passerby.position = startPos;
                     }
                 }

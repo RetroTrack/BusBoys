@@ -134,7 +134,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             if (index >= 0 && index < path.Count)
                 return path[index];
 
-            // Lookahead valt buiten het pad — gebruik de waypoint als fallback
+            // Lookahead valt buiten het pad â€” gebruik de waypoint als fallback
             if (offset > 0)
             {
                 Transform wp = PeekCurrentWaypoint();
@@ -152,4 +152,5 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                 .OrderBy(n => Vector3.Distance(position, n.Position))
                 .FirstOrDefault();
     }
+
 }
