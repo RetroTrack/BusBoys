@@ -255,13 +255,43 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a105ce19949431347a6f2287dc38014b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1733298317506443216}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a105ce19949431347a6f2287dc38014b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1177813886438715066}
   m_SourcePrefab: {fileID: 100100000, guid: a105ce19949431347a6f2287dc38014b, type: 3}
 --- !u!4 &2797303571873865673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a105ce19949431347a6f2287dc38014b, type: 3}
   m_PrefabInstance: {fileID: 2402879009320106018}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3285890962270274931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a105ce19949431347a6f2287dc38014b, type: 3}
+  m_PrefabInstance: {fileID: 2402879009320106018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1177813886438715066
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3285890962270274931}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8569235901332923964, guid: a105ce19949431347a6f2287dc38014b, type: 3}
 --- !u!1001 &6046243353283714238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270,10 +300,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2797303571873865673}
     m_Modifications:
-    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 11.68
-      objectReference: {fileID: 0}
     - target: {fileID: 2419180469810104478, guid: eaba27d626d2f97499f25f115128f0bc, type: 3}
       propertyPath: m_Name
       value: Pedestrian Crossing (2)
@@ -337,6 +363,10 @@ PrefabInstance:
     - target: {fileID: 6456827397668588015, guid: eaba27d626d2f97499f25f115128f0bc, type: 3}
       propertyPath: m_LocalScale.x
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11.68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5,7 +5,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 {
     public class ProceduralRoadGraphGenerator : MonoBehaviour
     {
-        private enum RoadType { None, Straight, Corner, TJunction, Cross }
+        private enum RoadType { None, Straight, Corner, TJunction, Cross, Pavement }
 
         [System.Serializable]
         private class CellData
@@ -33,7 +33,8 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private GameObject roadCorner;
         [SerializeField] private GameObject roadTJunction;
         [SerializeField] private GameObject roadCross;
-
+        [SerializeField] private GameObject roadPavement;
+ 
         [Header("Generation")]
         [SerializeField] private int minAnchorPoints = 4;
         [SerializeField] private int maxAnchorPoints = 10;
@@ -41,6 +42,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private int anchorAttemptsMultiplier = 12;
         [SerializeField] private int extraConnections = 2;
         [SerializeField] private bool preferEdgeUsage = true;
+        [SerializeField] private bool generatePavement = true;
 
         [Header("Path Cost")]
         [SerializeField] private float reusedRoadCostBonus = 0.35f;
@@ -57,7 +59,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
         [Header("Hierarchy")]
         [SerializeField] private Transform roadsParent;
-
+        
         private CellData[,] cells;
         private int width, height, cellCount;
 
@@ -120,11 +122,17 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             SealOpenEnds();
             CleanupInvalidNetwork();
             ResolveCellTypes();
-
             SpawnPrefabs();
             BuildGraphFromSpawnedPrefabs();
+
             generateStops.GenerateStop();
+            graphBootstrap.AddNodes();
             graphBootstrap.LinkEdges();
+
+            if (generatePavement)
+            {
+                SetAllEmptyToPavement();
+            }
 
             Debug.Log("Generation Complete");
         }
@@ -165,6 +173,28 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             }
 
             spawnedRoads.Clear();
+        }
+
+        private void SetAllEmptyToPavement()
+        {
+            for(int x = 0; x < width; x++)
+            {
+                for(int y = 0; y < height; y++)
+                {
+                    if (cells[x, y].type == RoadType.None)
+                    {
+                        cells[x, y].up = false;
+                        cells[x, y].down = false;
+                        cells[x, y].left = false;
+                        cells[x, y].right = false;
+                        cells[x, y].type = RoadType.Pavement;
+                        Vector3 worldPos = transform.position + new Vector3(x * cellSize, 0f, y * cellSize);
+                        GameObject instance = Instantiate(roadPavement, worldPos, Quaternion.identity, roadsParent);
+                        spawnedRoads.Add(instance);
+                    } 
+
+                }
+            }
         }
 
         private void EnsureRoadParentExists()
@@ -857,6 +887,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             RoadType.Corner => roadCorner,
             RoadType.TJunction => roadTJunction,
             RoadType.Cross => roadCross,
+            RoadType.Pavement => roadPavement,
             _ => null
         };
 
