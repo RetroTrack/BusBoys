@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using BusBoys.Assets.Scripts.Core.Graph;
 using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Core.Pathfinding
@@ -13,7 +12,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
         public List<Transform> Waypoints = new();
         [SerializeField] NavGraph navGraph;
         [SerializeField] BusBattery Battery;
-        private float BatteryPercentageTrehshold = 20;
+        private float BatteryPercentageThreshold = 20;
 
         int currentWaypointIndex = 0;
         public List<IGraphNode> CurrentPath { get; private set; } = new();
@@ -52,31 +51,30 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
         public float GetNodeReachedDistance()
         {
             int index = CurrentPathIndex - 1;
-
             if (CurrentPath == null || index < 0 || index >= CurrentPath.Count)
                 return 0f;
-
             return CurrentPath[index].NodeReachedDistance;
         }
 
-        // Renamed from ArriveAtStop — works for any waypoint type
         public void ArriveAtWaypoint(Vector3 position, Vector3 facing)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % Waypoints.Count;
             PathfindFromPosition(position, facing);
         }
 
+        /// <summary>
+        /// Standard pathfinding towards the current waypoint. Used in SingleWaypoint and FullRoute modes.
+        /// </summary>
         public void PathfindFromPosition(Vector3 from, Vector3? facing = null)
         {
             if (Waypoints.Count == 0)
             {
-                Debug.LogError("No waypoints assigned");
+                Debug.LogError("RouteNavigator: No waypoints assigned.");
                 return;
             }
-
             if (navGraph == null)
             {
-                Debug.LogError("NavGraph reference missing");
+                Debug.LogError("RouteNavigator: NavGraph reference missing.");
                 return;
             }
 
@@ -88,17 +86,62 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                 Debug.LogWarning("RouteNavigator: could not find graph nodes near start or goal.");
                 return;
             }
-            //Battery check
-            if (Battery != null && Battery.batteryPercentage < BatteryPercentageTrehshold)
+
+            // Battery detour (kept from original; note: currently always routes to waypoint goal)
+            if (Battery != null && Battery.batteryPercentage < BatteryPercentageThreshold)
             {
                 var chargingNode = ChargingPoints
                     .Select(cp => FindClosestNode(cp.position))
                     .OrderBy(n => Vector3.Distance(from, n.Position))
                     .FirstOrDefault();
 
-                CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
-                CurrentPathIndex = 0;
+                if (chargingNode != null)
+                    goalNode = chargingNode;
             }
+
+            CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
+            CurrentPathIndex = 0;
+        }
+
+        /// <summary>
+        /// Pathfinds directly to a specific graph node. Used in SingleNode and MultiNode training modes.
+        /// </summary>
+        public void PathfindToNode(Vector3 from, IGraphNode goalNode, Vector3? facing = null)
+        {
+            if (navGraph == null)
+            {
+                Debug.LogError("RouteNavigator: NavGraph reference missing.");
+                return;
+            }
+
+            var startNode = FindClosestNode(from);
+            if (startNode == null || goalNode == null)
+            {
+                Debug.LogWarning("RouteNavigator: could not find start node or goal node is null.");
+                return;
+            }
+
+            CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
+            CurrentPathIndex = 0;
+        }
+        public IGraphNode PeekPathNode(int offset)
+        {
+            var path = CurrentPath;
+            if (path == null) return null;
+
+            int index = CurrentPathIndex - 1 + offset;
+
+            if (index >= 0 && index < path.Count)
+                return path[index];
+
+            // Lookahead valt buiten het pad — gebruik de waypoint als fallback
+            if (offset > 0)
+            {
+                Transform wp = PeekCurrentWaypoint();
+                if (wp != null) return new WaypointGraphNode(wp.position);
+            }
+
+            return null;
         }
 
         public Transform PeekCurrentWaypoint() =>

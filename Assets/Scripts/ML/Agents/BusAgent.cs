@@ -80,7 +80,7 @@ namespace BusBoys.Assets.Scripts.ML.Agents
         }
         public override void OnEpisodeBegin()
         {
-            controller.transform.SetPositionAndRotation(spawner.GetRandomNodePosition(), spawner.GetRandomRotation());
+            controller.transform.SetPositionAndRotation(spawner.GetRandomOffsetFromDefault(), spawner.GetRandomRotation());
             controller.ResetVehicle();
             navigationTracker.BeginEpisode();
         }

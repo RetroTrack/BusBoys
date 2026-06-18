@@ -498,9 +498,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc4c922118d35640bb629cd0e2471a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BusBoys::TrainingGrid
-  prefab: {fileID: 3661182251040735764, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
+  prefab: {fileID: 8450421483551623834, guid: c4894919e0bd3904dab58f0f81e1a569, type: 3}
   gridSize: {x: 5, y: 5}
-  spacing: {x: 150, y: 200}
+  spacing: {x: 500, y: 500}
   meshDisabler: {fileID: 1276218495}
   thirdPersonCamera: {fileID: 963194230}
 --- !u!4 &800463918

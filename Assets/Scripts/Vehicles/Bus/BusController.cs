@@ -1,5 +1,6 @@
 using BusBoys.Assets.Scripts.ML.Rewards;
 using BusBoys.Assets.Scripts.Vehicles.Common;
+using System;
 using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Vehicles.Bus
@@ -33,6 +34,15 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
 
             // Rewarding
             CheckFallenOfMap();
+            CheckSteeringWithoutGas();
+        }
+
+        private void CheckSteeringWithoutGas()
+        {
+            if(steeringInput != 0 && currentSpeed < 1f)
+            {
+                rewardProvider.AddReward(rewardProvider.rewardConfig.steeringWithoutMovingPenalty, "Steering without moving");
+            }
         }
 
         public void CheckFallenOfMap()
