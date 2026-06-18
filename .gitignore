@@ -110,3 +110,4 @@ InitTestScene*.unity*
 
 # Project-ML-Agent Timer files
 /Assets/ML-Agents/Timers
+Assets/ML-Agents/Timers/Generation_timers.json

@@ -23,7 +23,7 @@ namespace BusBoys
         [SerializeField] private List<GameObject> spawnedStops = new List<GameObject>();
         [SerializeField] private List<Transform> targets = new List<Transform>();
 
-
+        private List<int> randomValue = new List<int>();
         public void GenerateStop()
         {
             ResetStops();
@@ -48,9 +48,17 @@ namespace BusBoys
                 }
             }
 
-            for (int i = 0; i < amountOfStops; i++) {
-               int r = Random.Range(0, straightRoads.Count);
+            randomValue.Clear();
+            int j = straightRoads.Count/amountOfStops;
+            for (int i = 1; i <= amountOfStops; i++)
+            {
+                int minRange = j * (i - 1);
 
+                randomValue.Add(Random.Range(j*(i-1), j*i));
+            }
+
+            for (int i = 0; i < amountOfStops; i++) {
+                int r = randomValue[i];
                 Vector3 spawnPos = new Vector3();
                 GameObject roadObj = straightRoads[r];
                 Vector3 roadTrans = roadObj.transform.position;
