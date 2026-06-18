@@ -21,8 +21,9 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
 
         [HideInInspector] public LidarHit[] hits;
 
-        private float timer;
+        [HideInInspector] public bool passerbyDetected;
 
+        private float timer;
         public  float[] Observations => hits != null ? Array.ConvertAll(hits, h => h.normalizedDistance) : new float[numberOfRays];
 
         public float UpdateInterval { get => updateInterval; set => updateInterval = value; }
@@ -50,6 +51,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
         //TODO: make more like a parking sensor (detect in angle instead of single ray
         void Scan()
         {
+            passerbyDetected = false;
             hits = new LidarHit[numberOfRays]; // Clear previous hits
             float step = (angleRange.y - angleRange.x) / (numberOfRays - 1);
 
@@ -67,6 +69,10 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
 
                     if (visualizeRays)
                         Debug.DrawLine(transform.position, hit.point, c, updateInterval);
+ 
+                    if (hit.collider.gameObject.name == "Passerby") //checkt voor passerby
+                        passerbyDetected = true;
+
                     hits[i] = new LidarHit { direction = dir, normalizedDistance = t, hit = true };
                 }
                 else

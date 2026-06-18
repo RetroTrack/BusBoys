@@ -1,4 +1,5 @@
-﻿using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
+﻿using BusBoys.Assets.Scripts.Core.Graph;
+using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
 using BusBoys.Assets.Scripts.Vehicles.Common;
 using System.Collections.Generic;
 using TMPro;
@@ -6,37 +7,48 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace BusBoys
 {
-    //navgraph turnpenalty slider
-    //collision
-    //hide knop
     public class ParameterManager : MonoBehaviour
     {
         [SerializeField] Slider speedSlider;
         [SerializeField] Slider batteryDrainPerMeterSlider;
         [SerializeField] Slider PasserbyOddsSlider;
+        [SerializeField] Slider turnPenaltyMultiplierSlider;
 
         [SerializeField] TextMeshProUGUI speedText;
         [SerializeField] TextMeshProUGUI BatteryText;
         [SerializeField] TextMeshProUGUI PasserbyText;
+        [SerializeField] TextMeshProUGUI turnPenaltyMultiplierText;
+
+        [SerializeField] TextMeshProUGUI MonitoringText;
 
         [SerializeField] Toggle toggleFrontWheels;
         [SerializeField] Toggle toggleBackWheels;
 
+        [SerializeField] Toggle toggleShowRay;
+
         [SerializeField] VehicleController Vehicle;
         [SerializeField] BusBattery Battery;
         [SerializeField] List<Crossing> crossings;
+        [SerializeField] NavGraph navGraph;
 
+        [SerializeField] Button resetParButton;
+
+        [SerializeField] TextMeshProUGUI HideShowText;
+        private bool ShowUI = true; //true = show, false = hide
+        
         private DriveType currentDriveType;
         private DriveType LastDriveType;
 
         void Start()
         {
+            HideShowText.text = "Show";
             toggleFrontWheels.isOn = true;
             toggleBackWheels.isOn = false;
 
             setSliderValues(speedSlider, 1f, 45f, 25f);
             setSliderValues(batteryDrainPerMeterSlider, 0.0001f, 0.1f, 0.001f);
             setSliderValues(PasserbyOddsSlider, 0.01f, 1, 0.2f);
+            setSliderValues(turnPenaltyMultiplierSlider, 0f , 20f, 2f);
 
         }
 
@@ -45,6 +57,7 @@ namespace BusBoys
         {
             updateValues();
             WheelValues();
+            CheckRouteRay(); // nog gemaakt
         }
 
         private void Awake()
@@ -66,9 +79,12 @@ namespace BusBoys
             speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H";
             BatteryText.text = $"Batt-Drain: {batteryDrainPerMeterSlider.value:F5}%/m ";
             PasserbyText.text = $"PasserbyOdds: {PasserbyOddsSlider.value *100:F2}%";
-
+            turnPenaltyMultiplierText.text = $"TunPenaltyMulti: {batteryDrainPerMeterSlider.value:F2} x";
             Battery.drainPerMeter = batteryDrainPerMeterSlider.value;
             Vehicle.maxSpeed = speedSlider.value;
+            navGraph.turnPenaltyMultiplier = turnPenaltyMultiplierSlider.value;
+
+
             foreach (Crossing crossing in crossings)
             {
                 crossing.passerbyOdds = PasserbyOddsSlider.value;
@@ -142,6 +158,40 @@ namespace BusBoys
 
             }
             LastDriveType = currentDriveType;
+        }
+
+        public void HideAndShowButton()
+        {
+            ShowUI = !ShowUI;
+            setUi(ShowUI);
+            HideShowText.text = ShowUI ? "HideUI" : "ShowUI";
+        }
+        void setUi(bool set) {
+            speedSlider.gameObject.SetActive(set);
+            batteryDrainPerMeterSlider.gameObject.SetActive(set);
+            PasserbyOddsSlider.gameObject.SetActive(set);
+            speedText.gameObject.SetActive(set);
+            BatteryText.gameObject.SetActive(set);
+            PasserbyText.gameObject.SetActive(set);
+            toggleFrontWheels.gameObject.SetActive(set);
+            toggleBackWheels.gameObject.SetActive(set);
+            resetParButton.gameObject.SetActive(set);
+            MonitoringText.gameObject.SetActive(set);
+            turnPenaltyMultiplierSlider.gameObject.SetActive(set);
+            turnPenaltyMultiplierText.gameObject.SetActive(set);
+            toggleShowRay.gameObject.SetActive(set);
+
+        }
+        void CheckRouteRay()
+        {
+           if(toggleShowRay.isOn == true)
+            {
+                //show ray
+            }
+           else
+            {
+                //dont show
+            }
         }
     }
 }
