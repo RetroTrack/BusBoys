@@ -14,7 +14,6 @@ namespace BusBoys
         public AudioSource honkSound;
         float speed;
         public float minSpeed = 0.1f;
-        float HonkCooldownTime = 30;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -24,8 +23,6 @@ namespace BusBoys
         // Update is called once per frame
         void Update()
         {
-            HonkCooldownTime -= Time.deltaTime;
-
             speed = vehicle.CurrentSpeed;
 
             if (speed > minSpeed)
@@ -38,8 +35,10 @@ namespace BusBoys
                 engineSound.volume = 0.2f;
             }
 
-            if (lidar.passerbyDetected && HonkCooldownTime <= 0)
+
+            if (lidar.passerbyDetected)
             {
+                engineSound.Stop();
                 honkSound.volume = 1f;
             }
             else if (!lidar.passerbyDetected)
