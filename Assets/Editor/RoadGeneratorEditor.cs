@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-using BusBoys.Assets.Scripts.Core.Graph;
+using BusBoys.Assets.Scripts.Environment.Generation;
 using UnityEditor;
 using UnityEngine;
 
