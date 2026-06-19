@@ -1,10 +1,8 @@
 using BusBoys.Assets.Scripts.Core.Pathfinding;
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-namespace BusBoys
+namespace BusBoys.Assets.Scripts.Environment.Generation
 {
     public class GenerateStops : MonoBehaviour
     {
@@ -20,7 +18,7 @@ namespace BusBoys
         [SerializeField] private int totalStops;
         [SerializeField] private int amountOfStops;
         [SerializeField] private int amountOfChargers;
-        
+
 
         [Header("Debug")]
         [SerializeField] private List<GameObject> straightRoads = new List<GameObject>();
@@ -42,34 +40,48 @@ namespace BusBoys
                     straightRoads.Add(road.gameObject);
                 }
             }
-            
-            foreach (GameObject straight in straightRoads)
-            {
-                bool isReallyNull = ((object)straight) == null;
-                bool isMissingOrDestroyed = ((object)straight) != null && straight == null;
-                if (isReallyNull || isMissingOrDestroyed)
-                {
-                    straightRoads.Remove(straight);
-                }
-            }
+
+            // Verwijder null/destroyed entries zonder tijdens foreach te muteren
+            straightRoads.RemoveAll(s => s == null);
 
             randomValue.Clear();
             totalStops = amountOfStops + amountOfChargers;
-            
-            int j = straightRoads.Count / totalStops;
-            for (int i = 1; i <= totalStops; i++)
-            {
-                int minRange = j * (i - 1);
 
-                randomValue.Add(Random.Range(j*(i-1), j*i));
+            if (straightRoads.Count < totalStops)
+            {
+                Debug.LogWarning($"GenerateStops: only {straightRoads.Count} straight road segments available, " +
+                                  $"need {totalStops}. Reducing stop count for this episode.");
+                totalStops = straightRoads.Count;
             }
 
-            for (int i = 0; i < totalStops; i++) {
+            if (totalStops <= 0)
+            {
+                Debug.LogWarning("GenerateStops: no straight road segments found, skipping stop generation.");
+                return;
+            }
+
+            int j = straightRoads.Count / totalStops;
+            var usedIndices = new HashSet<int>();
+
+            for (int i = 1; i <= totalStops; i++)
+            {
+                int candidate = Random.Range(j * (i - 1), j * i);
+                // Bescherm tegen duplicate/out-of-range indices als j klein is
+                candidate = Mathf.Clamp(candidate, 0, straightRoads.Count - 1);
+                randomValue.Add(candidate);
+            }
+
+            for (int i = 0; i < totalStops; i++)
+            {
                 int r = randomValue[i];
+                if (r < 0 || r >= straightRoads.Count) continue; // extra veiligheidscheck
+
                 Vector3 spawnPos = new Vector3();
                 GameObject roadObj = straightRoads[r];
+                if (roadObj == null) continue;
+
                 Vector3 roadTrans = roadObj.transform.position;
-                GameObject temp = null; 
+                GameObject temp = null;
                 if (roadObj.transform.eulerAngles.y > 0f)
                 {
                     if (amountOfStops - 1 < i)
@@ -82,10 +94,10 @@ namespace BusBoys
                         spawnPos = new Vector3(roadTrans.x, roadTrans.y, roadTrans.z - 6.5f);
                         temp = Instantiate(busStop, spawnPos, Quaternion.identity, generatedStops.transform);
                     }
-                    
-                } else
+                }
+                else
                 {
-                    if(amountOfStops - 1 < i)
+                    if (amountOfStops - 1 < i)
                     {
                         spawnPos = new Vector3(roadTrans.x - 5f, roadTrans.y, roadTrans.z);
                         temp = Instantiate(chargeStation, spawnPos, Quaternion.Euler(-90, 180, 0), generatedStops.transform);
@@ -101,9 +113,8 @@ namespace BusBoys
                     targets.Add(temp.GetComponent<BusStop>().target);
 
                 spawnedStops.Add(temp);
-
-                Debug.Log("Spawned bus stop at:" + spawnPos);
             }
+
             ReturnBusStops();
         }
 
@@ -118,12 +129,9 @@ namespace BusBoys
             {
                 for (int i = generatedStops.transform.childCount - 1; i >= 0; i--)
                 {
-#if UNITY_EDITOR
-                    if (!Application.isPlaying)
-                        DestroyImmediate(generatedStops.transform.GetChild(i).gameObject);
-                    else
-#endif
-                        Destroy(generatedStops.transform.GetChild(i).gameObject);
+                    var child = generatedStops.transform.GetChild(i);
+                    child.SetParent(null);
+                    Destroy(child.gameObject);
                 }
             }
 

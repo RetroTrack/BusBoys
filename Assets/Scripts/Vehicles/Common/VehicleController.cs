@@ -9,10 +9,10 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
         [SerializeField] private Rigidbody rb;
 
         [Header("Wheels")]
-        [SerializeField] private List<WheelCollider> frontWheelColliders = new List<WheelCollider>();
-        [SerializeField] private List<WheelCollider> rearWheelColliders = new List<WheelCollider>();
-        [SerializeField] private List<Transform> frontWheelMeshes = new List<Transform>();
-        [SerializeField] private List<Transform> rearWheelMeshes = new List<Transform>();
+        [SerializeField]  private List<WheelCollider> frontWheelColliders = new List<WheelCollider>();
+        [SerializeField]  private List<WheelCollider> rearWheelColliders = new List<WheelCollider>();
+        public List<Transform> frontWheelMeshes = new List<Transform>();
+        public List<Transform> rearWheelMeshes = new List<Transform>();
 
         [Header("Vehicle Settings")]
         [Tooltip("Amount of torque applied to the wheels (in Nm)"), SerializeField] protected float motorTorque = 2000f;
@@ -183,7 +183,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
             }
         }
 
-        protected void SetWheelAngle(float angle, WheelType wheelType)
+        public void SetWheelAngle(float angle, WheelType wheelType)
         {
             switch (wheelType)
             {

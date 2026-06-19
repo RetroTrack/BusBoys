@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Demo 3.unity
+    guid: 74e37d862254d9043a3a5c414c278b56
+  - enabled: 0
     path: Assets/ithappy/Cartoon_City_Free/Scenes/URP_Scenes/Demonstration.unity
     guid: 28671ed3ede3d714093b98f6d3216827
   - enabled: 0

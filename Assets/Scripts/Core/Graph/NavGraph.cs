@@ -9,7 +9,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [HideInInspector] public List<IGraphNode> Nodes = new();
         [HideInInspector] public List<NavEdge> Edges = new();
 
-        [SerializeField] private float turnPenaltyMultiplier = 2f;
+        public float turnPenaltyMultiplier = 2f;
 
         public List<IGraphNode> FindPath(IGraphNode start, IGraphNode goal, Vector3? incomingDir = null)
             => AStarPathfinder.FindPath(start, goal, ComputeEdgeCost, incomingDir);
@@ -18,8 +18,14 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         {
             float max = 0f;
             foreach (var node in Nodes)
+            {
+                if (!node.IsAlive()) continue;
                 foreach (var neighbor in node.Neighbors)
+                {
+                    if (!neighbor.IsAlive()) continue;
                     max = Mathf.Max(max, Vector3.Distance(node.Position, neighbor.Position));
+                }
+            }
             return max > 0f ? max : 50f;
         }
 

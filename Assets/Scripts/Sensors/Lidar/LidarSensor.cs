@@ -8,8 +8,9 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
     public class LidarSensor : MonoBehaviour, IObservationSource
     {
         [Header("Lidar Settings")]
-        [SerializeField, Range(1, 360)] private int numberOfRays = 20;
+        [SerializeField, Range(1, 360)] private int numberOfRays = 10;
         [SerializeField] private Vector2 angleRange = new Vector2(-60f, 60f);
+        [SerializeField, Range(1, 20)] private int raysPerSegment = 5; // sub-rays per segment
         public float maxDistance = 20f;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float updateInterval = 0.1f;
@@ -20,14 +21,17 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
         [SerializeField] private Color farColor = Color.green;
 
         [HideInInspector] public LidarHit[] hits;
+        [HideInInspector] public bool passerbyDetected;
 
         private float timer;
 
-        public  float[] Observations => hits != null ? Array.ConvertAll(hits, h => h.normalizedDistance) : new float[numberOfRays];
+        public float[] Observations => hits != null
+            ? Array.ConvertAll(hits, h => h.normalizedDistance)
+            : new float[numberOfRays];
 
         public float UpdateInterval { get => updateInterval; set => updateInterval = value; }
 
-        public void Awake()
+        public void Start()
         {
             hits = new LidarHit[numberOfRays];
         }
@@ -37,45 +41,75 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
             sensor.AddObservation(Observations);
         }
 
-        void Update()
+        void FixedUpdate()
         {
-            timer += Time.deltaTime;
-
+            timer += Time.fixedDeltaTime;
             if (timer >= updateInterval)
             {
                 timer = 0f;
                 Scan();
             }
         }
-        //TODO: make more like a parking sensor (detect in angle instead of single ray
+
         void Scan()
         {
-            hits = new LidarHit[numberOfRays]; // Clear previous hits
-            float step = (angleRange.y - angleRange.x) / (numberOfRays - 1);
+            passerbyDetected = false;
+
+            float totalSpan = angleRange.y - angleRange.x;
+            float segmentSpan = totalSpan / numberOfRays;
+            float subStep = raysPerSegment > 1 ? segmentSpan / (raysPerSegment - 1) : 0f;
 
             for (int i = 0; i < numberOfRays; i++)
             {
-                float angle = angleRange.x + i * step;
+                float segmentCenter = angleRange.x + i * segmentSpan + segmentSpan * 0.5f;
+                float segmentStart = segmentCenter - segmentSpan * 0.5f;
 
-                Vector3 dir = transform.TransformDirection(Quaternion.Euler(0, angle, 0) * Vector3.forward);
+                float bestDistance = 0f;
+                bool anyHit = false;
+                Vector3 bestDir = transform.TransformDirection(
+                    Quaternion.Euler(0, segmentCenter, 0) * Vector3.forward);
+                Vector3 bestHitPoint = Vector3.zero;  // voor visualisatie
 
-                if (Physics.Raycast(transform.position, dir, out RaycastHit hit, maxDistance, layerMask))
+                for (int j = 0; j < raysPerSegment; j++)
                 {
-                    // Hit detected
-                    float t = hit.distance / maxDistance;
-                    Color c = Color.Lerp(nearColor, farColor, t);
+                    float angle = raysPerSegment > 1 ? segmentStart + j * subStep : segmentCenter;
+                    Vector3 dir = transform.TransformDirection(
+                        Quaternion.Euler(0, angle, 0) * Vector3.forward);
 
-                    if (visualizeRays)
-                        Debug.DrawLine(transform.position, hit.point, c, updateInterval);
-                    hits[i] = new LidarHit { direction = dir, normalizedDistance = t, hit = true };
+                    if (Physics.Raycast(transform.position, dir, out RaycastHit hit, maxDistance, layerMask))
+                    {
+                        float t = 1f - (hit.distance / maxDistance);
+
+                        if (hit.collider.gameObject.name == "Passerby")
+                            passerbyDetected = true;
+
+                        if (t > bestDistance)
+                        {
+                            bestDistance = t;
+                            bestDir = dir;
+                            bestHitPoint = hit.point;  // sla het punt op
+                            anyHit = true;
+                        }
+                    }
                 }
-                else
+
+                // Teken alleen één lijn per segment
+                if (visualizeRays)
                 {
-                    // No hit detected
-                    if (visualizeRays)
-                        Debug.DrawLine(transform.position, transform.position + dir * maxDistance, farColor, updateInterval);
-                    hits[i] = new LidarHit { direction = dir, normalizedDistance = 1, hit = false };
+                    if (anyHit)
+                        Debug.DrawLine(transform.position, bestHitPoint,
+                            Color.Lerp(farColor, nearColor, bestDistance), updateInterval);
+                    else
+                        Debug.DrawLine(transform.position,
+                            transform.position + bestDir * maxDistance, farColor, updateInterval);
                 }
+
+                hits[i] = new LidarHit
+                {
+                    direction = bestDir,
+                    normalizedDistance = bestDistance,
+                    hit = anyHit
+                };
             }
         }
 

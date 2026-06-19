@@ -1,8 +1,10 @@
 using BusBoys.Assets.Scripts.Core.Utilities;
+using BusBoys.Assets.Scripts.Environment.Generation;
 using BusBoys.Assets.Scripts.ML.Navigation;
 using BusBoys.Assets.Scripts.ML.Observations;
 using BusBoys.Assets.Scripts.ML.Rewards;
 using BusBoys.Assets.Scripts.Vehicles.Bus;
+using BusBoys.Assets.Scripts.Vehicles.Common;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -20,11 +22,20 @@ namespace BusBoys.Assets.Scripts.ML.Agents
         [SerializeField] private BusController controller;
         [Space]
         [SerializeField] private BusSpawner spawner;
+        [SerializeField] private VehicleBootstrap vehicleBootstrap;
 
         [Header("Agent Components")]
         [SerializeField] private AgentObservationProvider observationProvider;
         [SerializeField] private AgentRewardProvider rewardProvider;
 
+        [Header("Environment Regeneration")]
+        [SerializeField] private ProceduralRoadGraphGenerator roadGenerator;
+        [SerializeField] private bool regenerateEveryEpisode = true;
+        [Tooltip("Only used if regenerateEveryEpisode is false. Regenerates every N episodes instead.")]
+        [SerializeField] private int regenerateEveryNEpisodes = 10;
+        [SerializeField] private bool randomizeSeedOnRegenerate = true;
+
+        private int episodeCount = 0;
 
         InputAction moveAction;
         InputAction brakeAction;
@@ -40,7 +51,7 @@ namespace BusBoys.Assets.Scripts.ML.Agents
 
         public void Start()
         {
-            if(rewardProvider == null)
+            if (rewardProvider == null)
             {
                 Debug.LogError("Reward provider is not assigned in the inspector, reward will not be calculated.");
                 return;
@@ -80,9 +91,29 @@ namespace BusBoys.Assets.Scripts.ML.Agents
         }
         public override void OnEpisodeBegin()
         {
-            controller.transform.SetPositionAndRotation(spawner.GetRandomOffsetFromDefault(), spawner.GetRandomRotation());
+            TryRegenerateEnvironment();
+
+            controller.transform.SetPositionAndRotation(spawner.GetRandomNodePosition() + spawner.GetRandomOffset(), spawner.GetRandomRotation());
             controller.ResetVehicle();
+            vehicleBootstrap.BeginEpisode();
             navigationTracker.BeginEpisode();
+        }
+
+        private void TryRegenerateEnvironment()
+        {
+            if (roadGenerator == null) return;
+
+            episodeCount++;
+
+            bool shouldRegenerate = regenerateEveryEpisode ||
+                (regenerateEveryNEpisodes > 0 && episodeCount % regenerateEveryNEpisodes == 0);
+
+            if (!shouldRegenerate) return;
+
+            if (randomizeSeedOnRegenerate)
+                roadGenerator.NewSeedAndGenerate();
+            else
+                roadGenerator.Generate();
         }
 
     }

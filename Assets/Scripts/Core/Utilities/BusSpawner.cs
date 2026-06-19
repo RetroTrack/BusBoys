@@ -6,14 +6,22 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
     public class BusSpawner : MonoBehaviour
     {
         [SerializeField] private NavGraph navGraph;
-        [SerializeField] private Transform defaultPostion;
+        [SerializeField] private Transform defaultPosition;
+        [SerializeField] private Vector2 randomOffsetRange = new Vector2(-10f, 10f);
+        [SerializeField] private float yOffset = 0.5f;
 
 
         public Vector3 GetRandomOffsetFromDefault()
         {
-            float randomPostionX = Random.Range(-10f, 10f);
-            float randomPostionZ = Random.Range(-10f, 10f);
-            return new Vector3(defaultPostion.position.x + randomPostionX, defaultPostion.position.y, defaultPostion.position.z + randomPostionZ);
+            Vector3 offset = GetRandomOffset();
+            return defaultPosition.position + offset;
+        }
+
+        public Vector3 GetRandomOffset()
+        {
+            float randomPostionX = Random.Range(randomOffsetRange.x, randomOffsetRange.y);
+            float randomPostionZ = Random.Range(randomOffsetRange.x, randomOffsetRange.y);
+            return new Vector3(randomPostionX, yOffset, randomPostionZ);
         }
 
         public Vector3 GetRandomNodePosition()

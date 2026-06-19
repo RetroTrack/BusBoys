@@ -9,16 +9,17 @@ namespace BusBoys
 
         [SerializeField] Transform passerby;
         float passerbySpeed = 2.6f;
-        public float passerbyOdds; //20%
-        public float SetTime;//elke minuut
+        public float passerbyOdds = 0.2f; //20%
+        float SetTime = 30;//elke minuut
         float passerbyTimer;
-
+        float setOffsetTime;
         bool crossing = false;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            setOffsetTime = Random.Range(5f, 120f); //5 tot 120 s
             passerby.gameObject.SetActive(false);
-            passerbyTimer = SetTime;
+            passerbyTimer = setOffsetTime;
         }
 
         // Update is called once per frame
@@ -30,7 +31,7 @@ namespace BusBoys
                 if (passerbyTimer < 0)
                 {
                     passerbyTimer = SetTime;
-                    float chance = Random.value;
+                    float chance = Random.value; //genereert waarde van 0-1
                     if (chance <= passerbyOdds)
                     {
                         crossing = true;

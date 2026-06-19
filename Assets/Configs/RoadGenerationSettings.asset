@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe23549758cb0245812b7b7c1edc752, type: 3}
+  m_Name: RoadGenerationSettings
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Environment.Generation.RoadGenerationSettings
+  gridSize: {x: 10, y: 14}
+  cellSize: 15
+  minAnchorPoints: 15
+  maxAnchorPoints: 20
+  minAnchorDistance: 5
+  anchorAttemptsMultiplier: 0
+  extraConnections: 0
+  preferEdgeUsage: 0
+  roadStraight: {fileID: 8838638652926483093, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
+  roadCorner: {fileID: 8704244284219084565, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
+  roadTJunction: {fileID: 3285890962270274931, guid: a8702a3929b51624297e66854faf3be9, type: 3}
+  roadCross: {fileID: 623793165487696011, guid: 1f4bad7a55e940546af39b467f1d4af1, type: 3}
+  reusedRoadCostBonus: 0.5
+  turnPenalty: 0.5
+  nearParallelPenalty: 2.5
+  blockPerfectParallelRoads: 1
+  disallowAdjacentMajorJunctions: 1

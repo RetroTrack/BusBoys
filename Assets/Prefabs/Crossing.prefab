@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6703912710447721214}
   - component: {fileID: 6977194822166850143}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Bril
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 2042660397356500815}
   - component: {fileID: 3283441715209262851}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Passerby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
