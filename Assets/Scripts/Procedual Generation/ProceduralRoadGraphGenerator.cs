@@ -77,7 +77,8 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 if (roadsParent.childCount == 0)
                 {
                     Generate();
-                } else
+                }
+                else
                 {
                     generateStops.ReturnBusStops();
                     Debug.LogWarning("Road generation was not cleared before playing! Please clear in the inspector next time.");
@@ -122,10 +123,10 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             ResolveCellTypes();
 
             SpawnPrefabs();
-            BuildGraphFromSpawnedPrefabs();
+            //BuildGraphFromSpawnedPrefabs();
             generateStops.GenerateStop();
+            graphBootstrap.AddNodes();
             graphBootstrap.LinkEdges();
-
             Debug.Log("Generation Complete");
         }
 

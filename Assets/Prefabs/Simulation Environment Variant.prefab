@@ -221,9 +221,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Positions:
-  - {x: 95.58175, y: 0.5, z: 31.89106}
-  - {x: 54.080757, y: -0.18000019, z: 31.30909}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -762,6 +760,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2143486590529760443}
     - target: {fileID: 4693210828099405411, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
+      propertyPath: renderLinesInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693210828099405411, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
       propertyPath: isMLDrawingEnabled
       value: 0
       objectReference: {fileID: 0}
@@ -876,6 +878,10 @@ PrefabInstance:
     - target: {fileID: 6481317880272660820, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498003970176357450, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
+      propertyPath: updateInterval
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6500380911706956853, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
       propertyPath: trainingMode

@@ -7,13 +7,20 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
     {
         [SerializeField] private NavGraph navGraph;
         [SerializeField] private Transform defaultPostion;
+        [SerializeField] private Vector2 randomOffsetRange = new Vector2(-10f, 10f);
 
 
         public Vector3 GetRandomOffsetFromDefault()
         {
-            float randomPostionX = Random.Range(-10f, 10f);
-            float randomPostionZ = Random.Range(-10f, 10f);
-            return new Vector3(defaultPostion.position.x + randomPostionX, defaultPostion.position.y, defaultPostion.position.z + randomPostionZ);
+            Vector3 offset = GetRandomOffset();
+            return new Vector3(defaultPostion.position.x + offset.x, defaultPostion.position.y, defaultPostion.position.z + offset.z);
+        }
+
+        public Vector3 GetRandomOffset()
+        {
+            float randomPostionX = Random.Range(randomOffsetRange.x, randomOffsetRange.y);
+            float randomPostionZ = Random.Range(randomOffsetRange.x, randomOffsetRange.y);
+            return new Vector3(randomPostionX, 0f, randomPostionZ);
         }
 
         public Vector3 GetRandomNodePosition()

@@ -1,5 +1,229 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5858005543154285257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1837815119194617889}
+  - component: {fileID: 1235078337995173227}
+  m_Layer: 0
+  m_Name: RoadEdge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1837815119194617889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5858005543154285257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000037748947, y: -3.9968252e-30, z: 1.0587912e-22, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 7.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 280340523922076209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1235078337995173227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5858005543154285257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712c959be82c4fc44b1b022c3df013d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadEdge
+  node: {fileID: 1811710043987644853}
+--- !u!1 &6242069240065257662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8066832337127074451}
+  - component: {fileID: 1811710043987644853}
+  m_Layer: 0
+  m_Name: RoadNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8066832337127074451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242069240065257662}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 280340523922076209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1811710043987644853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242069240065257662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d59cd37619f7b4198e0ad9fce2fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadNode
+--- !u!1 &7564726999753625999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8045402593787015375}
+  - component: {fileID: 8043066187931603200}
+  m_Layer: 0
+  m_Name: RoadEdge (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8045402593787015375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564726999753625999}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000037748947, y: -3.9968252e-30, z: 1.0587912e-22, w: 1}
+  m_LocalPosition: {x: -7.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 280340523922076209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8043066187931603200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564726999753625999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712c959be82c4fc44b1b022c3df013d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadEdge
+  node: {fileID: 1811710043987644853}
+--- !u!1 &8393564760832617382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6576604343041496068}
+  - component: {fileID: 1504795767369688550}
+  m_Layer: 0
+  m_Name: RoadEdge (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6576604343041496068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393564760832617382}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000037748947, y: -3.9968252e-30, z: 1.0587912e-22, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -7.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 280340523922076209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1504795767369688550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393564760832617382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712c959be82c4fc44b1b022c3df013d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadEdge
+  node: {fileID: 1811710043987644853}
+--- !u!1 &8445070750674430829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1898780197935084690}
+  - component: {fileID: 5079833045974928476}
+  m_Layer: 0
+  m_Name: RoadEdge (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1898780197935084690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8445070750674430829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000037748947, y: -3.9968252e-30, z: 1.0587912e-22, w: 1}
+  m_LocalPosition: {x: 7.5, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 280340523922076209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5079833045974928476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8445070750674430829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712c959be82c4fc44b1b022c3df013d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoadEdge
+  node: {fileID: 1811710043987644853}
 --- !u!1001 &317857017043146202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,6 +281,21 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bbae6c1d2a7276948b8ea1435ac2f793, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8066832337127074451}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bbae6c1d2a7276948b8ea1435ac2f793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1837815119194617889}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bbae6c1d2a7276948b8ea1435ac2f793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898780197935084690}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bbae6c1d2a7276948b8ea1435ac2f793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6576604343041496068}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bbae6c1d2a7276948b8ea1435ac2f793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8045402593787015375}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bbae6c1d2a7276948b8ea1435ac2f793, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6858505003561753826}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bbae6c1d2a7276948b8ea1435ac2f793, type: 3}
       insertIndex: -1
@@ -82,10 +321,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 280340523922076209}
     m_Modifications:
-    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 2419180469810104478, guid: eaba27d626d2f97499f25f115128f0bc, type: 3}
       propertyPath: m_Name
       value: Pedestrian Crossing (2)
@@ -150,6 +385,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -168,10 +407,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 280340523922076209}
     m_Modifications:
-    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 2419180469810104478, guid: eaba27d626d2f97499f25f115128f0bc, type: 3}
       propertyPath: m_Name
       value: Pedestrian Crossing
@@ -236,6 +471,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -254,10 +493,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 280340523922076209}
     m_Modifications:
-    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 2419180469810104478, guid: eaba27d626d2f97499f25f115128f0bc, type: 3}
       propertyPath: m_Name
       value: Pedestrian Crossing (3)
@@ -322,6 +557,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -340,10 +579,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 280340523922076209}
     m_Modifications:
-    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 2419180469810104478, guid: eaba27d626d2f97499f25f115128f0bc, type: 3}
       propertyPath: m_Name
       value: Pedestrian Crossing (1)
@@ -405,6 +640,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6456827397668588015, guid: eaba27d626d2f97499f25f115128f0bc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456827397668588015, guid: 48a0bdf0360075a439505f7c66b1efda, type: 3}
       propertyPath: m_LocalScale.x
       value: 12
       objectReference: {fileID: 0}
