@@ -6,7 +6,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
 {
     public class ProceduralRoadGraphGenerator : MonoBehaviour
     {
-        private enum RoadType { None, Straight, Corner, TJunction, Cross }
+        private enum RoadType { None, Straight, Corner, TJunction, Cross, Pavement }
 
         [System.Serializable]
         private class CellData
@@ -107,7 +107,35 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             generateStops.GenerateStop();
             graphBootstrap.AddNodes();
             graphBootstrap.LinkEdges();
+
+            if (settings.generatePavement)
+            {
+                SetAllEmptyToPavement();
+            }
+
             Debug.Log("Generation Complete");
+        }
+
+        private void SetAllEmptyToPavement()
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (cells[x, y].type == RoadType.None)
+                    {
+                        cells[x, y].up = false;
+                        cells[x, y].down = false;
+                        cells[x, y].left = false;
+                        cells[x, y].right = false;
+                        cells[x, y].type = RoadType.Pavement;
+                        Vector3 worldPos = transform.position + new Vector3(x * settings.cellSize, 0f, y * settings.cellSize);
+                        GameObject instance = Instantiate(settings.roadPavement, worldPos, Quaternion.identity, roadsParent);
+                        spawnedRoads.Add(instance);
+                    }
+
+                }
+            }
         }
 
         [ContextMenu("New Seed + Generate")]
