@@ -30,7 +30,7 @@ namespace BusBoys
         [SerializeField] BusBattery Battery;
         [SerializeField] List<Crossing> crossings;
         [SerializeField] NavGraph navGraph;
-
+        [SerializeField] PathDrawer pathDrawer;
         [SerializeField] Button resetParButton;
 
         [SerializeField] TextMeshProUGUI HideShowText;
@@ -57,7 +57,7 @@ namespace BusBoys
         {
             updateValues();
             WheelValues();
-            CheckRouteRay(); // nog gemaakt
+            CheckRouteRay();
         }
 
         private void Awake()
@@ -79,7 +79,7 @@ namespace BusBoys
             speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H";
             BatteryText.text = $"Batt-Drain: {batteryDrainPerMeterSlider.value:F5}%/m ";
             PasserbyText.text = $"PasserbyOdds: {PasserbyOddsSlider.value *100:F2}%";
-            turnPenaltyMultiplierText.text = $"TunPenaltyMulti: {batteryDrainPerMeterSlider.value:F2} x";
+            turnPenaltyMultiplierText.text = $"TunPenaltyMulti: {turnPenaltyMultiplierSlider.value:F2} x";
             Battery.drainPerMeter = batteryDrainPerMeterSlider.value;
             Vehicle.maxSpeed = speedSlider.value;
             navGraph.turnPenaltyMultiplier = turnPenaltyMultiplierSlider.value;
@@ -132,6 +132,7 @@ namespace BusBoys
             speedSlider.value = 25;
             batteryDrainPerMeterSlider.value = 0.001f;
             PasserbyOddsSlider.value = 0.20f;
+            turnPenaltyMultiplierSlider.value = 2f;
 
         }
 
@@ -186,11 +187,11 @@ namespace BusBoys
         {
            if(toggleShowRay.isOn == true)
             {
-                //show ray
+                pathDrawer.renderLinesInGame = true;
             }
            else
             {
-                //dont show
+                pathDrawer.renderLinesInGame = false;
             }
         }
     }

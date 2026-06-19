@@ -42,7 +42,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private Color lookaheadNodeColor = Color.yellow;  // lookahead node
 
         [Header("Rendering Lines In Game")]
-        [SerializeField] private bool renderLinesInGame = true;
+        public bool renderLinesInGame = true;
         [SerializeField] private Material lineMaterial;
         [SerializeField] private LineRenderer currentNodeRenderer;
         [SerializeField] private LineRenderer lookaheadNodeRenderer;
@@ -102,7 +102,22 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 RenderAgentObservations();
                 RenderAStarPath();
             }
+            else
+            {
+                ClearLineRenderers();
+            }
         }
+
+        private void ClearLineRenderers()
+        {
+            if (currentNodeRenderer != null)
+                currentNodeRenderer.positionCount = 0;
+            if (lookaheadNodeRenderer != null)
+                lookaheadNodeRenderer.positionCount = 0;
+            if (remainingPathRenderer != null)
+                remainingPathRenderer.positionCount = 0;
+        }
+        
 
 
 

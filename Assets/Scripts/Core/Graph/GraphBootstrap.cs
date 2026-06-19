@@ -24,8 +24,8 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 Debug.LogError("Environment reference is not set in the inspector.");
                 return;
             }
-            //AddNodes();
-            //LinkEdges();
+            AddNodes();
+            LinkEdges();
         }
 
         [ContextMenu("Add Nodes (not persistent)")]

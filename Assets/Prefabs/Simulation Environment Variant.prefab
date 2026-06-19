@@ -280,6 +280,51 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &4221200506509250804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 359432165952503808}
+  - component: {fileID: 1388671744823089345}
+  m_Layer: 6
+  m_Name: Bootstrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &359432165952503808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221200506509250804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6841792053437436468}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1388671744823089345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221200506509250804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d44e8a38983494cbd43c76d78fad4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Vehicles.Common.VehicleBootstrap
+  vehicleController: {fileID: 353763773899339734}
 --- !u!1 &5175392362577654422
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +636,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1286107021344607923, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
+      propertyPath: vehicleBootstrap
+      value: 
+      objectReference: {fileID: 1388671744823089345}
     - target: {fileID: 1298361088278321235, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -845,7 +894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5642829034675090469, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 24
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 5711726965491063274, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
       propertyPath: m_Enabled
@@ -988,6 +1037,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5688419905839546458, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 571418787717378178}
+    - targetCorrespondingSourceObject: {fileID: 1835254036906482362, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 359432165952503808}
     - targetCorrespondingSourceObject: {fileID: 8432416068960537375, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7855510840508504452}
@@ -1343,6 +1395,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 15, y: 0.19999999, z: 15}
   m_Center: {x: 0, y: -0.2, z: 0}
+--- !u!114 &353763773899339734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4855476376825298776, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
+  m_PrefabInstance: {fileID: 5155157355139369102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38fcb6d7dc7a7a34b92afe8c516aaa33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BusController
 --- !u!1 &366780357953884070 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4800235254256076584, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
@@ -2976,6 +3039,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14.999998, y: 0.19999999, z: 14.999998}
   m_Center: {x: 0.0000076293945, y: -0.2, z: 0.0000076293945}
+--- !u!4 &6841792053437436468 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1835254036906482362, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
+  m_PrefabInstance: {fileID: 5155157355139369102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6924358284396739825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2851499161345537151, guid: 93c1eb1db172307408389c9dd631b71d, type: 3}
