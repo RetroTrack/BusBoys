@@ -20,10 +20,12 @@ MonoBehaviour:
   anchorAttemptsMultiplier: 0
   extraConnections: 0
   preferEdgeUsage: 0
+  generatePavement: 1
   roadStraight: {fileID: 8838638652926483093, guid: 90c39d39c7904474ea2554288d4018da, type: 3}
   roadCorner: {fileID: 8704244284219084565, guid: c5f26c4ca72902e4ab3f73d2440e256f, type: 3}
   roadTJunction: {fileID: 3285890962270274931, guid: a8702a3929b51624297e66854faf3be9, type: 3}
   roadCross: {fileID: 623793165487696011, guid: 1f4bad7a55e940546af39b467f1d4af1, type: 3}
+  roadPavement: {fileID: 279754824555643807, guid: 7ad27798a56af29409bfd87e866e6458, type: 3}
   reusedRoadCostBonus: 0.5
   turnPenalty: 0.5
   nearParallelPenalty: 2.5

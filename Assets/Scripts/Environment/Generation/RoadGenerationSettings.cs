@@ -16,12 +16,14 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
         public int anchorAttemptsMultiplier = 12;
         public int extraConnections = 2;
         public bool preferEdgeUsage = true;
+        public bool generatePavement = true;
 
         [Header("Prefabs")]
         public GameObject roadStraight;
         public GameObject roadCorner;
         public GameObject roadTJunction;
         public GameObject roadCross;
+        public GameObject roadPavement;
 
         [Header("Path Cost")]
         public float reusedRoadCostBonus = 0.35f;
