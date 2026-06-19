@@ -106,22 +106,43 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
         /// <summary>
         /// Pathfinds directly to a specific graph node. Used in SingleNode and MultiNode training modes.
         /// </summary>
+        //public void PathfindToNode(Vector3 from, IGraphNode goalNode, Vector3? facing = null)
+        //{
+        //    if (navGraph == null)
+        //    {
+        //        Debug.LogError("RouteNavigator: NavGraph reference missing.");
+        //        return;
+        //    }
+
+        //    var startNode = FindClosestNode(from);
+        //    if (startNode == null || goalNode == null)
+        //    {
+        //        Debug.LogWarning("RouteNavigator: could not find start node or goal node is null.");
+        //        return;
+        //    }
+
+        //    CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
+        //    CurrentPathIndex = 0;
+        //}
+
         public void PathfindToNode(Vector3 from, IGraphNode goalNode, Vector3? facing = null)
         {
-            if (navGraph == null)
-            {
-                Debug.LogError("RouteNavigator: NavGraph reference missing.");
-                return;
-            }
-
             var startNode = FindClosestNode(from);
+
+            Debug.Log($"Start node: {startNode?.Position}");
+            Debug.Log($"Goal node: {goalNode?.Position}");
+
             if (startNode == null || goalNode == null)
             {
-                Debug.LogWarning("RouteNavigator: could not find start node or goal node is null.");
+                Debug.LogWarning("Missing start or goal node.");
                 return;
             }
 
-            CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
+            CurrentPath = navGraph.FindPath(startNode, goalNode, facing)
+                          ?? new List<IGraphNode>();
+
+            Debug.Log($"Path length: {CurrentPath.Count}");
+
             CurrentPathIndex = 0;
         }
         public IGraphNode PeekPathNode(int offset)

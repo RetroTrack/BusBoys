@@ -93,8 +93,11 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             //Draw ChargingStations
             if (isChargingPointDrawingEnabled)
                 DrawPOI(nav.ChargingPoints, ChargingPointColor, ChargingPointGizmoSize, "Charging Station");
+        }
 
-            if(renderLinesInGame)
+        private void Update()
+        {
+            if (renderLinesInGame)
             {
                 RenderAgentObservations();
                 RenderAStarPath();
@@ -105,8 +108,11 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
         private void RenderAStarPath()
         {
-            if (remainingPathRenderer == null ||
-                nav.CurrentPath == null ||
+            if(remainingPathRenderer == null)
+            {
+                return;
+            }
+            if (nav.CurrentPath == null ||
                 nav.CurrentPath.Count == 0)
             {
                 remainingPathRenderer.positionCount = 0;

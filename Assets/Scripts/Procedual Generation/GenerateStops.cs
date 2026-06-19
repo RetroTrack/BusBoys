@@ -1,8 +1,6 @@
 using BusBoys.Assets.Scripts.Core.Pathfinding;
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace BusBoys
 {
@@ -20,7 +18,7 @@ namespace BusBoys
         [SerializeField] private int totalStops;
         [SerializeField] private int amountOfStops;
         [SerializeField] private int amountOfChargers;
-        
+
 
         [Header("Debug")]
         [SerializeField] private List<GameObject> straightRoads = new List<GameObject>();
@@ -42,7 +40,7 @@ namespace BusBoys
                     straightRoads.Add(road.gameObject);
                 }
             }
-            
+
             foreach (GameObject straight in straightRoads)
             {
                 bool isReallyNull = ((object)straight) == null;
@@ -55,21 +53,22 @@ namespace BusBoys
 
             randomValue.Clear();
             totalStops = amountOfStops + amountOfChargers;
-            
+
             int j = straightRoads.Count / totalStops;
             for (int i = 1; i <= totalStops; i++)
             {
                 int minRange = j * (i - 1);
 
-                randomValue.Add(Random.Range(j*(i-1), j*i));
+                randomValue.Add(Random.Range(j * (i - 1), j * i));
             }
 
-            for (int i = 0; i < totalStops; i++) {
+            for (int i = 0; i < totalStops; i++)
+            {
                 int r = randomValue[i];
                 Vector3 spawnPos = new Vector3();
                 GameObject roadObj = straightRoads[r];
                 Vector3 roadTrans = roadObj.transform.position;
-                GameObject temp = null; 
+                GameObject temp = null;
                 if (roadObj.transform.eulerAngles.y > 0f)
                 {
                     if (amountOfStops - 1 < i)
@@ -82,10 +81,11 @@ namespace BusBoys
                         spawnPos = new Vector3(roadTrans.x, roadTrans.y, roadTrans.z - 6.5f);
                         temp = Instantiate(busStop, spawnPos, Quaternion.identity, generatedStops.transform);
                     }
-                    
-                } else
+
+                }
+                else
                 {
-                    if(amountOfStops - 1 < i)
+                    if (amountOfStops - 1 < i)
                     {
                         spawnPos = new Vector3(roadTrans.x - 5f, roadTrans.y, roadTrans.z);
                         temp = Instantiate(chargeStation, spawnPos, Quaternion.Euler(-90, 180, 0), generatedStops.transform);
