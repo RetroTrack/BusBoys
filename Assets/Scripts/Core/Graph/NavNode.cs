@@ -20,5 +20,10 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 neighbors.Add(neighbor);
         }
 
+        public void ClearNeighbors()
+        {
+            neighbors.Clear();
+        }
+
     }
 }

@@ -1,7 +1,8 @@
+using BusBoys.Assets.Scripts.Core.Graph;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BusBoys.Assets.Scripts.Core.Graph
+namespace BusBoys.Assets.Scripts.Environment.Generation
 {
     public class ProceduralRoadGraphGenerator : MonoBehaviour
     {
@@ -23,33 +24,9 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private GenerateStops generateStops;
         [SerializeField] private GraphBootstrap graphBootstrap;
 
-        [Header("Grid")]
-        [SerializeField] private Vector2Int gridSize = new Vector2Int(10, 8);
-        [SerializeField] private float cellSize = 20f;
-        [SerializeField] private int seed = 12345;
-
-        [Header("Prefabs")]
-        [SerializeField] private GameObject roadStraight;
-        [SerializeField] private GameObject roadCorner;
-        [SerializeField] private GameObject roadTJunction;
-        [SerializeField] private GameObject roadCross;
-
         [Header("Generation")]
-        [SerializeField] private int minAnchorPoints = 4;
-        [SerializeField] private int maxAnchorPoints = 10;
-        [SerializeField] private int minAnchorDistance = 4;
-        [SerializeField] private int anchorAttemptsMultiplier = 12;
-        [SerializeField] private int extraConnections = 2;
-        [SerializeField] private bool preferEdgeUsage = true;
-
-        [Header("Path Cost")]
-        [SerializeField] private float reusedRoadCostBonus = 0.35f;
-        [SerializeField] private float turnPenalty = 0.20f;
-        [SerializeField] private float nearParallelPenalty = 2.25f;
-        [SerializeField] private bool blockPerfectParallelRoads = true;
-
-        [Header("Rules")]
-        [SerializeField] private bool disallowAdjacentMajorJunctions = true;
+        [SerializeField] private RoadGenerationSettings settings;
+        [SerializeField] private int seed = 12345;
 
         [Header("Graph")]
         [SerializeField] private float nodeLinkDistance = 12f;
@@ -64,6 +41,9 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         private readonly List<GameObject> spawnedRoads = new();
         private readonly List<NavNode> generatedNodes = new();
         private readonly List<NavEdge> generatedEdges = new();
+
+        public IReadOnlyList<NavNode> GetSpawnedNodes() => generatedNodes; // track these as you instantiate
+
 
         private static readonly Vector2Int[] CardinalDirs =
         {
@@ -95,13 +75,13 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 return;
             }
 
-            if (roadStraight == null || roadCorner == null || roadTJunction == null || roadCross == null)
+            if (settings.roadStraight == null || settings.roadCorner == null || settings.roadTJunction == null || settings.roadCross == null)
             {
                 Debug.LogWarning("Vul roadStraight, roadCorner, roadTJunction en roadCross in.");
                 return;
             }
 
-            if (gridSize.x < 3 || gridSize.y < 3)
+            if (settings.gridSize.x < 3 || settings.gridSize.y < 3)
             {
                 Debug.LogWarning("Grid moet minimaal 3x3 zijn.");
                 return;
@@ -110,8 +90,8 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             ClearGenerated();
             Random.InitState(seed);
 
-            width = gridSize.x;
-            height = gridSize.y;
+            width = settings.gridSize.x;
+            height = settings.gridSize.y;
             cellCount = width * height;
 
             EnsureRoadParentExists();
@@ -154,15 +134,24 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
             if (roadsParent != null)
             {
+                int childCountBefore = roadsParent.childCount;
+
                 for (int i = roadsParent.childCount - 1; i >= 0; i--)
                 {
+                    var child = roadsParent.GetChild(i);
+                    child.SetParent(null);
+
 #if UNITY_EDITOR
                     if (!Application.isPlaying)
-                        DestroyImmediate(roadsParent.GetChild(i).gameObject);
+                        DestroyImmediate(child.gameObject);
                     else
+                        Destroy(child.gameObject);
+#else
+            Destroy(child.gameObject);
 #endif
-                        Destroy(roadsParent.GetChild(i).gameObject);
                 }
+
+                Debug.Log($"ClearGenerated: removed {childCountBefore} children from roadsParent.");
             }
 
             spawnedRoads.Clear();
@@ -201,7 +190,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                     CarvePath(path);
             }
 
-            int extraCount = Mathf.Min(extraConnections, ordered.Count);
+            int extraCount = Mathf.Min(settings.extraConnections, ordered.Count);
             for (int i = 0; i < extraCount; i++)
             {
                 Vector2Int start = ordered[Random.Range(0, ordered.Count)];
@@ -223,10 +212,10 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
             Shuffle(candidates);
 
-            int targetCount = Mathf.Clamp(width * height / 16, minAnchorPoints, maxAnchorPoints);
+            int targetCount = Mathf.Clamp(width * height / 16, settings.minAnchorPoints, settings.maxAnchorPoints);
             int dynamicDistance = Mathf.Clamp(Mathf.Min(width, height) / 3, 2, 8);
-            int requiredDistance = Mathf.Max(2, Mathf.Max(minAnchorDistance, dynamicDistance));
-            int maxAttempts = Mathf.Max(candidates.Count, targetCount * anchorAttemptsMultiplier);
+            int requiredDistance = Mathf.Max(2, Mathf.Max(settings.minAnchorDistance, dynamicDistance));
+            int maxAttempts = Mathf.Max(candidates.Count, targetCount * settings.anchorAttemptsMultiplier);
 
             List<Vector2Int> anchors = new(targetCount);
             int attempts = 0;
@@ -235,7 +224,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             {
                 Vector2Int candidate = candidates[i];
 
-                if (preferEdgeUsage && IsEdgeCell(candidate))
+                if (settings.preferEdgeUsage && IsEdgeCell(candidate))
                 {
                     if (IsFarEnoughFromAll(candidate, anchors, Mathf.Max(2, requiredDistance - 1)))
                         anchors.Add(candidate);
@@ -410,18 +399,18 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             float cost = 1f;
 
             if (AreConnected(current, neighbor))
-                cost -= reusedRoadCostBonus;
+                cost -= settings.reusedRoadCostBonus;
 
             if (prevDirIndex != -1 && prevDirIndex != newDirIndex)
-                cost += turnPenalty;
+                cost += settings.turnPenalty;
 
             if (WouldCreateParallelRoad(current, neighbor))
             {
-                if (blockPerfectParallelRoads) return float.MaxValue;
-                cost += nearParallelPenalty;
+                if (settings.blockPerfectParallelRoads) return float.MaxValue;
+                cost += settings.nearParallelPenalty;
             }
 
-            if (preferEdgeUsage && (IsEdgeCell(current) || IsEdgeCell(neighbor)))
+            if (settings.preferEdgeUsage && (IsEdgeCell(current) || IsEdgeCell(neighbor)))
                 cost -= 0.08f;
 
             return Mathf.Max(0.05f, cost);
@@ -431,7 +420,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         {
             if (!AreAdjacent(a, b)) return false;
             if (AreConnected(a, b)) return true;
-            if (disallowAdjacentMajorJunctions && WouldCreateInvalidAdjacentJunctions(a, b)) return false;
+            if (settings.disallowAdjacentMajorJunctions && WouldCreateInvalidAdjacentJunctions(a, b)) return false;
             return true;
         }
 
@@ -449,7 +438,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             if (!IsInsideGrid(a) || !IsInsideGrid(b)) return false;
             if (!AreAdjacent(a, b)) return false;
             if (AreConnected(a, b)) return false;
-            if (disallowAdjacentMajorJunctions && WouldCreateInvalidAdjacentJunctions(a, b)) return false;
+            if (settings.disallowAdjacentMajorJunctions && WouldCreateInvalidAdjacentJunctions(a, b)) return false;
             if (WouldCreateParallelRoad(a, b)) return false;
             return true;
         }
@@ -655,7 +644,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                         if (cell.ConnectionCount == 1)
                             deadEnds.Add(cellPos);
 
-                        if (!disallowAdjacentMajorJunctions) continue;
+                        if (!settings.disallowAdjacentMajorJunctions) continue;
                         if (!IsMajorJunction(GetCurrentRoadType(cellPos))) continue;
 
                         for (int i = 0; i < 4; i++)
@@ -779,85 +768,22 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                     GameObject prefab = GetPrefabForType(cell.type);
                     if (prefab == null) continue;
 
-                    Vector3 worldPos = transform.position + new Vector3(x * cellSize, 0f, y * cellSize);
+                    Vector3 worldPos = transform.position + new Vector3(x * settings.cellSize, 0f, y * settings.cellSize);
                     GameObject instance = Instantiate(prefab, worldPos, cell.rotation, roadsParent);
+                    var node = instance.GetComponentInChildren<NavNode>();
+                    if (node != null) generatedNodes.Add(node);
                     instance.name = $"{cell.type}_{x}_{y}";
                     spawnedRoads.Add(instance);
                 }
             }
         }
 
-        private void BuildGraphFromSpawnedPrefabs()
-        {
-            navGraph.Nodes.Clear();
-            navGraph.Edges.Clear();
-            generatedNodes.Clear();
-            generatedEdges.Clear();
-
-            foreach (var road in spawnedRoads)
-            {
-                foreach (var node in road.GetComponentsInChildren<NavNode>(true))
-                {
-                    generatedNodes.Add(node);
-                    navGraph.Nodes.Add(node);
-                }
-
-                foreach (var edge in road.GetComponentsInChildren<NavEdge>(true))
-                {
-                    generatedEdges.Add(edge);
-                    navGraph.Edges.Add(edge);
-                }
-            }
-
-            LinkNearbyNodes();
-            AssignClosestNodeToEdges();
-        }
-
-        private void LinkNearbyNodes()
-        {
-            float sqrLinkDist = nodeLinkDistance * nodeLinkDistance;
-
-            for (int i = 0; i < generatedNodes.Count; i++)
-            {
-                NavNode a = generatedNodes[i];
-                Vector3 aPos = a.transform.position;
-
-                for (int j = i + 1; j < generatedNodes.Count; j++)
-                {
-                    NavNode b = generatedNodes[j];
-                    if ((aPos - b.transform.position).sqrMagnitude <= sqrLinkDist)
-                    {
-                        a.AddNeighbor(b);
-                        b.AddNeighbor(a);
-                    }
-                }
-            }
-        }
-
-        private void AssignClosestNodeToEdges()
-        {
-            foreach (var edge in generatedEdges)
-            {
-                NavNode closest = null;
-                float closestSqrDist = float.MaxValue;
-                Vector3 edgePos = edge.transform.position;
-
-                foreach (var node in generatedNodes)
-                {
-                    float sqrDist = (edgePos - node.transform.position).sqrMagnitude;
-                    if (sqrDist < closestSqrDist) { closestSqrDist = sqrDist; closest = node; }
-                }
-
-                edge.node = closest;
-            }
-        }
-
         private GameObject GetPrefabForType(RoadType type) => type switch
         {
-            RoadType.Straight => roadStraight,
-            RoadType.Corner => roadCorner,
-            RoadType.TJunction => roadTJunction,
-            RoadType.Cross => roadCross,
+            RoadType.Straight => settings.roadStraight,
+            RoadType.Corner => settings.roadCorner,
+            RoadType.TJunction => settings.roadTJunction,
+            RoadType.Cross => settings.roadCross,
             _ => null
         };
 
@@ -916,11 +842,11 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
-            for (int x = 0; x < gridSize.x; x++)
-                for (int y = 0; y < gridSize.y; y++)
+            for (int x = 0; x < settings.gridSize.x; x++)
+                for (int y = 0; y < settings.gridSize.y; y++)
                 {
-                    Vector3 pos = transform.position + new Vector3(x * cellSize, 0f, y * cellSize);
-                    Gizmos.DrawWireCube(pos, new Vector3(cellSize, 0.1f, cellSize));
+                    Vector3 pos = transform.position + new Vector3(x * settings.cellSize, 0f, y * settings.cellSize);
+                    Gizmos.DrawWireCube(pos, new Vector3(settings.cellSize, 0.1f, settings.cellSize));
                 }
         }
     }

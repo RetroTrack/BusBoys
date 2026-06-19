@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BusBoys
+namespace BusBoys.Assets.Scripts.Environment.Generation
 {
     public class BusStop : MonoBehaviour
     {
