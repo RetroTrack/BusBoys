@@ -169,9 +169,10 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             Waypoints.Count == 0 ? null : Waypoints[currentWaypointIndex % Waypoints.Count];
 
         IGraphNode FindClosestNode(Vector3 position) =>
-            navGraph.Nodes
-                .OrderBy(n => Vector3.Distance(position, n.Position))
-                .FirstOrDefault();
+        navGraph.Nodes
+        .Where(n => n.IsAlive())
+        .OrderBy(n => Vector3.Distance(position, n.Position))
+        .FirstOrDefault();
     }
 
 }

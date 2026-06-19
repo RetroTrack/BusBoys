@@ -27,7 +27,7 @@ namespace BusBoys.Assets.Scripts.ML.Observations
         {
             IGraphNode node = routeNavigator.PeekPathNode(offset);
 
-            if (node != null)
+            if (node.IsAlive())
             {
                 Vector3 toNode = node.Position - vehicleRigidbody.position;
 

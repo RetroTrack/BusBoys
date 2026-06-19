@@ -108,37 +108,38 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
         private void RenderAStarPath()
         {
-            if(remainingPathRenderer == null)
-            {
-                return;
-            }
-            if (nav.CurrentPath == null ||
-                nav.CurrentPath.Count == 0)
+            if (remainingPathRenderer == null) return;
+            if (nav.CurrentPath == null || nav.CurrentPath.Count == 0)
             {
                 remainingPathRenderer.positionCount = 0;
                 return;
             }
 
             int startIndex = nav.CurrentPathIndex;
-            int count = nav.CurrentPath.Count - startIndex;
 
-            remainingPathRenderer.positionCount = count;
-
+            // Filter alive nodes eerst, want de count moet matchen met wat we daadwerkelijk tekenen
+            var aliveNodes = new List<IGraphNode>();
             for (int i = startIndex; i < nav.CurrentPath.Count; i++)
             {
-                remainingPathRenderer.SetPosition(
-                    i - startIndex,
-                    nav.CurrentPath[i].Position + Vector3.up * 0.5f
-                );
+                if (nav.CurrentPath[i].IsAlive())
+                    aliveNodes.Add(nav.CurrentPath[i]);
             }
+
+            if (aliveNodes.Count == 0)
+            {
+                remainingPathRenderer.positionCount = 0;
+                return;
+            }
+
+            remainingPathRenderer.positionCount = aliveNodes.Count;
+            for (int i = 0; i < aliveNodes.Count; i++)
+                remainingPathRenderer.SetPosition(i, aliveNodes[i].Position + Vector3.up * 0.5f);
         }
 
         private void RenderAgentObservations()
         {
-            if(lookaheadNodeRenderer == null || currentNodeRenderer == null)
-            {
+            if (lookaheadNodeRenderer == null || currentNodeRenderer == null)
                 return;
-            }
             if (navigationTracker == null || busTransform == null)
             {
                 currentNodeRenderer.positionCount = 0;
@@ -148,20 +149,26 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             var currentNode = nav.PeekPathNode(0);
             var lookaheadNode = nav.PeekPathNode(1);
 
-            // Huidige target node → cyaan
-            if (currentNode != null)
+            if (currentNode.IsAlive())
             {
                 currentNodeRenderer.positionCount = 2;
                 currentNodeRenderer.SetPosition(0, busTransform.position + Vector3.up * 0.5f);
                 currentNodeRenderer.SetPosition(1, currentNode.Position + Vector3.up * 0.5f);
             }
+            else
+            {
+                currentNodeRenderer.positionCount = 0;
+            }
 
-            // Lookahead node → geel
-            if (lookaheadNode != null)
+            if (lookaheadNode.IsAlive())
             {
                 lookaheadNodeRenderer.positionCount = 2;
                 lookaheadNodeRenderer.SetPosition(0, busTransform.position + Vector3.up * 0.5f);
                 lookaheadNodeRenderer.SetPosition(1, lookaheadNode.Position + Vector3.up * 0.5f);
+            }
+            else
+            {
+                lookaheadNodeRenderer.positionCount = 0;
             }
         }
 
