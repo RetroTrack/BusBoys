@@ -13,39 +13,35 @@ namespace BusBoys
         public AudioSource engineSound;
         public AudioSource honkSound;
         float speed;
-        public float minSpeed = 0.1f;
+        float minSpeed = 0.5f;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-             
+            engineSound.Play();
+            engineSound.volume = 0f;
         }
-
-        // Update is called once per frame
         void Update()
         {
-            speed = vehicle.CurrentSpeed;
-
-            if (speed > minSpeed)
+            if (lidar.passerbyDetected)
             {
-                engineSound.volume = 1f;
-                engineSound.pitch = 1f + speed * 0.05f;
+                engineSound.volume = 0.3f;
+                honkSound.volume = 1f;
+                if (!honkSound.isPlaying)  // voorkom dat het geluid steeds opnieuw begint
+                {
+                    honkSound.Play();
+                }
             }
             else
             {
-                engineSound.volume = 0.2f;
-            }
-
-
-            if (lidar.passerbyDetected)
-            {
-                engineSound.Stop();
-                honkSound.volume = 1f;
-            }
-            else if (!lidar.passerbyDetected)
-            {
                 honkSound.Stop();
+                if (speed > minSpeed && !engineSound.isPlaying)
+                {
+                    engineSound.volume = 1f;
+                    engineSound.pitch = 1f + speed * 0.05f;
+                }
             }
+
         }
+
     }
-    
 }

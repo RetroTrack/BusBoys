@@ -139,6 +139,14 @@ PrefabInstance:
       propertyPath: navGraph
       value: 
       objectReference: {fileID: 675534934}
+    - target: {fileID: 28467640978063507, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
+      propertyPath: pathDrawer
+      value: 
+      objectReference: {fileID: 1162601335}
+    - target: {fileID: 28467640978063507, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
+      propertyPath: toggleShowRay
+      value: 
+      objectReference: {fileID: 1795826140}
     - target: {fileID: 495437576825170612, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -266,6 +274,10 @@ PrefabInstance:
     - target: {fileID: 5220725037502903776, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770645585907366172, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
+      propertyPath: m_Name
+      value: RenderRayToggle
       objectReference: {fileID: 0}
     - target: {fileID: 6379244010687759605, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
       propertyPath: m_AnchorMax.y
@@ -660,6 +672,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d60b1493e49ac47904a984f64fc96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LidarSensor
+--- !u!114 &1162601335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 480598923903422189, guid: c4894919e0bd3904dab58f0f81e1a569, type: 3}
+  m_PrefabInstance: {fileID: 2126965783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8e9152a30be444ea5be1de38af15ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Core.Graph.PathDrawer
 --- !u!1001 &1465170311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -717,6 +740,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99b68a2da7a824c499c129adfaeeb683, type: 3}
+--- !u!114 &1795826140 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4493253026849850588, guid: 3ee319ff0f5aa844787505fd036a2866, type: 3}
+  m_PrefabInstance: {fileID: 326127661}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
 --- !u!114 &2069676487 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5628890213423560920, guid: 746c25c9ae2cbf848ae5c29415cf0d61, type: 3}
