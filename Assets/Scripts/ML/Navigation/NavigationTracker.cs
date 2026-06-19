@@ -69,7 +69,7 @@ namespace BusBoys.Assets.Scripts.ML.Navigation
 
         public void AdvanceAlongPath()
         {
-            if (targetPathNode == null)
+            if (targetPathNode == null || !targetPathNode.IsAlive())
             {
                 if (!routeNavigator.HasReachedEndOfPath() && routeNavigator.HasValidPath)
                     targetPathNode = routeNavigator.GetNextPathNode();

@@ -18,8 +18,14 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         {
             float max = 0f;
             foreach (var node in Nodes)
+            {
+                if (!node.IsAlive()) continue;
                 foreach (var neighbor in node.Neighbors)
+                {
+                    if (!neighbor.IsAlive()) continue;
                     max = Mathf.Max(max, Vector3.Distance(node.Position, neighbor.Position));
+                }
+            }
             return max > 0f ? max : 50f;
         }
 
