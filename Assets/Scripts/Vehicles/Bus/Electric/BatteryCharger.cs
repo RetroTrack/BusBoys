@@ -4,20 +4,14 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus.Electric
     public class BatteryCharger : MonoBehaviour
     {
         public float chargeRate = 20f; // % per seconde
+        public Transform target;
 
         private void OnTriggerStay(Collider other)
         {
-            BusBattery battery = other.GetComponent<BusBattery>();
-
-            if (battery != null && battery.batteryPercentage < 100)
-            {
-                battery.batteryPercentage += (chargeRate * Time.deltaTime);
-                Debug.Log("Auto laad op!!");
-            }
-            if (battery != null && battery.batteryPercentage == 100)
-            {
-                Debug.Log("Auto is vol!!");
-            }
+            if(!other.CompareTag("Bus")) return;
+            BusBattery battery = other.GetComponentInChildren<BusBattery>();
+            if (battery == null) return;
+            battery.ChargeBattery(chargeRate * Time.deltaTime);
         }
     }
 }

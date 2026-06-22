@@ -35,11 +35,13 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
 
         public float CurrentSpeed => currentSpeed; //zodat de ui de currentspeed en steer angle uit kan lezen 
         public float CurrentSteerAngle => currentSteerAngle;
+
         public virtual void FixedUpdate()
         {
             // Measuring
             currentSpeed = rb.linearVelocity.magnitude * 3.6f; // Convert m/s to km/h
         }
+
 
         public void Accelerate()
         {
@@ -200,16 +202,16 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
                 case WheelType.Rear:
                     foreach (var wheel in rearWheelColliders)
                     {
-                        wheel.steerAngle = angle;
+                        wheel.steerAngle = -angle;
                     }
                     foreach (var wheelMesh in rearWheelMeshes)
                     {
-                        wheelMesh.localRotation = Quaternion.Euler(0f, angle, 0f);
+                        wheelMesh.localRotation = Quaternion.Euler(0f, -angle, 0f);
                     }
                     break;
                 case WheelType.Both:
                     SetWheelAngle(angle, WheelType.Front);
-                    SetWheelAngle(-angle, WheelType.Rear);
+                    SetWheelAngle(angle, WheelType.Rear);
                     break;
             }
         }
