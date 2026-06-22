@@ -111,3 +111,7 @@ InitTestScene*.unity*
 # Project-ML-Agent Timer files
 /Assets/ML-Agents/Timers
 Assets/ML-Agents/Timers/Generation_timers.json
+/Assets/AiModelsAndRenderTexture/BusSimulation 1.onnx
+/Assets/AiModelsAndRenderTexture/BusSimulation 1.onnx.meta
+/Assets/AiModelsAndRenderTexture/BusSimulation.onnx
+/Assets/AiModelsAndRenderTexture/BusSimulation.onnx.meta
