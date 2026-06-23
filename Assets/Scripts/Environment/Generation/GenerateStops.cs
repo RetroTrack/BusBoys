@@ -1,4 +1,5 @@
 using BusBoys.Assets.Scripts.Core.Pathfinding;
+using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +9,8 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
     {
         [Header("Dependencies")]
         [SerializeField] private RouteNavigator routeNavigator;
-        [SerializeField] private GameObject busStop;
-        [SerializeField] private GameObject chargeStation;
+        [SerializeField] private GameObject busStopPrefab;
+        [SerializeField] private GameObject chargeStationPrefab;
         [SerializeField] private GameObject generatedRoads;
         [SerializeField] private GameObject generatedStops;
         [SerializeField] private Mesh straightRoad;
@@ -87,12 +88,12 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
                     if (amountOfStops - 1 < i)
                     {
                         spawnPos = new Vector3(roadTrans.x, roadTrans.y, roadTrans.z - 5f);
-                        temp = Instantiate(chargeStation, spawnPos, Quaternion.Euler(-90, 180, 0), generatedStops.transform);
+                        temp = Instantiate(chargeStationPrefab, spawnPos, Quaternion.Euler(-90, 180, 0), generatedStops.transform);
                     }
                     else
                     {
                         spawnPos = new Vector3(roadTrans.x, roadTrans.y, roadTrans.z - 6.5f);
-                        temp = Instantiate(busStop, spawnPos, Quaternion.identity, generatedStops.transform);
+                        temp = Instantiate(busStopPrefab, spawnPos, Quaternion.identity, generatedStops.transform);
                     }
                 }
                 else
@@ -100,17 +101,20 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
                     if (amountOfStops - 1 < i)
                     {
                         spawnPos = new Vector3(roadTrans.x - 5f, roadTrans.y, roadTrans.z);
-                        temp = Instantiate(chargeStation, spawnPos, Quaternion.Euler(-90, 180, 0), generatedStops.transform);
+                        temp = Instantiate(chargeStationPrefab, spawnPos, Quaternion.Euler(-90, 180, 0), generatedStops.transform);
                     }
                     else
                     {
                         spawnPos = new Vector3(roadTrans.x - 6.5f, roadTrans.y, roadTrans.z);
-                        temp = Instantiate(busStop, spawnPos, Quaternion.Euler(0, 90, 0), generatedStops.transform);
+                        temp = Instantiate(busStopPrefab, spawnPos, Quaternion.Euler(0, 90, 0), generatedStops.transform);
                     }
                 }
 
-                if (temp.GetComponent<BusStop>().target != null)
-                    targets.Add(temp.GetComponent<BusStop>().target);
+                if (temp.TryGetComponent<BusStop>(out var busStop) && busStop.target != null)
+                    targets.Add(busStop.target);
+
+                if (temp.TryGetComponent<BatteryCharger>(out var batteryCharger) && batteryCharger.target != null)
+                    routeNavigator.ChargingPoints.Add(batteryCharger.target);
 
                 spawnedStops.Add(temp);
             }
@@ -131,7 +135,21 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
                 {
                     var child = generatedStops.transform.GetChild(i);
                     child.SetParent(null);
-                    Destroy(child.gameObject);
+#if UNITY_EDITOR
+                    if (!Application.isPlaying)
+                        DestroyImmediate(child.gameObject);
+                    else
+                        Destroy(child.gameObject);
+#else
+            Destroy(child.gameObject);
+#endif
+                }
+
+                if (routeNavigator != null)
+                {
+                    routeNavigator.Waypoints?.Clear();
+
+                    routeNavigator.ChargingPoints?.Clear();
                 }
             }
 

@@ -179,7 +179,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
 #endif
                 }
 
-                Debug.Log($"ClearGenerated: removed {childCountBefore} children from roadsParent.");
+                //Debug.Log($"ClearGenerated: removed {childCountBefore} children from roadsParent.");
             }
 
             spawnedRoads.Clear();

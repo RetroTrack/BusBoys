@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7886169770977508463}
   m_Layer: 6
   m_Name: Wheel BL
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 6338738761399863901}
   m_Layer: 6
   m_Name: Agent
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,14 +273,20 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
+  MaxStep: 0
   startPosition: {fileID: 0}
   navigationTracker: {fileID: 3670436559981880981}
   controller: {fileID: 1720550973295807057}
   spawner: {fileID: 0}
   vehicleBootstrap: {fileID: 4512756868667427871}
+  battery: {fileID: 7822470043200372589}
+  collisionRewarder: {fileID: 4696587772859013322}
   observationProvider: {fileID: 6703309000230018843}
   rewardProvider: {fileID: 152125520433097291}
+  roadGenerator: {fileID: 0}
+  regenerateEveryEpisode: 1
+  regenerateEveryNEpisodes: 10
+  randomizeSeedOnRegenerate: 1
 --- !u!114 &8575472799412568823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.Policies.BehaviorParameters
   m_BrainParameters:
-    VectorObservationSize: 37
+    VectorObservationSize: 38
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -303,7 +309,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 123fefe2476d177468f62283243b048b, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: BusSimulation
@@ -388,7 +394,7 @@ GameObject:
   - component: {fileID: 1328860726065369336}
   m_Layer: 6
   m_Name: Wheel FR
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,13 +555,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5afab70bb896f4b84a34d2555ffb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BusRouteManager
-  ChargingPoints:
-  - {fileID: 0}
-  Waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  ChargingPoints: []
+  Waypoints: []
   navGraph: {fileID: 0}
   Battery: {fileID: 7822470043200372589}
+  batteryPercentageThreshold: 30
+--- !u!1 &1886029042560488535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910906025564560978}
+  - component: {fileID: 4245767692140301259}
+  m_Layer: 6
+  m_Name: Front Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910906025564560978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886029042560488535}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -4.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1551332922938177222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4245767692140301259
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886029042560488535}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 192
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6, y: 4, z: 5.4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2820702360820923728
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +624,7 @@ GameObject:
   - component: {fileID: 967508617906719227}
   m_Layer: 6
   m_Name: Wheels
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -602,7 +659,7 @@ GameObject:
   - component: {fileID: 2480851600114584737}
   m_Layer: 0
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,7 +698,7 @@ GameObject:
   - component: {fileID: 2038226243587053762}
   m_Layer: 6
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,7 +879,7 @@ GameObject:
   - component: {fileID: 1827304711100074313}
   m_Layer: 6
   m_Name: Wheel FL
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -949,7 +1006,7 @@ GameObject:
   - component: {fileID: 9153102036647561984}
   m_Layer: 6
   m_Name: Wheel FR
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,7 +1039,7 @@ GameObject:
   - component: {fileID: 6703309000230018843}
   m_Layer: 6
   m_Name: Observations
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1020,6 +1077,7 @@ MonoBehaviour:
   - {fileID: 7369608515318049543}
   - {fileID: 2150319083533030223}
   - {fileID: 4512756868667427871}
+  - {fileID: 7822470043200372589}
 --- !u!1 &4400221224465670159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1089,7 @@ GameObject:
   - component: {fileID: 8241023946351692038}
   m_Layer: 6
   m_Name: Wheel FL
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1065,10 +1123,9 @@ GameObject:
   - component: {fileID: 5923320176611779293}
   - component: {fileID: 7822470043200372589}
   - component: {fileID: 710100898833677158}
-  - component: {fileID: 3030287224635114804}
   m_Layer: 0
   m_Name: Battery
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1158,8 +1215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Vehicles.Bus.BusBattery
   busController: {fileID: 1720550973295807057}
-  drainPerMeter: 0.001
-  drainSpeedThreshold: 0.01
+  rewardProvider: {fileID: 152125520433097291}
+  drainPerMeter: 0.05
+  batteryStartPercentage: 100
   batteryPercentage: 100
   currentPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &710100898833677158
@@ -1182,27 +1240,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 096a217952c09dd42845992aac71df9d, type: 3}
   busBattery: {fileID: 7822470043200372589}
   targetMesh: {fileID: 5923320176611779293}
---- !u!65 &3030287224635114804
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4522284024222951846}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
-  m_Center: {x: 0, y: 0.0000009536743, z: 0}
 --- !u!1 &4719346718796773953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1252,7 @@ GameObject:
   - component: {fileID: 152125520433097291}
   m_Layer: 6
   m_Name: Rewards
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1248,6 +1285,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.ML.Rewards.AgentRewardProvider
   rewardConfig: {fileID: 11400000, guid: edd83c1c5841f8b4fa947ed7037f39bf, type: 2}
+--- !u!1 &5078355561812473758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3157330532153740021}
+  - component: {fileID: 8387562421926495581}
+  m_Layer: 6
+  m_Name: Back Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3157330532153740021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078355561812473758}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1551332922938177222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8387562421926495581
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078355561812473758}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 192
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6, y: 4, z: 5.4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5645557554229174080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1350,7 @@ GameObject:
   - component: {fileID: 4512756868667427871}
   m_Layer: 6
   m_Name: Bootstrap
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1306,7 +1396,7 @@ GameObject:
   - component: {fileID: 5887686635162221507}
   m_Layer: 0
   m_Name: Wheel Front Right
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1400,7 +1490,7 @@ GameObject:
   - component: {fileID: 4696587772859013322}
   m_Layer: 6
   m_Name: Bus Frame
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1422,6 +1512,8 @@ Transform:
   - {fileID: 967508617906719227}
   - {fileID: 7844014791561662947}
   - {fileID: 2480851600114584737}
+  - {fileID: 910906025564560978}
+  - {fileID: 3157330532153740021}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1720550973295807057
@@ -1577,6 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6596d5da445315041a0052a890eed070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Sensors.CollisionReward.CollisionRewarder
+  isActive: 0
   rewardProvider: {fileID: 152125520433097291}
   layerMask:
     serializedVersion: 2
@@ -1594,7 +1687,7 @@ GameObject:
   - component: {fileID: 1955920191038193812}
   m_Layer: 0
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1682,7 +1775,7 @@ GameObject:
   - component: {fileID: 4705795957144860911}
   m_Layer: 6
   m_Name: Wheel BL
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1715,7 +1808,7 @@ GameObject:
   - component: {fileID: 7424759843657449464}
   m_Layer: 6
   m_Name: Lidar (1)
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1772,7 +1865,7 @@ GameObject:
   - component: {fileID: 3670436559981880981}
   m_Layer: 6
   m_Name: Navigation Tracker
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1824,7 +1917,7 @@ GameObject:
   - component: {fileID: 8988282942869362548}
   m_Layer: 6
   m_Name: Lidar
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1882,7 +1975,7 @@ GameObject:
   - component: {fileID: 2065625922248330176}
   m_Layer: 6
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1972,7 +2065,7 @@ GameObject:
   - component: {fileID: 5307993517249098437}
   m_Layer: 6
   m_Name: TrafficCamera
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2098,7 +2191,7 @@ GameObject:
   - component: {fileID: 590833954089583331}
   m_Layer: 6
   m_Name: Wheel BR
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2133,7 +2226,7 @@ GameObject:
   - component: {fileID: 4315570634742417540}
   m_Layer: 6
   m_Name: Wheel BR
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2260,7 +2353,7 @@ GameObject:
   - component: {fileID: 7844014791561662947}
   m_Layer: 6
   m_Name: Sensors
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2295,7 +2388,7 @@ GameObject:
   - component: {fileID: 7369608515318049543}
   m_Layer: 6
   m_Name: TrafficCameraManager
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

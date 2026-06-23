@@ -3,8 +3,11 @@ using BusBoys.Assets.Scripts.Environment.Generation;
 using BusBoys.Assets.Scripts.ML.Navigation;
 using BusBoys.Assets.Scripts.ML.Observations;
 using BusBoys.Assets.Scripts.ML.Rewards;
+using BusBoys.Assets.Scripts.Sensors.CollisionReward;
 using BusBoys.Assets.Scripts.Vehicles.Bus;
+using BusBoys.Assets.Scripts.Vehicles.Bus.Electric;
 using BusBoys.Assets.Scripts.Vehicles.Common;
+using System.Collections;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -23,6 +26,8 @@ namespace BusBoys.Assets.Scripts.ML.Agents
         [Space]
         [SerializeField] private BusSpawner spawner;
         [SerializeField] private VehicleBootstrap vehicleBootstrap;
+        [SerializeField] private BusBattery battery;
+        [SerializeField] private CollisionRewarder collisionRewarder;
 
         [Header("Agent Components")]
         [SerializeField] private AgentObservationProvider observationProvider;
@@ -91,12 +96,22 @@ namespace BusBoys.Assets.Scripts.ML.Agents
         }
         public override void OnEpisodeBegin()
         {
+            rewardProvider.OnEpisodeBegin();
+            collisionRewarder.isActive = false;
             TryRegenerateEnvironment();
 
             controller.transform.SetPositionAndRotation(spawner.GetRandomNodePosition() + spawner.GetRandomOffset(), spawner.GetRandomRotation());
             controller.ResetVehicle();
             vehicleBootstrap.BeginEpisode();
+            battery.ResetBattery();
             navigationTracker.BeginEpisode();
+            StartCoroutine(WaitAndActivateCollisionRewarder());
+        }
+
+        IEnumerator WaitAndActivateCollisionRewarder()
+        {
+            yield return new WaitForSeconds(0.1f);
+            collisionRewarder.isActive = true;
         }
 
         private void TryRegenerateEnvironment()

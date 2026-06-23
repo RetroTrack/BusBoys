@@ -34,8 +34,6 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             // Find children of the environment that are NavEdges and add them to the graph
             List<NavNode> nodes = environment.GetComponentsInChildren<NavNode>().ToList();
             graph.Nodes = nodes.Cast<IGraphNode>().ToList();
-            Debug.Log($"Added {nodes.Count} nodes to the graph.");
-            Debug.Log($"Graph now has {graph.Nodes.Count} nodes and {graph.Edges.Count} edges.");
         }
 
         [ContextMenu("Link Edges (not persistent)")]
@@ -63,8 +61,6 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                     nodeB.AddNeighbor(nodeA);
                 }
             }
-            Debug.Log($"Linked {graph.Edges.Count} edges in the graph.");
-            Debug.Log($"Graph now has {graph.Nodes.Count} nodes and {graph.Edges.Count} edges.");
         }
 
     }

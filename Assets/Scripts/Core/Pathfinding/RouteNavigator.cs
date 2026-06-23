@@ -12,7 +12,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
         public List<Transform> Waypoints = new();
         [SerializeField] NavGraph navGraph;
         [SerializeField] BusBattery Battery;
-        private float BatteryPercentageThreshold = 20;
+        [SerializeField] private float batteryPercentageThreshold = 30;
 
         int currentWaypointIndex = 0;
         public List<IGraphNode> CurrentPath { get; private set; } = new();
@@ -88,7 +88,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             }
 
             // Battery detour (kept from original; note: currently always routes to waypoint goal)
-            if (Battery != null && Battery.batteryPercentage < BatteryPercentageThreshold)
+            if (Battery != null && Battery.batteryPercentage < batteryPercentageThreshold)
             {
                 var chargingNode = ChargingPoints
                     .Select(cp => FindClosestNode(cp.position))
@@ -96,7 +96,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
                     .FirstOrDefault();
 
                 if (chargingNode != null)
-                    goalNode = chargingNode;
+                { goalNode = chargingNode; }
             }
 
             CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
@@ -129,8 +129,8 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
         {
             var startNode = FindClosestNode(from);
 
-            Debug.Log($"Start node: {startNode?.Position}");
-            Debug.Log($"Goal node: {goalNode?.Position}");
+            //Debug.Log($"Start node: {startNode?.Position}");
+            //Debug.Log($"Goal node: {goalNode?.Position}");
 
             if (startNode == null || goalNode == null)
             {
@@ -141,7 +141,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             CurrentPath = navGraph.FindPath(startNode, goalNode, facing)
                           ?? new List<IGraphNode>();
 
-            Debug.Log($"Path length: {CurrentPath.Count}");
+            //Debug.Log($"Path length: {CurrentPath.Count}");
 
             CurrentPathIndex = 0;
         }

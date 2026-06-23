@@ -1,5 +1,71 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &16860896685797763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1937322810634592333}
+  - component: {fileID: 2227076266349544277}
+  - component: {fileID: 962815080702408264}
+  m_Layer: 0
+  m_Name: Edge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1937322810634592333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16860896685797763}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1608057759126310724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2227076266349544277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16860896685797763}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15, y: 15, z: 234.96544}
+  m_Center: {x: 0, y: 0, z: 98.29113}
+--- !u!114 &962815080702408264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16860896685797763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6def84d04c26d4fbdc9272adeeb5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Environment.TileHitbox
 --- !u!1 &310306419656648621
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +100,7 @@ Transform:
   - {fileID: 4385470228243598363}
   - {fileID: 994275930628760294}
   - {fileID: 1724433929133311563}
+  - {fileID: 1608057759126310724}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1334558707887290957
@@ -66,6 +133,173 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4385470228243598363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1570615599920966398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3910585914552546409}
+  - component: {fileID: 5087308442045475876}
+  - component: {fileID: 8717528255057710371}
+  m_Layer: 0
+  m_Name: Edge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3910585914552546409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570615599920966398}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 150, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1608057759126310724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5087308442045475876
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570615599920966398}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15, y: 15, z: 234.96544}
+  m_Center: {x: 0, y: 0, z: 98.29113}
+--- !u!114 &8717528255057710371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570615599920966398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6def84d04c26d4fbdc9272adeeb5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Environment.TileHitbox
+--- !u!1 &1735771809749614481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514578822888100974}
+  - component: {fileID: 2283947146579750404}
+  - component: {fileID: 8860715827497653663}
+  m_Layer: 0
+  m_Name: Edge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1514578822888100974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735771809749614481}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 210}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1608057759126310724}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &2283947146579750404
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735771809749614481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15, y: 15, z: 171.63542}
+  m_Center: {x: 3.731954e-14, y: 0, z: 66.626114}
+--- !u!114 &8860715827497653663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735771809749614481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6def84d04c26d4fbdc9272adeeb5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Environment.TileHitbox
+--- !u!1 &3013114961209576153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1608057759126310724}
+  m_Layer: 0
+  m_Name: Edges
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1608057759126310724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3013114961209576153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1937322810634592333}
+  - {fileID: 7336635853647207886}
+  - {fileID: 3910585914552546409}
+  - {fileID: 1514578822888100974}
+  m_Father: {fileID: 4559155097799922760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3190253603524487434
 GameObject:
@@ -113,8 +347,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Core.Utilities.BusSpawner
   navGraph: {fileID: 8791117747256195598}
   defaultPosition: {fileID: 0}
-  randomOffsetRange: {x: -3, y: 3}
+  randomOffsetRange: {x: -1, y: 1}
   yOffset: 0.5
+--- !u!1 &3194374904200191863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7336635853647207886}
+  - component: {fileID: 453821198242349472}
+  - component: {fileID: 8423877178660642285}
+  m_Layer: 0
+  m_Name: Edge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7336635853647207886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3194374904200191863}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1608057759126310724}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &453821198242349472
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3194374904200191863}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15, y: 15, z: 171.57225}
+  m_Center: {x: 3.687068e-14, y: 0, z: 66.59453}
+--- !u!114 &8423877178660642285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3194374904200191863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6def84d04c26d4fbdc9272adeeb5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BusBoys::BusBoys.Assets.Scripts.Environment.TileHitbox
 --- !u!1 &4217715618225459212
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,24 +670,24 @@ MonoBehaviour:
   busTransform: {fileID: 5574851821806822827}
   navigationTracker: {fileID: 7650113532473030136}
   navGraph: {fileID: 8791117747256195598}
-  isNodeDrawingEnabled: 1
+  isNodeDrawingEnabled: 0
   nodeGizmoSize: 0.5
   nodeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   linkColor: {r: 1, g: 1, b: 1, a: 1}
-  isPathDrawingEnabled: 1
+  isPathDrawingEnabled: 0
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   remainingPathColor: {r: 0, g: 1, b: 0, a: 1}
   travelledPathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  isStopDrawingEnabled: 1
+  isStopDrawingEnabled: 0
   stopGizmoSize: 1
   stopColor: {r: 1, g: 0, b: 1, a: 1}
-  isChargingPointDrawingEnabled: 1
+  isChargingPointDrawingEnabled: 0
   ChargingPointGizmoSize: 1
   ChargingPointColor: {r: 1, g: 0, b: 0, a: 1}
-  isMLDrawingEnabled: 1
+  isMLDrawingEnabled: 0
   currentNodeColor: {r: 0, g: 1, b: 1, a: 1}
   lookaheadNodeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  renderLinesInGame: 1
+  renderLinesInGame: 0
   lineMaterial: {fileID: 2100000, guid: 9aa100835ae705a4a92380a896b2786e, type: 2}
   currentNodeRenderer: {fileID: 1111524239009735682}
   lookaheadNodeRenderer: {fileID: 6628131042404767477}
@@ -442,7 +742,7 @@ MonoBehaviour:
   generateStops: {fileID: 5648312653048657489}
   graphBootstrap: {fileID: 7597928421319213694}
   settings: {fileID: 11400000, guid: 63a995543547d0c4b903c0046ad5c5fd, type: 2}
-  seed: -491500619
+  seed: -1383548350
   nodeLinkDistance: 7.5
   generateOnStart: 1
   roadsParent: {fileID: 5052350699349930402}
@@ -775,8 +1075,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   routeNavigator: {fileID: 4934202924886994629}
-  busStop: {fileID: 96114663377751733, guid: 91c338e0b374a8b459ac11081d745771, type: 3}
-  chargeStation: {fileID: 4890325343047588002, guid: 72b804bbbdde2f6489c9d28c5549d07d, type: 3}
+  busStopPrefab: {fileID: 96114663377751733, guid: 91c338e0b374a8b459ac11081d745771, type: 3}
+  chargeStationPrefab: {fileID: 4890325343047588002, guid: 72b804bbbdde2f6489c9d28c5549d07d, type: 3}
   generatedRoads: {fileID: 1334558707887290957}
   generatedStops: {fileID: 8340617034906557416}
   straightRoad: {fileID: 289151710221180735, guid: cb592664d3fab8642828fcac8fabe29e, type: 3}
@@ -854,6 +1154,10 @@ PrefabInstance:
       propertyPath: 'Waypoints.Array.data[1]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2063603322747633064, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: batteryPercentageThreshold
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2150319083533030223, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
       propertyPath: vehicleRigidbody
       value: 
@@ -864,7 +1168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3105124742719380945, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
       propertyPath: MaxStep
-      value: 5000
+      value: 6000
       objectReference: {fileID: 0}
     - target: {fileID: 3105124742719380945, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
       propertyPath: spawner
@@ -882,9 +1186,13 @@ PrefabInstance:
       propertyPath: regenerateEveryNEpisodes
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3670436559981880981, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: trainingMode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4522284024222951846, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5808661029235772741, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
       propertyPath: m_Size.x
@@ -905,6 +1213,14 @@ PrefabInstance:
     - target: {fileID: 6365547920373254865, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
       propertyPath: m_Name
       value: Bus Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822470043200372589, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: drainPerMeter
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8575472799412568823, guid: bcfc479b9ed07d54ea6ba7b9ca0aab9d, type: 3}
+      propertyPath: m_Model
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

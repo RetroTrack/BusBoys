@@ -8,7 +8,7 @@ namespace BusBoys
         [SerializeField] Transform EndPoint;
 
         [SerializeField] Transform passerby;
-        float passerbySpeed = 2.6f;
+        [SerializeField] float passerbySpeed = 2.6f;
         public float passerbyOdds = 0.2f; //20%
         float SetTime = 30;//elke minuut
         float passerbyTimer;

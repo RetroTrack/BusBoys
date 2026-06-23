@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Crossing
   - Target
+  - Bus
+  - Wheel
+  - Pedestrian
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - Road
   - Decoration
   - Traffic Lights
-  - 
+  - Hitbox
   - 
   - 
   - 

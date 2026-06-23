@@ -7,12 +7,17 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
 {
     public class BusController : VehicleController
     {
+        private bool shouldBrake = false;
         float defaultMotorTorque = 2000f;
         [SerializeField] AgentRewardProvider rewardProvider;
 
         public void Start()
         {
             defaultMotorTorque = motorTorque;
+        }
+        public void SetShouldBrake(bool shouldBrake)
+        {
+            this.shouldBrake = shouldBrake;
         }
 
         public override void FixedUpdate()
@@ -23,7 +28,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
 
             // Braking
             Brake();
-            if (brakeInput > 0)
+            if (brakeInput > 0 && !shouldBrake)
             {
                 rewardProvider.AddReward(rewardProvider.rewardConfig.brakingPenalty, "Braking");
             }
@@ -49,7 +54,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
         {
             if (transform.position.y < -1f) // Fallen off the world
             {
-                rewardProvider.AddReward(rewardProvider.rewardConfig.fallenOffMapPenalty, "Fallen off map");
+                rewardProvider.SetReward(rewardProvider.rewardConfig.drivingOffRoadPenalty, "Fallen off map");
                 rewardProvider.EndEpisode();
             }
         }

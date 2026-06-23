@@ -760,7 +760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2031302500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,7 +884,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 310306419656648621, guid: db7333315f7b6fa46b146a25291238e0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447672849029386650, guid: db7333315f7b6fa46b146a25291238e0, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 123fefe2476d177468f62283243b048b, type: 3}
+    - target: {fileID: 3770731336326884352, guid: db7333315f7b6fa46b146a25291238e0, type: 3}
+      propertyPath: drainPerMeter
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4559155097799922760, guid: db7333315f7b6fa46b146a25291238e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -924,6 +932,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4559155097799922760, guid: db7333315f7b6fa46b146a25291238e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934202924886994629, guid: db7333315f7b6fa46b146a25291238e0, type: 3}
+      propertyPath: batteryPercentageThreshold
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344384660716228284, guid: db7333315f7b6fa46b146a25291238e0, type: 3}
+      propertyPath: MaxStep
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
