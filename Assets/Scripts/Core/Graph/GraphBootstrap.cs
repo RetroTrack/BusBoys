@@ -11,7 +11,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private float linkingDistance = 1f;
 
 
-
+        //Make sure environment and graph exists. And adds the nodes and links the edges. 
         private void Awake()
         {
             if (graph == null)
@@ -29,6 +29,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         }
 
         [ContextMenu("Add Nodes (not persistent)")]
+        //Gets all existings prefabs with NavNode attached. This is getting added to the IGraphNode list.
         public void AddNodes()
         {
             // Find children of the environment that are NavEdges and add them to the graph
@@ -37,6 +38,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         }
 
         [ContextMenu("Link Edges (not persistent)")]
+        //Checks all edges and links the nodes to which are next to each other to each other.
         public void LinkEdges()
         {
             // Find children of the environment that are NavEdges and add them to the graph

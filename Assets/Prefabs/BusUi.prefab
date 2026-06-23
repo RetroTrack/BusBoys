@@ -2093,7 +2093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TurnPenalty
+  m_text: Turn Penalty
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -3202,18 +3202,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: BusBoys::BusBoys.NewMonoBehaviourScript
   speedSlider: {fileID: 5860808743100117688}
   batteryDrainPerMeterSlider: {fileID: 7310631059537403694}
-  PasserbyOddsSlider: {fileID: 2906893998459530449}
+  passerbyOddsSlider: {fileID: 2906893998459530449}
   turnPenaltyMultiplierSlider: {fileID: 6720485427022905511}
   speedText: {fileID: 5985229604450496909}
-  BatteryText: {fileID: 643114264504860739}
-  PasserbyText: {fileID: 4553175875168680952}
+  batteryText: {fileID: 643114264504860739}
+  passerbyText: {fileID: 4553175875168680952}
   turnPenaltyMultiplierText: {fileID: 5857229242534020568}
   MonitoringText: {fileID: 5546167687366704748}
   toggleFrontWheels: {fileID: 3918299540473694818}
   toggleBackWheels: {fileID: 4099438112250926652}
-  toggleShowRay: {fileID: 0}
-  Vehicle: {fileID: 0}
-  Battery: {fileID: 0}
+  toggleShowRay: {fileID: 4493253026849850588}
+  vehicle: {fileID: 0}
+  battery: {fileID: 0}
   crossings: []
   navGraph: {fileID: 0}
   pathDrawer: {fileID: 0}
@@ -3835,7 +3835,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16000, guid: 0000000000000000f000000000000000, type: 0}
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &5922422519229625892
 GameObject:

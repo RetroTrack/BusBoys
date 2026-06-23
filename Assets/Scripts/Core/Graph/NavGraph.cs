@@ -14,6 +14,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         public List<IGraphNode> FindPath(IGraphNode start, IGraphNode goal, Vector3? incomingDir = null)
             => AStarPathfinder.FindPath(start, goal, ComputeEdgeCost, incomingDir);
 
+        //Gets the distance to the next node.
         public float CalculateMaxEdgeLength()
         {
             float max = 0f;
@@ -29,6 +30,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             return max > 0f ? max : 50f;
         }
 
+        //Calculates the cost to connect to an edge. This must be as low as possible.
         float ComputeEdgeCost(IGraphNode from, IGraphNode to, Vector3? approachDir)
         {
             float baseCost = Vector3.Distance(from.Position, to.Position);
