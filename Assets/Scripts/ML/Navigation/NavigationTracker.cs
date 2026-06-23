@@ -31,7 +31,7 @@ namespace BusBoys.Assets.Scripts.ML.Navigation
         private float previousDistanceToNode;
         private float lastRecalculateTime = -999f;
 
-
+        //
         public void BeginEpisode()
         {
             targetPathNode           = null;
