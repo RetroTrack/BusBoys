@@ -1,5 +1,6 @@
 namespace BusBoys.Assets.Scripts.ML
 {
+    //Holds value for current training mode.
     public enum TrainingMode
     {
         SingleNode      = 0,   // reach 1 graph node, episode ends

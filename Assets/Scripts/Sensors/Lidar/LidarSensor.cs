@@ -36,6 +36,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
             hits = new LidarHit[numberOfRays];
         }
 
+        //Pass through collisions.
         public void Collect(VectorSensor sensor)
         {
             sensor.AddObservation(Observations);
@@ -51,6 +52,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
             }
         }
 
+        //Simulate lidar with different rays. And check for collisions.
         void Scan()
         {
             passerbyDetected = false;
@@ -68,7 +70,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
                 bool anyHit = false;
                 Vector3 bestDir = transform.TransformDirection(
                     Quaternion.Euler(0, segmentCenter, 0) * Vector3.forward);
-                Vector3 bestHitPoint = Vector3.zero;  // voor visualisatie
+                Vector3 bestHitPoint = Vector3.zero;  // For visualization.
 
                 for (int j = 0; j < raysPerSegment; j++)
                 {
@@ -87,13 +89,13 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
                         {
                             bestDistance = t;
                             bestDir = dir;
-                            bestHitPoint = hit.point;  // sla het punt op
+                            bestHitPoint = hit.point;  // save current point.
                             anyHit = true;
                         }
                     }
                 }
 
-                // Teken alleen één lijn per segment
+                // Draw one line per segment.
                 if (visualizeRays)
                 {
                     if (anyHit)
@@ -113,6 +115,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Lidar
             }
         }
 
+        //Lidar hit.
         public struct LidarHit
         {
             public Vector3 direction;

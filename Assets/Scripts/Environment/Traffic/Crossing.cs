@@ -10,7 +10,7 @@ namespace BusBoys
         [SerializeField] Transform passerby;
         [SerializeField] float passerbySpeed = 2.6f;
         public float passerbyOdds = 0.2f; //20%
-        float SetTime = 30;//elke minuut
+        float SetTime = 30;
         float passerbyTimer;
         float setOffsetTime;
         bool crossing = false;
@@ -23,6 +23,7 @@ namespace BusBoys
         }
 
         // Update is called once per frame
+        //Randomly spawns and moves pedestrians accross the crossing prefab.
         void Update()
         {   
             if (crossing == false)
@@ -31,7 +32,7 @@ namespace BusBoys
                 if (passerbyTimer < 0)
                 {
                     passerbyTimer = SetTime;
-                    float chance = Random.value; //genereert waarde van 0-1
+                    float chance = Random.value; //generated value 0-1
                     if (chance <= passerbyOdds)
                     {
                         crossing = true;

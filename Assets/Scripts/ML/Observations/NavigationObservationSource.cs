@@ -12,6 +12,7 @@ namespace BusBoys.Assets.Scripts.ML.Observations
         [SerializeField] private RouteNavigator routeNavigator;
         [SerializeField] private Rigidbody vehicleRigidbody;
 
+        //Collect all the observations
         public void Collect(VectorSensor sensor)
         {
             CollectPathNode(sensor, offset: 0);  // current target node
@@ -19,10 +20,8 @@ namespace BusBoys.Assets.Scripts.ML.Observations
             CollectVelocity(sensor);
         }
 
-        /// <summary>
-        /// Adds direction + normalised distance for the path node at
-        /// (CurrentPathIndex + offset).  Emits zeros when the node doesn't exist.
-        /// </summary>
+        // Adds direction + normalised distance for the path node at
+        // (CurrentPathIndex + offset).  Emits zeros when the node doesn't exist.
         private void CollectPathNode(VectorSensor sensor, int offset)
         {
             IGraphNode node = routeNavigator.PeekPathNode(offset);
@@ -49,6 +48,7 @@ namespace BusBoys.Assets.Scripts.ML.Observations
             }
         }
 
+        //Collect the current velocity.
         private void CollectVelocity(VectorSensor sensor)
         {
             Vector3 localVelocity =

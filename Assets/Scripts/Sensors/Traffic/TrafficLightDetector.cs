@@ -44,6 +44,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Traffic
 
         public float UpdateInterval { get => detectionInterval; set => detectionInterval = value; }
 
+        //Passing through observation to the AI model.
         public void Collect(VectorSensor sensor)
         {
             sensor.AddObservation(Observations);
@@ -61,6 +62,7 @@ namespace BusBoys.Assets.Scripts.Sensors.Traffic
             StartCoroutine(DetectionLoop());
         }
 
+        //Detect traffic light loop. This is to keep detecting the traffic lights.
         IEnumerator DetectionLoop()
         {
             var wait = new WaitForSeconds(detectionInterval);

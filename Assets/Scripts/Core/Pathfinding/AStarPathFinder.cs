@@ -9,6 +9,8 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
     public static class AStarPathfinder
     {
         // Cost function is injected — the caller decides how to price an edge
+        // A* Star algorithm to find the best route. (See what A* does online)
+        // This is our own version with some minor tweaks to make it fit our grid and roads.
         public static List<IGraphNode> FindPath(
             IGraphNode start,
             IGraphNode goal,
@@ -53,6 +55,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             return new List<IGraphNode>();
         }
 
+        //Reconstruction of the A* algoritm.
         static List<IGraphNode> Reconstruct(Dictionary<IGraphNode, IGraphNode> cameFrom, IGraphNode current)
         {
             var path = new List<IGraphNode> { current };

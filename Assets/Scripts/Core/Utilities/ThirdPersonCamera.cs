@@ -27,6 +27,7 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
         [SerializeField] bool gamepadLook = false;
         [SerializeField] bool mouseLook = false;
 
+        //This function runs when it is first spoken to or referenced to.
         private void Awake()
         {
             lookAction = InputSystem.actions.FindAction("Look");
@@ -34,18 +35,20 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
             SetDefaultPosition();
         }
 
+        //Set target of the camera.
         public void SetTarget(Transform newTarget)
         {
             target = newTarget;
             SetDefaultPosition();
         }
 
+        //Set the default position before user gives input.
         private void SetDefaultPosition()
         {
             yaw = target.eulerAngles.y;
             pitch = 10f; // Default pitch angle
         }
-
+        //Function gets called on when a new frame.
         private void Update()
         {
             HandleLookState();
@@ -54,6 +57,7 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
             ApplyCamera();
         }
 
+        //Handle mouse or gamepad look state. If there is input with right click or controller active.
         private void HandleLookState()
         {
             mouseLook =
@@ -67,6 +71,7 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
             isLooking = mouseLook || gamepadLook;
         }
 
+        //Handle the mouse and controller rotation inputs.
         private void HandleRotation()
         {
             if (!isLooking)
@@ -86,6 +91,7 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
             pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
         }
 
+        //Handle cursed. Incase mouse is used. Make mouse icon dissappear on right click.
         private void HandleCursor()
         {
             if (isLooking)
@@ -99,7 +105,8 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
                 Cursor.visible = true;
             }
         }
-
+        
+        //Apply the calculations to the camera. 
         private void ApplyCamera()
         {
             Quaternion rotation = Quaternion.Euler(pitch, yaw, 0f);

@@ -20,13 +20,14 @@ namespace BusBoys
             engineSound.Play();
             engineSound.volume = 0f;
         }
+        //Runs certain sounds on certain things which are happening in the enviroment.
         void Update()
         {
             if (lidar.passerbyDetected)
             {
                 engineSound.volume = 0.3f;
                 honkSound.volume = 1f;
-                if (!honkSound.isPlaying)  // voorkom dat het geluid steeds opnieuw begint
+                if (!honkSound.isPlaying)  // Prevents sound from playing again.
                 {
                     honkSound.Play();
                 }

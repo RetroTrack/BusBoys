@@ -73,11 +73,13 @@ namespace BusBoys.Assets.Scripts.ML.Agents
             navigationTracker.AdvanceAlongPath();
         }
 
+        //Collect all the observations from the bus.
         public override void CollectObservations(VectorSensor sensor)
         {
             observationProvider.CollectObservations(sensor);
         }
 
+        //When an action is recieved. Send the inputs
         public override void OnActionReceived(ActionBuffers actions)
         {
             float motorInput = actions.ContinuousActions[0];
@@ -85,6 +87,8 @@ namespace BusBoys.Assets.Scripts.ML.Agents
             float steerInput = actions.ContinuousActions[2];
             controller.SetInputs(motorInput, brakeInput, steerInput);
         }
+
+        //This fuction is giving the AI control over the actions. This actions are what the AI decides to give.
         public override void Heuristic(in ActionBuffers actionsOut)
         {
             var actions = actionsOut.ContinuousActions;
@@ -94,6 +98,8 @@ namespace BusBoys.Assets.Scripts.ML.Agents
             actions[1] = brakeAction.ReadValue<float>(); // Brake
             actions[2] = moveInput.x; // Left/Right
         }
+
+        //This functions runs on the beginning of an AI training episode.
         public override void OnEpisodeBegin()
         {
             rewardProvider.OnEpisodeBegin();
@@ -108,12 +114,14 @@ namespace BusBoys.Assets.Scripts.ML.Agents
             StartCoroutine(WaitAndActivateCollisionRewarder());
         }
 
+        //Wait a little bit so the collision can get registered.
         IEnumerator WaitAndActivateCollisionRewarder()
         {
             yield return new WaitForSeconds(0.1f);
             collisionRewarder.isActive = true;
         }
 
+        //Attempt to regenerate environment. 
         private void TryRegenerateEnvironment()
         {
             if (roadGenerator == null) return;

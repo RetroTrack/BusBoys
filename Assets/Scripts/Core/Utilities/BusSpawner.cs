@@ -10,13 +10,14 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
         [SerializeField] private Vector2 randomOffsetRange = new Vector2(-10f, 10f);
         [SerializeField] private float yOffset = 0.5f;
 
-
+        //Gets and sets a random offset from the normal value.
         public Vector3 GetRandomOffsetFromDefault()
         {
             Vector3 offset = GetRandomOffset();
             return defaultPosition.position + offset;
         }
 
+        //Get the actual random value.
         public Vector3 GetRandomOffset()
         {
             float randomPostionX = Random.Range(randomOffsetRange.x, randomOffsetRange.y);
@@ -24,6 +25,7 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
             return new Vector3(randomPostionX, yOffset, randomPostionZ);
         }
 
+        //Get a random node a random node position
         public Vector3 GetRandomNodePosition()
         {
             int randomIndex = Random.Range(0, navGraph.Nodes.Count);
@@ -31,6 +33,7 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
             return spawnNode.Position;
         }
 
+        //Get a random rotation on the Y axis. So the bus keeps straight.
         public Quaternion GetRandomRotation()
         {
             float randomYRotation = Random.Range(0f, 360f);

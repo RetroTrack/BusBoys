@@ -20,6 +20,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
         public NavGraph NavGraph => navGraph;
         public bool HasValidPath => CurrentPath != null && CurrentPathIndex < CurrentPath.Count;
 
+        //AI Begin episode function. These values needed the reset.
         public void BeginEpisode()
         {
             CurrentPath = new List<IGraphNode>();
@@ -27,6 +28,7 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             currentWaypointIndex = 0;
         }
 
+        //Calculate the maximum possible waypoints.
         public float CalculateMaxWaypointSpan()
         {
             if (Waypoints == null || Waypoints.Count < 2) return 200f;
@@ -39,15 +41,18 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             return max;
         }
 
+        //Get path to the next node.
         public IGraphNode GetNextPathNode()
         {
             if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return null;
             return CurrentPath[CurrentPathIndex++];
         }
 
+        //Gets called when the end of a path has been reached.
         public bool HasReachedEndOfPath() =>
             CurrentPath == null || CurrentPathIndex >= CurrentPath.Count;
 
+        //Returns the distance of the node to reach.
         public float GetNodeReachedDistance()
         {
             int index = CurrentPathIndex - 1;
@@ -56,15 +61,14 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             return CurrentPath[index].NodeReachedDistance;
         }
 
+        //When the bus arrives at a waypoint.
         public void ArriveAtWaypoint(Vector3 position, Vector3 facing)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % Waypoints.Count;
             PathfindFromPosition(position, facing);
         }
 
-        /// <summary>
-        /// Standard pathfinding towards the current waypoint. Used in SingleWaypoint and FullRoute modes.
-        /// </summary>
+        // Standard pathfinding towards the current waypoint. Used in SingleWaypoint and FullRoute modes.
         public void PathfindFromPosition(Vector3 from, Vector3? facing = null)
         {
             if (Waypoints.Count == 0)
@@ -103,34 +107,10 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             CurrentPathIndex = 0;
         }
 
-        /// <summary>
         /// Pathfinds directly to a specific graph node. Used in SingleNode and MultiNode training modes.
-        /// </summary>
-        //public void PathfindToNode(Vector3 from, IGraphNode goalNode, Vector3? facing = null)
-        //{
-        //    if (navGraph == null)
-        //    {
-        //        Debug.LogError("RouteNavigator: NavGraph reference missing.");
-        //        return;
-        //    }
-
-        //    var startNode = FindClosestNode(from);
-        //    if (startNode == null || goalNode == null)
-        //    {
-        //        Debug.LogWarning("RouteNavigator: could not find start node or goal node is null.");
-        //        return;
-        //    }
-
-        //    CurrentPath = navGraph.FindPath(startNode, goalNode, facing) ?? new List<IGraphNode>();
-        //    CurrentPathIndex = 0;
-        //}
-
         public void PathfindToNode(Vector3 from, IGraphNode goalNode, Vector3? facing = null)
         {
             var startNode = FindClosestNode(from);
-
-            //Debug.Log($"Start node: {startNode?.Position}");
-            //Debug.Log($"Goal node: {goalNode?.Position}");
 
             if (startNode == null || goalNode == null)
             {
@@ -141,10 +121,10 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             CurrentPath = navGraph.FindPath(startNode, goalNode, facing)
                           ?? new List<IGraphNode>();
 
-            //Debug.Log($"Path length: {CurrentPath.Count}");
-
             CurrentPathIndex = 0;
         }
+
+        //Looks to the path ahead.
         public IGraphNode PeekPathNode(int offset)
         {
             var path = CurrentPath;
@@ -165,9 +145,11 @@ namespace BusBoys.Assets.Scripts.Core.Pathfinding
             return null;
         }
 
+        //Look at the current waypoint
         public Transform PeekCurrentWaypoint() =>
             Waypoints.Count == 0 ? null : Waypoints[currentWaypointIndex % Waypoints.Count];
 
+        //Finds the closest node.
         IGraphNode FindClosestNode(Vector3 position) =>
         navGraph.Nodes
         .Where(n => n.IsAlive())

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace BusBoys.Assets.Scripts.Core.Graph
 {
     /// <summary>
-    /// Lichtgewicht IGraphNode wrapper om een wereldpositie als node door te geven.
+    /// Lightweight IGraphNode wrapper to pass through the world position of the node.
     /// </summary>
     public class WaypointGraphNode : IGraphNode
     {

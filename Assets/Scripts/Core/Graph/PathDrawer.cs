@@ -237,6 +237,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             }
         }
 
+        //Draws the observations from the agent.
         private void DrawAgentObservations()
         {
             if (navigationTracker != null && busTransform != null)
@@ -262,7 +263,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             }
         }
 
-        //Eventuall the Point of Interest is drawn so we can see where the bus needs to go.
+        //Eventually the Point of Interest is drawn so we can see where the bus needs to go.
         private void DrawPOI(List<Transform> points, Color color, float size, string label)
         {
             for (int i = 0; i < points.Count; i++)

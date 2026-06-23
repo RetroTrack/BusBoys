@@ -6,6 +6,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus.Electric
         public float chargeRate = 20f; // % per seconde
         public Transform target;
 
+        //Detection if the bus is in the chargingstation.
         private void OnTriggerStay(Collider other)
         {
             if(!other.CompareTag("Bus")) return;
