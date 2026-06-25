@@ -4,11 +4,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 {
     public static class GraphNodeHelper
     {
-        /// <summary>
-        /// True if this node is non-null AND, if it is a Unity Object (like NavNode),
-        /// has not been destroyed. Use this instead of a plain `== null` check anywhere
-        /// an IGraphNode might be backed by a destroyed MonoBehaviour.
-        /// </summary>
+        //Check if object is still existing within the scene.
         public static bool IsAlive(this IGraphNode node)
         {
             if (node is null) return false;

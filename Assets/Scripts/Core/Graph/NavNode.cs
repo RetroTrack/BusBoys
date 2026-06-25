@@ -14,12 +14,14 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
         public IReadOnlyList<IGraphNode> Neighbors => neighbors;
 
+        //Adds a neighbour to the existing node.
         public void AddNeighbor(IGraphNode neighbor)
         {
             if (!neighbors.Contains(neighbor))
                 neighbors.Add(neighbor);
         }
 
+        //Removes all previously added neighbours.
         public void ClearNeighbors()
         {
             neighbors.Clear();

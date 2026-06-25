@@ -9,6 +9,9 @@ public class TrainingGrid : MonoBehaviour
     [SerializeField] Vector2 spacing = new Vector2(3, 5);
     [SerializeField] MeshDisabler meshDisabler;
     [SerializeField] ThirdPersonCamera thirdPersonCamera;
+
+    //Runs when scripts wakes up. And is active within the scene.
+    //Specifically made for training purpose. This disables runs the functions to disabled the meshes.
     private void Awake()
     {
         for (int x = 0; x < gridSize.x; x++)

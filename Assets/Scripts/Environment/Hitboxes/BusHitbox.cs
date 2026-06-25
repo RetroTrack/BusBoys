@@ -8,6 +8,8 @@ namespace BusBoys.Assets.Scripts.Environment.Hitboxes
     public class BusHitbox : MonoBehaviour
     {
         [SerializeField] private BusController busController;
+
+        //Checks if the entered collider is a pedestrian
         public void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Pedestrian"))
@@ -16,6 +18,7 @@ namespace BusBoys.Assets.Scripts.Environment.Hitboxes
             }
         }
 
+        //Checks if the exit collider is a pedestrian so it can start driving again.
         public void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Pedestrian"))

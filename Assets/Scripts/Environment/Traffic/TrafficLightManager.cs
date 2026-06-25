@@ -36,6 +36,7 @@ namespace BusBoys.Assets.Scripts.Environment.Traffic
             SetGreen();
         }
 
+        //Update the light state after the set time.
         private void Update()
         {
             timer += Time.deltaTime;
@@ -62,6 +63,7 @@ namespace BusBoys.Assets.Scripts.Environment.Traffic
             }
         }
 
+        //Set the traffic light.
         private void SetGreen()
         {
             timer = 0f;
@@ -77,6 +79,7 @@ namespace BusBoys.Assets.Scripts.Environment.Traffic
                     l.ChangeState(TrafficLight.TrafficLightState.Green);
         }
 
+        //Set traffic light to yellow
         private void SetYellow()
         {
             timer = 0f;
@@ -90,6 +93,7 @@ namespace BusBoys.Assets.Scripts.Environment.Traffic
                     l.ChangeState(TrafficLight.TrafficLightState.Yellow);
         }
 
+        //Set the taffic light to red
         private void SetRed()
         {
             timer = 0f;
@@ -98,6 +102,7 @@ namespace BusBoys.Assets.Scripts.Environment.Traffic
             SetAllRedLights();
         }
 
+        //Set all the light to red.
         private void SetAllRedLights()
         {
             foreach (var group in groups)

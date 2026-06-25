@@ -5,6 +5,8 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
     public class MeshDisabler : MonoBehaviour
     {
         [ContextMenu("Disable Mesh Renderers")]
+        //Gets the mesh renderer in all children and disables it. Used for training in unity.
+        //This is runs from the object that contains this script
         public void DisableMeshRenderers()
         {
             MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
@@ -15,6 +17,8 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
         }
 
         [ContextMenu("Enable Mesh Renderers")]
+        //Gets the mesh renderer in all children and enables it
+        //This is runs from the object that contains this script
         public void EnableMeshRenderers()
         {
             MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
@@ -24,7 +28,8 @@ namespace BusBoys.Assets.Scripts.Core.Utilities
             }
         }
 
-
+        //Gets the mesh renderer in all children and disables it. Used for training in unity.
+        //This is runs for the given game object.
         public void DisableMeshRenderersInObject(GameObject obj)
         {
             if (obj == null) return; 

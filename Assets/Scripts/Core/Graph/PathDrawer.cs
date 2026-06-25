@@ -48,6 +48,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
         [SerializeField] private LineRenderer lookaheadNodeRenderer;
         [SerializeField] private LineRenderer remainingPathRenderer;
 
+        //Runs the different needed lines. And gives the values to the function.
         private void Start()
         {
             SetupLineRenderer(currentNodeRenderer, pathColor, 0.1f);
@@ -55,6 +56,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             SetupLineRenderer(remainingPathRenderer, remainingPathColor, 0.1f);
         }
 
+        //Sets the different looks for the lines. 
         private void SetupLineRenderer(LineRenderer lineRenderer, Color color, float width)
         {
             if (lineRenderer == null) return;
@@ -71,6 +73,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             lineRenderer.useWorldSpace = true;
         }
 
+        //This function runs when the lines are being drawn. 
         void OnDrawGizmos()
         {
             if (nav == null || navGraph == null) return;
@@ -95,6 +98,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 DrawPOI(nav.ChargingPoints, ChargingPointColor, ChargingPointGizmoSize, "Charging Station");
         }
 
+        //Function gets called every frame.
         private void Update()
         {
             if (renderLinesInGame)
@@ -108,6 +112,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             }
         }
 
+        //Removes all existing line renders.
         private void ClearLineRenderers()
         {
             if (currentNodeRenderer != null)
@@ -118,9 +123,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 remainingPathRenderer.positionCount = 0;
         }
         
-
-
-
+        //Make sure the A* path is valid and make sure the different lists have no missing links.
         private void RenderAStarPath()
         {
             if (remainingPathRenderer == null) return;
@@ -132,7 +135,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
 
             int startIndex = nav.CurrentPathIndex;
 
-            // Filter alive nodes eerst, want de count moet matchen met wat we daadwerkelijk tekenen
+            // Filter alive nodes first, because the count must match.
             var aliveNodes = new List<IGraphNode>();
             for (int i = startIndex; i < nav.CurrentPath.Count; i++)
             {
@@ -151,6 +154,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
                 remainingPathRenderer.SetPosition(i, aliveNodes[i].Position + Vector3.up * 0.5f);
         }
 
+        //Renders the observation by the agent.
         private void RenderAgentObservations()
         {
             if (lookaheadNodeRenderer == null || currentNodeRenderer == null)
@@ -187,9 +191,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             }
         }
 
-
-
-
+        //Draws the spheres and lines for the navigation.
         private void DrawGraph()
         {
             foreach (var node in navGraph.Nodes)
@@ -208,6 +210,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             }
         }
 
+        //Draw the A* path.
         private void DrawAStarPath()
         {
             if (nav.CurrentPath != null && nav.CurrentPath.Count > 1)
@@ -234,6 +237,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             }
         }
 
+        //Draws the observations from the agent.
         private void DrawAgentObservations()
         {
             if (navigationTracker != null && busTransform != null)
@@ -259,6 +263,7 @@ namespace BusBoys.Assets.Scripts.Core.Graph
             }
         }
 
+        //Eventually the Point of Interest is drawn so we can see where the bus needs to go.
         private void DrawPOI(List<Transform> points, Color color, float size, string label)
         {
             for (int i = 0; i < points.Count; i++)

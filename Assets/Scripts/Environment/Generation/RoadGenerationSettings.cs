@@ -3,6 +3,7 @@ using UnityEngine;
 namespace BusBoys.Assets.Scripts.Environment.Generation
 {
     [CreateAssetMenu(fileName = "RoadGenerationSettings", menuName = "Generation/RoadGenerationSettings")]
+    //Settings config. This can be changed in the the name specified above.
     public class RoadGenerationSettings : ScriptableObject
     {
         [Header("Grid")]

@@ -11,6 +11,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus.Electric
         [SerializeField] private BusBattery busBattery;
         public MeshRenderer targetMesh;
 
+        //Checks if all references exist and renders texture. Also changes texture if the value changes.
         public void Update()
         {
             if (busBattery == null || targetMesh == null)

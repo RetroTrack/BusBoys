@@ -28,6 +28,8 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
 
         private List<int> randomValue = new List<int>();
 
+        //Generate random stops on straight roads. Devides the amount of straight roads by the amount of stops needed to be
+        //generated this is to make sure the change of stops next to each other is very low. (not zero)
         public void GenerateStop()
         {
             ResetStops();
@@ -42,7 +44,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
                 }
             }
 
-            // Verwijder null/destroyed entries zonder tijdens foreach te muteren
+            // Delete null/missing object to make list complete.
             straightRoads.RemoveAll(s => s == null);
 
             randomValue.Clear();
@@ -122,11 +124,13 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             ReturnBusStops();
         }
 
+        //Returns the current stops object to the route navigator. So it knows the waypoints.
         public void ReturnBusStops()
         {
             routeNavigator.Waypoints = targets;
         }
 
+        //Reset all stops. Removes all the stops and clear all associated lists.
         public void ResetStops()
         {
             if (generatedStops != null)

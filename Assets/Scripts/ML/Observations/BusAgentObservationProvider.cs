@@ -28,7 +28,7 @@ namespace BusBoys.Assets.Scripts.ML.Observations
                 }
             }
         }
-
+        //Inplementation for collection observations. 
         public override void CollectObservations(VectorSensor sensor)
         {
             foreach (var source in observationSources)
@@ -37,7 +37,7 @@ namespace BusBoys.Assets.Scripts.ML.Observations
             }
 
 
-            // Afstand vanaf het midden van de weg (min is links, plus is rechts)
+            // Distance from middle of the road.
         }
     }
 }

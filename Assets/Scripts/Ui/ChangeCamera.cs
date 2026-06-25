@@ -13,11 +13,13 @@ namespace BusBoys
 
         private int currentCameraIndex = 0;
 
+        //Set active to first camera in list.
         private void Start()
         {
             SetActiveCamera(currentCameraIndex);
         }
 
+        //Switch from camera on UI click.
         public void SwitchCamera()
         {
             if (cameras.Count <= 1)
@@ -31,6 +33,7 @@ namespace BusBoys
             SetActiveCamera(currentCameraIndex);
         }
 
+        //Set the current camera.
         private void SetActiveCamera(int index)
         {
             for (int i = 0; i < cameras.Count; i++)

@@ -42,7 +42,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
             currentSpeed = rb.linearVelocity.magnitude * 3.6f; // Convert m/s to km/h
         }
 
-
+        //Acceleration logic for the bus.
         public void Accelerate()
         {
             float outputMotorTorque = motorInput * motorTorque;
@@ -67,6 +67,8 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
                     break;
             }
         }
+
+        //Steering logic for the bus.
         public void Steer()
         {
             float targetSteerAngle = steeringInput * maxSteerAngle;
@@ -91,9 +93,10 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
                     break;
             }
         }
+
+        //Braking logic for the bus
         public void Brake()
         {
-
             float outputBreakTorque = Mathf.Max(0f, brakeInput) * brakeTorque;
             switch (brakingType)
             {
@@ -108,12 +111,16 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
                     break;
             }
         }
+
+        //Normalizing standard inputs.
         public void SetInputs(float motorInput, float brakeInput, float steeringInput)
         {
             this.motorInput = Mathf.Clamp(motorInput, -1f, 1f);
             this.brakeInput = Mathf.Clamp(brakeInput, 0f, 1f);
             this.steeringInput = Mathf.Clamp(steeringInput, -1f, 1f);
         }
+
+        //Resetting every aspect of the vehicle
         public void ResetVehicle()
         {
             if (rb == null)
@@ -132,6 +139,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
 
         }
 
+        //Resetting wheels 
         protected void ResetWheels(WheelType wheelType)
         {
             SetWheelBrake(0f, wheelType);
@@ -139,6 +147,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
             SetWheelAngle(0f, wheelType);
         }
 
+        //Setting wheel brakes. Based on torque and wheel type.
         protected void SetWheelBrake(float torque, WheelType wheelType)
         {
             switch (wheelType)
@@ -162,6 +171,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
             }
         }
 
+        //Set wheel torque. For forward and backward movement.
         protected void SetWheelTorque(float torque, WheelType wheelType)
         {
             switch (wheelType)
@@ -185,6 +195,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
             }
         }
 
+        //Set Wheel Angle to be able to steer. This is also based on the wheel type.
         public void SetWheelAngle(float angle, WheelType wheelType)
         {
             switch (wheelType)
@@ -216,6 +227,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Common
             }
         }
 
+        //Read values from the wheels. 
         public float[] GetWheelEncoderValues(WheelType wheelType)
         {
             List<float> encoderValues = new List<float>();

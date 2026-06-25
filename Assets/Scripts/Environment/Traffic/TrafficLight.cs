@@ -25,17 +25,20 @@ namespace BusBoys.Assets.Scripts.Environment.Traffic
             UpdateTrafficLight();
         }
 
+        //Change the traffic light from state
         public void ChangeState(TrafficLightState newState)
         {
             currentState = newState;
             UpdateTrafficLight();
         }
 
+        //Returns current state
         public TrafficLightState GetCurrentState()
         {
             return currentState;
         }
 
+        //Update traffic light with the right materials.
         private void UpdateTrafficLight()
         {
             foreach (var light in redLights)
@@ -52,7 +55,9 @@ namespace BusBoys.Assets.Scripts.Environment.Traffic
             }
         }
 
+
         [ContextMenu("Change Traffic Light State")]
+        //Set traffic light to next state.
         public void ChangeToNextState()
         {
             switch (currentState)
@@ -69,6 +74,7 @@ namespace BusBoys.Assets.Scripts.Environment.Traffic
             }
         }
 
+        //Holds the traffic light state.
         public enum TrafficLightState
         {
             Red,

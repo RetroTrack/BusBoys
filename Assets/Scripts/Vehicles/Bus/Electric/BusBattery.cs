@@ -18,7 +18,8 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus.Electric
         public float batteryPercentage = 100f;
         private Vector3 lastPosition;
         public Vector3 currentPosition;
-
+        
+        //Reset the battery percentage.
         public void ResetBattery()
         {
             batteryPercentage = batteryStartPercentage;
@@ -48,11 +49,13 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus.Electric
             }
         }
 
+        //Collect information and pass observation.
         public void Collect(VectorSensor sensor)
         {
             sensor.AddObservation(batteryPercentage/batteryStartPercentage);
         }
 
+        //Logic for rewards on charging the battery
         public void ChargeBattery(float chargeRate)
         {
             if (batteryPercentage < batteryStartPercentage)

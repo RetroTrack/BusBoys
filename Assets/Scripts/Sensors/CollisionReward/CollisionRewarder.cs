@@ -10,6 +10,7 @@ namespace BusBoys.Assets.Scripts.Sensors.CollisionReward
         [SerializeField] private AgentRewardProvider rewardProvider;
         [SerializeField] private LayerMask layerMask;
 
+        //On collision with something from the bus. Add panelty.
         public void OnCollisionEnter(Collision collision)
         {
             if (!isActive) return;
@@ -22,6 +23,7 @@ namespace BusBoys.Assets.Scripts.Sensors.CollisionReward
             HandleCollision(collision.gameObject.layer);
         }
 
+        //When driver off road. Stop current episode with a set on driven off road.
         public void DriveOffRoad()
         {
             if (!isActive) return;
@@ -30,6 +32,7 @@ namespace BusBoys.Assets.Scripts.Sensors.CollisionReward
             rewardProvider.EndEpisode();
         }
 
+        //Giving rewards for staying on pavement.
         public void StayOnPavement()
         {
             if (!isActive) return;
@@ -44,6 +47,7 @@ namespace BusBoys.Assets.Scripts.Sensors.CollisionReward
             rewardProvider.AddReward(rewardProvider.rewardConfig.stayOnPavementPenalty, "Stayed on pavement");
         }
 
+        //Handle collissions and end episode on collision
         public void HandleCollision(int layer)
         {
             if (!isActive) return;
@@ -55,11 +59,13 @@ namespace BusBoys.Assets.Scripts.Sensors.CollisionReward
             }
         }
 
+        //Only watches collision in certain layers.
         public static bool IsInLayerMask(int layer, LayerMask mask)
         {
             return (mask.value & (1 << layer)) != 0;
         }
 
+        //When pedestrian is hit.
         public void HitPedestrian()
         {
             if (!isActive) return;

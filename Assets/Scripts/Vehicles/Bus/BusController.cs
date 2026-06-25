@@ -11,15 +11,20 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
         float defaultMotorTorque = 2000f;
         [SerializeField] AgentRewardProvider rewardProvider;
 
+
+        //Set the default torque on start.
         public void Start()
         {
             defaultMotorTorque = motorTorque;
         }
+
+        //If the bus should be braking at that moment or not.
         public void SetShouldBrake(bool shouldBrake)
         {
             this.shouldBrake = shouldBrake;
         }
 
+        //Update all bus components.
         public override void FixedUpdate()
         {
             base.FixedUpdate();
@@ -42,6 +47,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
             CheckSteeringWithoutGas();
         }
 
+        //Giving penalty if steering stationary.
         private void CheckSteeringWithoutGas()
         {
             if(steeringInput != 0 && currentSpeed < 1f)
@@ -50,6 +56,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
             }
         }
 
+        //Check if bus has fallen of the map
         public void CheckFallenOfMap()
         {
             if (transform.position.y < -1f) // Fallen off the world
@@ -59,6 +66,7 @@ namespace BusBoys.Assets.Scripts.Vehicles.Bus
             }
         }
 
+        //Change the torque modifier.
         public void ModifyTorque(float multiplier)
         {
             motorTorque = defaultMotorTorque * multiplier;

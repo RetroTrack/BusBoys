@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace BusBoys.Assets.Scripts.Core.Graph
 {
+    //Interface definition for IGraphNode. 
     public interface IGraphNode
     {
         Vector3 Position { get; }

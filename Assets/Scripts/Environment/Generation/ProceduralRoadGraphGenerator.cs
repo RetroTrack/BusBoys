@@ -6,9 +6,11 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
 {
     public class ProceduralRoadGraphGenerator : MonoBehaviour
     {
+        // Internal enum representing a tile's road type
         private enum RoadType { None, Straight, Corner, TJunction, Cross, Pavement }
 
         [System.Serializable]
+        // Holds connection flags and computed properties for a grid cell
         private class CellData
         {
             public bool up, right, down, left;
@@ -42,6 +44,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
         private readonly List<NavNode> generatedNodes = new();
         private readonly List<NavEdge> generatedEdges = new();
 
+        // Returns the list of generated NavNodes spawned by the generator
         public IReadOnlyList<NavNode> GetSpawnedNodes() => generatedNodes; // track these as you instantiate
 
 
@@ -50,6 +53,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left
         };
 
+        //Runs on start and checks if the road generation existed before playing. 
         private void Start()
         {
             if (generateOnStart)
@@ -67,6 +71,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
         }
 
         [ContextMenu("Generate")]
+        //Runs all the functions for to complete the generation.
         public void Generate()
         {
             if (navGraph == null)
@@ -116,6 +121,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             Debug.Log("Generation Complete");
         }
 
+        //Sets all empty location within the grid to pavement.
         private void SetAllEmptyToPavement()
         {
             for (int x = 0; x < width; x++)
@@ -139,6 +145,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
         }
 
         [ContextMenu("New Seed + Generate")]
+        //Generate new seed from the inspector buttons. Also gets run by the bus agent.
         public void NewSeedAndGenerate()
         {
             seed = Random.Range(int.MinValue, int.MaxValue);
@@ -146,6 +153,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
         }
 
         [ContextMenu("Clear Generated")]
+        //Clear the all the lists and references used.
         public void ClearGenerated()
         {
             generatedNodes.Clear();
@@ -185,6 +193,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             spawnedRoads.Clear();
         }
 
+        //Makes sure the parent
         private void EnsureRoadParentExists()
         {
             if (roadsParent != null) return;
@@ -196,6 +205,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             roadsParent = holder.transform;
         }
 
+        // Allocate and initialize the cell grid
         private void InitializeCells()
         {
             cells = new CellData[width, height];
@@ -204,6 +214,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
                     cells[x, y] = new CellData();
         }
 
+        // Create primary and extra connections between anchor points to form the road network
         private void GenerateNetwork()
         {
             List<Vector2Int> anchors = GenerateAnchorPoints();
@@ -231,6 +242,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        //Generate the anchor points
         private List<Vector2Int> GenerateAnchorPoints()
         {
             List<Vector2Int> candidates = new(cellCount);
@@ -273,6 +285,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return anchors;
         }
 
+        //Make sure the road is far enough
         private bool IsFarEnoughFromAll(Vector2Int candidate, List<Vector2Int> existing, int minDistance)
         {
             foreach (var point in existing)
@@ -281,6 +294,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return true;
         }
 
+        //Connects to the nearest neighbour.
         private List<Vector2Int> OrderAnchorsByNearestNeighbor(List<Vector2Int> anchors)
         {
             List<Vector2Int> remaining = new(anchors);
@@ -309,6 +323,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return ordered;
         }
 
+        //Searches for the best nearest connection
         private Vector2Int FindBestExtraConnectionTarget(Vector2Int source, List<Vector2Int> anchors)
         {
             Vector2Int best = source;
@@ -326,6 +341,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return best;
         }
 
+        //Finds the path with the A* algorithm
         private List<Vector2Int> FindPathAStar(Vector2Int start, Vector2Int goal, int blockedStartNeighborIndex)
         {
             float[] gScore = new float[cellCount];
@@ -395,6 +411,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return null;
         }
 
+        // Find the index in openSet with lowest fScore
         private int GetLowestFScoreIndex(List<int> openSet, float[] fScore)
         {
             int best = openSet[0];
@@ -422,6 +439,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        // Compute traversal cost between adjacent cells including penalties/bonuses
         private float GetTraversalCost(Vector2Int current, Vector2Int neighbor, int prevDirIndex, int newDirIndex)
         {
             float cost = 1f;
@@ -444,6 +462,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return Mathf.Max(0.05f, cost);
         }
 
+        // Determine whether travel between two adjacent cells is allowed
         private bool CanTraverseBetween(Vector2Int a, Vector2Int b)
         {
             if (!AreAdjacent(a, b)) return false;
@@ -452,6 +471,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return true;
         }
 
+        // Carve a path by connecting successive cells in the provided path
         private void CarvePath(List<Vector2Int> path)
         {
             for (int i = 0; i < path.Count - 1; i++)
@@ -461,6 +481,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        // Check whether two adjacent cells can be connected under current rules
         private bool CanConnectCells(Vector2Int a, Vector2Int b)
         {
             if (!IsInsideGrid(a) || !IsInsideGrid(b)) return false;
@@ -471,6 +492,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return true;
         }
 
+        // Detect if connecting a and b would create a parallel road segment nearby
         private bool WouldCreateParallelRoad(Vector2Int a, Vector2Int b)
         {
             Vector2Int delta = b - a;
@@ -489,18 +511,21 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return false;
         }
 
+        // Check for a horizontal two-cell road segment starting at (leftX, y)
         private bool HasHorizontalSegment(int leftX, int y)
         {
             if (leftX < 0 || leftX >= width - 1 || y < 0 || y >= height) return false;
             return cells[leftX, y].right && cells[leftX + 1, y].left;
         }
 
+        // Check for a vertical two-cell road segment starting at (x, bottomY)
         private bool HasVerticalSegment(int x, int bottomY)
         {
             if (x < 0 || x >= width || bottomY < 0 || bottomY >= height - 1) return false;
             return cells[x, bottomY].up && cells[x, bottomY + 1].down;
         }
 
+        // Determine if connecting a-b would produce invalid closely adjacent major junctions
         private bool WouldCreateInvalidAdjacentJunctions(Vector2Int a, Vector2Int b)
         {
             for (int i = 0; i < 4; i++)
@@ -518,6 +543,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
                    IsProjectedMajorJunctionTouchingMajor(b, a, b);
         }
 
+        // Check whether a projected major junction at 'cell' would touch another major junction
         private bool IsProjectedMajorJunctionTouchingMajor(Vector2Int cell, Vector2Int a, Vector2Int b)
         {
             if (!IsMajorJunction(GetProjectedRoadTypeAfterConnection(cell, a, b)))
@@ -536,6 +562,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
         private bool IsMajorJunction(RoadType type) =>
             type == RoadType.TJunction || type == RoadType.Cross;
 
+        // Simulate adding a connection and return the resulting road type for the cell
         private RoadType GetProjectedRoadTypeAfterConnection(Vector2Int cell, Vector2Int a, Vector2Int b)
         {
             CellData c = cells[cell.x, cell.y];
@@ -551,6 +578,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return DetermineRoadType(up, right, down, left);
         }
 
+        // Iteratively seal dead-end branches until stable or guard reached
         private void SealOpenEnds()
         {
             bool changed = true;
@@ -579,6 +607,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        // Collect all cells that currently have exactly one connection
         private List<Vector2Int> GetDeadEnds()
         {
             List<Vector2Int> result = new();
@@ -589,6 +618,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return result;
         }
 
+        // Try to find and carve a path from a dead-end to seal it
         private bool TrySealDeadEnd(Vector2Int deadEnd)
         {
             Vector2Int blockedNeighbor = GetOnlyConnectedNeighbor(deadEnd);
@@ -608,6 +638,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return false;
         }
 
+        // Return the only connected neighbor of a dead-end cell
         private Vector2Int GetOnlyConnectedNeighbor(Vector2Int cell)
         {
             CellData c = cells[cell.x, cell.y];
@@ -618,6 +649,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return cell;
         }
 
+        // Build and sort potential seal targets for a dead-end cell
         private List<Vector2Int> GetSealTargetCandidates(Vector2Int deadEnd, Vector2Int blockedNeighbor)
         {
             List<Vector2Int> candidates = new();
@@ -638,6 +670,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return candidates;
         }
 
+        // Remove a continuous branch of dead-end cells starting from 'start'
         private void RemoveDeadEndBranch(Vector2Int start)
         {
             Vector2Int current = start;
@@ -649,6 +682,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        // Remove invalid junction links and prune dead-ends until stable
         private void CleanupInvalidNetwork()
         {
             bool changed = true;
@@ -701,12 +735,14 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        // Get the current road type of a cell based on its connections
         private RoadType GetCurrentRoadType(Vector2Int cell)
         {
             CellData c = cells[cell.x, cell.y];
             return DetermineRoadType(c.up, c.right, c.down, c.left);
         }
 
+        // Disconnect all neighbors of the given cell
         private void RemoveAllConnections(Vector2Int p)
         {
             CellData c = cells[p.x, p.y];
@@ -716,6 +752,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             if (c.left) DisconnectCells(p, p + Vector2Int.left);
         }
 
+        // Set directional flags to connect two adjacent cells
         private void ConnectCells(Vector2Int a, Vector2Int b)
         {
             Vector2Int delta = b - a;
@@ -725,6 +762,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             else if (delta == Vector2Int.left) { cells[a.x, a.y].left = true; cells[b.x, b.y].right = true; }
         }
 
+        // Clear directional flags to disconnect two adjacent cells
         private void DisconnectCells(Vector2Int a, Vector2Int b)
         {
             Vector2Int delta = b - a;
@@ -734,6 +772,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             else if (delta == Vector2Int.left) { cells[a.x, a.y].left = false; cells[b.x, b.y].right = false; }
         }
 
+        // Compute tile type and rotation for every cell based on connections
         private void ResolveCellTypes()
         {
             for (int x = 0; x < width; x++)
@@ -773,6 +812,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        // Determine the RoadType enum value from directional booleans
         private RoadType DetermineRoadType(bool up, bool right, bool down, bool left)
         {
             int count = (up ? 1 : 0) + (right ? 1 : 0) + (down ? 1 : 0) + (left ? 1 : 0);
@@ -784,6 +824,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return (left && right) || (up && down) ? RoadType.Straight : RoadType.Corner;
         }
 
+        // Instantiate prefabs for each non-empty cell and collect spawned objects
         private void SpawnPrefabs()
         {
             for (int x = 0; x < width; x++)
@@ -806,6 +847,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        // Return the prefab corresponding to a RoadType
         private GameObject GetPrefabForType(RoadType type) => type switch
         {
             RoadType.Straight => settings.roadStraight,
@@ -815,13 +857,20 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             _ => null
         };
 
+        // Convert 2D coords to linear index
         private int ToIndex(Vector2Int p) => p.y * width + p.x;
+        // Convert linear index back to 2D coords
         private Vector2Int FromIndex(int index) => new(index % width, index / width);
+        // A* heuristic (Manhattan distance)
         private float Heuristic(Vector2Int a, Vector2Int b) => Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        // Manhattan distance helper
         private int ManhattanDistance(Vector2Int a, Vector2Int b) => Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        // Check whether coords are inside the grid
         private bool IsInsideGrid(Vector2Int p) => p.x >= 0 && p.x < width && p.y >= 0 && p.y < height;
+        // Check whether a cell is on the edge of the grid
         private bool IsEdgeCell(Vector2Int p) => p.x == 0 || p.y == 0 || p.x == width - 1 || p.y == height - 1;
 
+        // Return true if two cells are orthogonally adjacent
         private bool AreAdjacent(Vector2Int a, Vector2Int b)
         {
             Vector2Int delta = b - a;
@@ -829,6 +878,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
                    delta == Vector2Int.down || delta == Vector2Int.left;
         }
 
+        // Return true if there is a connection from cell a to b
         private bool AreConnected(Vector2Int a, Vector2Int b)
         {
             Vector2Int delta = b - a;
@@ -840,6 +890,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return false;
         }
 
+        // Map a direction delta to a 0..3 index or -1
         private int GetDirectionIndex(Vector2Int delta)
         {
             if (delta == Vector2Int.up) return 0;
@@ -849,6 +900,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return -1;
         }
 
+        // Reconstruct path from cameFrom array into a list of Vector2Int
         private List<Vector2Int> ReconstructPath(int[] cameFrom, int currentIndex)
         {
             List<Vector2Int> path = new();
@@ -858,6 +910,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             return path;
         }
 
+        // In-place Fisher-Yates shuffle for a generic list
         private void Shuffle<T>(List<T> list)
         {
             for (int i = 0; i < list.Count; i++)
@@ -867,6 +920,7 @@ namespace BusBoys.Assets.Scripts.Environment.Generation
             }
         }
 
+        // Draw grid gizmos when the object is selected in the editor
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;

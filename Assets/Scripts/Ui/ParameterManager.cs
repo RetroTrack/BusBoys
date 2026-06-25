@@ -11,12 +11,12 @@ namespace BusBoys
     {
         [SerializeField] Slider speedSlider;
         [SerializeField] Slider batteryDrainPerMeterSlider;
-        [SerializeField] Slider PasserbyOddsSlider;
+        [SerializeField] Slider passerbyOddsSlider;
         [SerializeField] Slider turnPenaltyMultiplierSlider;
 
         [SerializeField] TextMeshProUGUI speedText;
-        [SerializeField] TextMeshProUGUI BatteryText;
-        [SerializeField] TextMeshProUGUI PasserbyText;
+        [SerializeField] TextMeshProUGUI batteryText;
+        [SerializeField] TextMeshProUGUI passerbyText;
         [SerializeField] TextMeshProUGUI turnPenaltyMultiplierText;
 
         [SerializeField] TextMeshProUGUI MonitoringText;
@@ -26,8 +26,8 @@ namespace BusBoys
 
         [SerializeField] Toggle toggleShowRay;
 
-        [SerializeField] VehicleController Vehicle;
-        [SerializeField] BusBattery Battery;
+        [SerializeField] VehicleController vehicle;
+        [SerializeField] BusBattery battery;
         [SerializeField] List<Crossing> crossings;
         [SerializeField] NavGraph navGraph;
         [SerializeField] PathDrawer pathDrawer;
@@ -39,27 +39,44 @@ namespace BusBoys
         private DriveType currentDriveType;
         private DriveType LastDriveType;
 
+        private string uiSpeedText;
+        private string uiBatteryText;
+        private string uiPasserbyText;
+        private string uiTurnPenaltyText;
+
+        //Sets default parameters on starting the simulation.
         void Start()
         {
+            //Set all boxes 
             HideShowText.text = "Show";
             toggleFrontWheels.isOn = true;
             toggleBackWheels.isOn = false;
+            toggleShowRay.isOn = true;
 
-            setSliderValues(speedSlider, 1f, 45f, 25f);
-            setSliderValues(batteryDrainPerMeterSlider, 0.0001f, 0.1f, 0.001f);
-            setSliderValues(PasserbyOddsSlider, 0.01f, 1, 0.2f);
-            setSliderValues(turnPenaltyMultiplierSlider, 0f , 20f, 2f);
+            //Set slider values to the default values and give them a min and max value.
+            SetSliderValues(speedSlider, 1f, 45f, 25f);
+            SetSliderValues(batteryDrainPerMeterSlider, 0.0001f, 0.1f, 0.001f);
+            SetSliderValues(passerbyOddsSlider, 0.01f, 1, 0.2f);
+            SetSliderValues(turnPenaltyMultiplierSlider, 0f , 20f, 2f);
+
+            //Get all values from editor and re-use them in this script.
+            uiSpeedText = speedText.text;
+            uiBatteryText = batteryText.text;
+            uiTurnPenaltyText = turnPenaltyMultiplierText.text;
+            uiPasserbyText = passerbyText.text;
 
         }
 
         // Update is called once per frame
         void Update()
         {
-            updateValues();
-            WheelValues();
-            CheckRouteRay();
+            //Update slider text.
+            UpdateSliderText();
+            //Update wheel modes.
+            SetVehicleDrivingType();
         }
 
+        //Add all crossing instances to one list.
         private void Awake()
         {
             GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("Crossing");
@@ -74,106 +91,112 @@ namespace BusBoys
             }
         }
 
-        private void updateValues()
+        //Update the slider text in the UI.
+        private void UpdateSliderText()
         {
-            speedText.text = $"MaxSpeed: {speedSlider.value:F2} km/H";
-            BatteryText.text = $"Batt-Drain: {batteryDrainPerMeterSlider.value:F5}%/m ";
-            PasserbyText.text = $"PasserbyOdds: {PasserbyOddsSlider.value *100:F2}%";
-            turnPenaltyMultiplierText.text = $"TunPenaltyMulti: {turnPenaltyMultiplierSlider.value:F2} x";
-            Battery.drainPerMeter = batteryDrainPerMeterSlider.value;
-            Vehicle.maxSpeed = speedSlider.value;
+            speedText.text = $"{uiSpeedText}: {speedSlider.value:F2} km/H";
+            batteryText.text = $"{uiBatteryText}: {batteryDrainPerMeterSlider.value:F3}%/m ";
+            passerbyText.text = $"{uiPasserbyText}: {passerbyOddsSlider.value *100:F2}%";
+            turnPenaltyMultiplierText.text = $"{uiTurnPenaltyText}: {turnPenaltyMultiplierSlider.value:F1} x";
+            battery.drainPerMeter = batteryDrainPerMeterSlider.value;
+            vehicle.maxSpeed = speedSlider.value;
             navGraph.turnPenaltyMultiplier = turnPenaltyMultiplierSlider.value;
 
 
             foreach (Crossing crossing in crossings)
             {
-                crossing.passerbyOdds = PasserbyOddsSlider.value;
+                crossing.passerbyOdds = passerbyOddsSlider.value;
             }
         }
 
-        private void WheelValues()
+        //Set vehicle driving type.
+        private void SetVehicleDrivingType()
         {
             if (toggleFrontWheels.isOn == true && toggleBackWheels.isOn == true)
             {
-                Vehicle.driveType = DriveType.AllWheelDrive;
-                Vehicle.brakingType = BrakingType.AllWheelBraking;
-                Vehicle.steeringType = SteeringType.AllWheelSteering;
                 currentDriveType = DriveType.AllWheelDrive;
-                straightWheels();
+                vehicle.driveType = DriveType.AllWheelDrive;
+                vehicle.brakingType = BrakingType.AllWheelBraking;
+                vehicle.steeringType = SteeringType.AllWheelSteering;
+                StraightenWheels();
             }
             else if (toggleFrontWheels.isOn == false && toggleBackWheels.isOn == true)
             {
                 currentDriveType = DriveType.RearWheelDrive;
-                Vehicle.driveType = DriveType.RearWheelDrive;
-                Vehicle.brakingType = BrakingType.RearWheelBraking;
-                Vehicle.steeringType = SteeringType.RearWheelSteering;
-                straightWheels();
+                vehicle.driveType = DriveType.RearWheelDrive;
+                vehicle.brakingType = BrakingType.RearWheelBraking;
+                vehicle.steeringType = SteeringType.RearWheelSteering;
+                StraightenWheels();
             }
             else if (toggleFrontWheels.isOn == true && toggleBackWheels.isOn == false)
             {
                 currentDriveType = DriveType.FrontWheelDrive;
-                Vehicle.driveType = DriveType.FrontWheelDrive;
-                Vehicle.brakingType = BrakingType.FrontWheelBraking;
-                Vehicle.steeringType = SteeringType.FrontWheelSteering;
-                straightWheels();
+                vehicle.driveType = DriveType.FrontWheelDrive;
+                vehicle.brakingType = BrakingType.FrontWheelBraking;
+                vehicle.steeringType = SteeringType.FrontWheelSteering;
+                StraightenWheels();
             }
             else
             {
                 toggleFrontWheels.isOn = true;
-                straightWheels();
+                StraightenWheels();
             }
 
         }
 
-        public void resetValues()
+        //Resets all values on the push off a button.
+        public void ResetValues()
         {
             toggleFrontWheels.isOn = true;
             toggleBackWheels.isOn = false;
             speedSlider.value = 25;
             batteryDrainPerMeterSlider.value = 0.001f;
-            PasserbyOddsSlider.value = 0.20f;
+            passerbyOddsSlider.value = 0.20f;
             turnPenaltyMultiplierSlider.value = 2f;
-
         }
 
-        void setSliderValues(Slider slider, float minValue, float maxValue, float StartValue)
+        //Sets all slider values with a min max and start value.
+        void SetSliderValues(Slider slider, float minValue, float maxValue, float StartValue)
         {
             slider.minValue = minValue; //minimale waarde
             slider.maxValue = maxValue; //maximale waarde
             slider.value = StartValue;  //beginwaarde
         }
 
-        void straightWheels()
+        //Straightens the wheels 
+        void StraightenWheels()
         {
             if(LastDriveType != currentDriveType)
             {
-                //Debug.Log($"last: {LastDriveType} Now:{currentDriveType}");
                 if (currentDriveType == DriveType.RearWheelDrive)
                 {
-                    Vehicle.SetWheelAngle(0f, WheelType.Front);
+                    vehicle.SetWheelAngle(0f, WheelType.Front);
                 }
                 else if (currentDriveType == DriveType.FrontWheelDrive)
                 {
-                    Vehicle.SetWheelAngle(0f, WheelType.Rear);
+                    vehicle.SetWheelAngle(0f, WheelType.Rear);
                 }
 
             }
             LastDriveType = currentDriveType;
         }
 
+        //Toggle UI visuals.
         public void HideAndShowButton()
         {
             ShowUI = !ShowUI;
-            setUi(ShowUI);
+            SetUi(ShowUI);
             HideShowText.text = ShowUI ? "HideUI" : "ShowUI";
         }
-        void setUi(bool set) {
+
+        //Toggle UI. Sets all UI elements active or inactive. To make sure they are visible or not.
+        void SetUi(bool set) {
             speedSlider.gameObject.SetActive(set);
             batteryDrainPerMeterSlider.gameObject.SetActive(set);
-            PasserbyOddsSlider.gameObject.SetActive(set);
+            passerbyOddsSlider.gameObject.SetActive(set);
             speedText.gameObject.SetActive(set);
-            BatteryText.gameObject.SetActive(set);
-            PasserbyText.gameObject.SetActive(set);
+            batteryText.gameObject.SetActive(set);
+            passerbyText.gameObject.SetActive(set);
             toggleFrontWheels.gameObject.SetActive(set);
             toggleBackWheels.gameObject.SetActive(set);
             resetParButton.gameObject.SetActive(set);
@@ -183,16 +206,11 @@ namespace BusBoys
             toggleShowRay.gameObject.SetActive(set);
 
         }
-        void CheckRouteRay()
+
+        //Set line rendering in game on or off.
+        public void SetRouteRay()
         {
-           if(toggleShowRay.isOn == true)
-            {
-                pathDrawer.renderLinesInGame = true;
-            }
-           else
-            {
-                pathDrawer.renderLinesInGame = false;
-            }
+           pathDrawer.renderLinesInGame = toggleShowRay.isOn;
         }
     }
 }

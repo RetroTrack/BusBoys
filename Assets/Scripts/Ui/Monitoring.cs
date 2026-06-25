@@ -9,39 +9,21 @@ namespace BusBoys
 {
     public class Monitoring : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         public VehicleController Controller;
         public BusBattery Battery;
         public TextMeshProUGUI VehicleStats;
         public LidarSensor Lidar;
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
+        // Update is called once per frame, calls updates for the stats on the left.
         void Update()
         {
-            if (Lidar.passerbyDetected) {
-                VehicleStats.text = 
-                $"Position: {Battery.currentPosition}\n" +
-                $"Battery: {Battery.batteryPercentage:F2}% \n" +
-                $"Speed: {Controller.CurrentSpeed:F2} Km/h \n" +
-                $"SteeringAngle: {Controller.CurrentSteerAngle:F2}°  \n" +
-                $"Lidar: Voetganger Gedetecteerd!!";
-            }
-            else
-            {
-                VehicleStats.text =
-                $"Position: {Battery.currentPosition}\n" +
-                $"Battery: {Battery.batteryPercentage:F2}% \n" +
-                $"Speed: {Controller.CurrentSpeed:F2} Km/h \n" +
-                $"SteeringAngle: {Controller.CurrentSteerAngle:F2}°  \n" +
-                $"Lidar: Geen voetganger Gedetecteerd";
-            }
-
-
-
+            //Sets the stats on the left side of the UI. To display the current stats of the vehicle.
+            VehicleStats.text = 
+            $"Position: \n{Battery.currentPosition}\n\n" +
+            $"Battery: \n{Battery.batteryPercentage:F2}% \n\n" +
+            $"Speed: \n{Controller.CurrentSpeed:F2} Km/h \n\n" +
+            $"SteeringAngle: \n{Controller.CurrentSteerAngle:F2}°  \n\n" + 
+            (Lidar.passerbyDetected ? $"Lidar: \nGeen voetganger Gedetecteerd" : $"Lidar: \nVoetganger Gedetecteerd!!");
         }
     }
 }
